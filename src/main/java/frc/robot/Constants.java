@@ -117,6 +117,11 @@ public final class Constants {
                         kMaxAngularAccelerationRadiansPerSecondSquared);
     }
 
+    public static class IntakeConstants {
+        public static final int INTAKE_MOTOR_ID = 150;
+        public static final int ROLLER_MOTOR_ID = 151;
+    }
+
     public static final class OIConstants {
         // Port for the driver's controller 
         public static final int kDriverControllerPort = 0;
