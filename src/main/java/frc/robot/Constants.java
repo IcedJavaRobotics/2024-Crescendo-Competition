@@ -7,6 +7,34 @@ import edu.wpi.first.math.util.Units;
 
 public final class Constants {
     
+    public static class Controller {
+
+        public static final int AUX_PORT = 0;
+    
+    }
+    
+    public static class Button {
+    
+        public static final int CLIMBER_UP = 0;
+        public static final int CLIMBER_DOWN = 0;
+        
+    }
+    
+    public static class Climber {
+    
+        public static final int LEFT_MOTOR = 170;
+        public static final int RIGHT_MOTOR = 171;
+    
+        public static final int LEFT_LIMIT_SWITCH = 0;
+        public static final int RIGHT_LIMIT_SWITCH = 1;
+    
+        public static final int UPPER_LEFT_LIMIT = 1000000;
+        public static final int UPPER_RIGHT_LIMIT = 1000000; 
+    
+        public static final double SPEED = 0.5;
+    
+    }    
+
     public static final class ModuleConstants {
         //The diameter of the wheel on your swerve drive
         public static final double kWheelDiameterMeters = Units.inchesToMeters(3.94); 
