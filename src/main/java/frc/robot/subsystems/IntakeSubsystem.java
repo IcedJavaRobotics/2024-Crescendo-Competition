@@ -25,50 +25,51 @@ public class IntakeSubsystem extends SubsystemBase {
   /**
    * Moves intake up at speed .2
    */
-  public void moveIntakeUp (){
+  public void moveIntakeUp() {
     intakeMotor.set(.2);
   }
 
   /**
    * Moves intake down at speed .2
    */
-  public void moveIntakeDown (){
+  public void moveIntakeDown() {
     intakeMotor.set(-.2);
   }
 
   /**
    * Turns rollers in at speed .2
    */
-  public void turnRollerIn(){
+  public void turnRollerIn() {
     rollerMotor.set(.2);
   }
 
   /**
    * Turns rollers out at speed .2
    */
-  public void turnRollerOut(){
+  public void turnRollerOut() {
     rollerMotor.set(-.2);
   }
+  
+  /**
+   * Turns scoring rollers out at speed .1
+   */
+  public void turnScoringRollerOut() {
+    rollerMotor.set(-.1);
 
+  }
+  
   /**
    * Stops intake motor
    */
-  public void stopIntakeMotor (){
+  public void stopIntakeMotor() {
     intakeMotor.set(0);
   }
 
   /**
    * Stops roller motor
    */
-  public void stopRollerMotor(){
+  public void stopRollerMotor() {
     rollerMotor.set(0);
-  }
-
-  /**
-   * Turns scoring rollers out at speed .1
-   */
-  public void turnScoringRollerOut () {
-    rollerMotor.set(-.1);
   }
 
 

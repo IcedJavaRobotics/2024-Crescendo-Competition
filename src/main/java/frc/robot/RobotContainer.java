@@ -23,8 +23,8 @@ import frc.robot.Constants.OIConstants;
 import frc.robot.commands.IntakeDownCommand;
 import frc.robot.commands.IntakeShootCommand;
 import frc.robot.commands.IntakeUpCommand;
-import frc.robot.commands.RollersInCommand;
-import frc.robot.commands.RollersOutCommand;
+import frc.robot.commands.RollerInCommand;
+import frc.robot.commands.RollerOutCommand;
 import frc.robot.commands.SwerveJoystickCmd;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.SwerveSubsystem;
@@ -61,9 +61,9 @@ public class RobotContainer {
         new JoystickButton (xboxController, 2)
                 .whileTrue(new IntakeUpCommand(intakeSubsystem));  
         new JoystickButton (xboxController, 3)
-                .whileTrue(new RollersInCommand(intakeSubsystem));   
+                .whileTrue(new RollerInCommand(intakeSubsystem));   
         new JoystickButton (xboxController, 4)
-                .whileTrue(new RollersOutCommand(intakeSubsystem));
+                .whileTrue(new RollerOutCommand(intakeSubsystem));
         new JoystickButton (xboxController, 5)
                 .whileTrue(new IntakeShootCommand(intakeSubsystem));
     }

@@ -12,7 +12,6 @@ public class IntakeShootCommand extends Command {
 
   private final IntakeSubsystem intakeSubsystem;
 
-
   public IntakeShootCommand(IntakeSubsystem subsystem) {
     intakeSubsystem = subsystem;
     addRequirements(intakeSubsystem);

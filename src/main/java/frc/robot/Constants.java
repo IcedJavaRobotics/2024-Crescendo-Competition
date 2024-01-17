@@ -10,7 +10,7 @@ public final class Constants {
     public static class IntakeConstants {
         public static final int INTAKE_MOTOR_ID = 150;
         public static final int ROLLER_MOTOR_ID = 151;
-
+        
         public static final boolean INTAKE_MOTOR_INVERTED = false;
         public static final boolean INTAKE_MOTOR_INVERTED = false;
     }

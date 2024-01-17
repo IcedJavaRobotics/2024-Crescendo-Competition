@@ -11,6 +11,7 @@ public class IntakeDownCommand extends Command {
   /** Creates a new IntakeDownCommand. */
   
   private final IntakeSubsystem intakeSubsystem;
+  
   public IntakeDownCommand(IntakeSubsystem subsystem) {
     intakeSubsystem = subsystem;
     addRequirements(intakeSubsystem);
