@@ -20,12 +20,19 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.Constants.AutoConstants;
 import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.OIConstants;
+import frc.robot.commands.IntakeDownCommand;
+import frc.robot.commands.IntakeShootCommand;
+import frc.robot.commands.IntakeUpCommand;
+import frc.robot.commands.RollersInCommand;
+import frc.robot.commands.RollersOutCommand;
 import frc.robot.commands.SwerveJoystickCmd;
+import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.SwerveSubsystem;
 
 public class RobotContainer {
 
     private final SwerveSubsystem swerveSubsystem = new SwerveSubsystem();
+    private final IntakeSubsystem intakeSubsystem = new IntakeSubsystem();
 
     private final Joystick driverJoytick = new Joystick(OIConstants.kDriverControllerPort);
     private final XboxController xboxController = new XboxController(OIConstants.kXboxControllerPort);
@@ -46,7 +53,19 @@ public class RobotContainer {
     }
 
     private void configureButtonBindings() {
-        new JoystickButton(driverJoytick, 2).onTrue(new InstantCommand(() -> swerveSubsystem.zeroHeading()));
+        new JoystickButton(driverJoytick, 2)
+                .onTrue(new InstantCommand(() -> swerveSubsystem.zeroHeading()));
+
+        new JoystickButton (xboxController, 1)
+                .whileTrue(new IntakeDownCommand(intakeSubsystem));
+        new JoystickButton (xboxController, 2)
+                .whileTrue(new IntakeUpCommand(intakeSubsystem));  
+        new JoystickButton (xboxController, 3)
+                .whileTrue(new RollersInCommand(intakeSubsystem));   
+        new JoystickButton (xboxController, 4)
+                .whileTrue(new RollersOutCommand(intakeSubsystem));
+        new JoystickButton (xboxController, 5)
+                .whileTrue(new IntakeShootCommand(intakeSubsystem));
     }
 
     public Command getAutonomousCommand() {
