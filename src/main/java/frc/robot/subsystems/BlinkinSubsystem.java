@@ -21,42 +21,64 @@ public class BlinkinSubsystem extends SubsystemBase {
 
   }
   
+
+  /**
+   * <p> Turns the Blinkin Red
+   **/
   public void turnBlinkinRed(){
 
     blinkin.set(Constants.RED);
 
   }
 
+  /**
+   * <p> Turns the Blinkin Blue 
+   */
   public void turnBlinkinBlue(){
 
     blinkin.set(Constants.BLUE);
 
   }
 
+  /**
+   * <p> Turns the Blinkin Green 
+   */
   public void turnBlinkinGreen(){
 
     blinkin.set(Constants.GREEN);
 
   }
 
+  /**
+   * <p> Turns the Blinkin Rainbow 
+   */
   public void turnBlinkinRainbow(){
 
   blinkin.set(Constants.RAINBOW);
 
   }
 
+  /**
+   * <p> Turns the Blinkin Ocean
+   */
   public void turnBlinkinOcean(){
 
     blinkin.set(Constants.OCEAN);
 
   }
 
+  /**
+   * <p> Turns the Blinkin Forest 
+   */
   public void turnBlinkinForest(){
 
   blinkin.set(Constants.FOREST);     
 
   }
 
+  /**
+   * <p> Turns Blinkin red if the robot alliance is red and turns Blinkin blue if the robot alliance is blue. If there is no robot alliance color then Blinkin turns forest. 
+   */
   public void autoBlinkin(){
     Optional<Alliance> color = DriverStation.getAlliance();
    if (color.isPresent()){

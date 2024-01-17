@@ -33,6 +33,8 @@ public class RobotContainer {
   public RobotContainer() {
     // Configure the trigger bindings
     configureBindings();
+
+    // Calling the autoBlinkin method to start when robot is initialized. 
     blinkinSubsystem.autoBlinkin();
   }
 
