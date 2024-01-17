@@ -21,11 +21,16 @@ import frc.robot.Constants.AutoConstants;
 import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.OIConstants;
 import frc.robot.commands.SwerveJoystickCmd;
+import frc.robot.subsystems.ShooterSubsystem;
 import frc.robot.subsystems.SwerveSubsystem;
+
+import frc.robot.commands.shooter.ShootCommand;
 
 public class RobotContainer {
 
     private final SwerveSubsystem swerveSubsystem = new SwerveSubsystem();
+    private final ShooterSubsystem shooterSubsystem = new ShooterSubsystem();
+
 
     private final Joystick driverJoytick = new Joystick(OIConstants.kDriverControllerPort);
     private final XboxController xboxController = new XboxController(OIConstants.kXboxControllerPort);
@@ -42,6 +47,9 @@ public class RobotContainer {
                 ));
 
 
+        new JoystickButton(xboxController, XboxController.Axis.kRightTrigger.value)
+                .whileTrue(new ShootCommand(shooterSubsystem));
+        
         configureButtonBindings();
     }
 
