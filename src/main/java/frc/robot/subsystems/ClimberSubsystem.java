@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+
 import static frc.robot.Constants.Climber;
 
 public class ClimberSubsystem extends SubsystemBase {
@@ -50,7 +51,7 @@ public class ClimberSubsystem extends SubsystemBase {
     
     if(climberLeftMotor.getSelectedSensorPosition() <= Climber.UPPER_LEFT_LIMIT){
 
-      moveLeftClimberMotor(Climber._SPEED);
+      moveLeftClimberMotor(Climber.SPEED);
 
     } else {
 
@@ -60,7 +61,7 @@ public class ClimberSubsystem extends SubsystemBase {
 
     if(climberRightMotor.getSelectedSensorPosition() <= Climber.UPPER_RIGHT_LIMIT){
 
-      moveRightClimberMotor(Climber._SPEED);
+      moveRightClimberMotor(Climber.SPEED);
 
     } else {
 
@@ -77,7 +78,7 @@ public class ClimberSubsystem extends SubsystemBase {
     
     if(climberLeftLimitSwitch.get() == false){
 
-      moveLeftClimberMotor(-Constants.CLIMBER_SPEED);
+      moveLeftClimberMotor(-Climber.SPEED);
 
     } else {
 
@@ -87,7 +88,7 @@ public class ClimberSubsystem extends SubsystemBase {
 
     if(climberRightLimitSwitch.get() == false){
 
-      moveRightClimberMotor(-Constants.CLIMBER_SPEED);
+      moveRightClimberMotor(-Climber.SPEED);
 
     } else {
 

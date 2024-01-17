@@ -8,7 +8,6 @@ import edu.wpi.first.math.controller.ProfiledPIDController;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Translation2d;
-import edu.wpi.first.math.proto.Controller;
 import edu.wpi.first.math.trajectory.Trajectory;
 import edu.wpi.first.math.trajectory.TrajectoryConfig;
 import edu.wpi.first.math.trajectory.TrajectoryGenerator;
@@ -21,9 +20,14 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.Constants.AutoConstants;
 import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.OIConstants;
+import frc.robot.commands.ClimberDownCommand;
+import frc.robot.commands.ClimberUpCommand;
 import frc.robot.commands.SwerveJoystickCmd;
 import frc.robot.subsystems.ClimberSubsystem;
 import frc.robot.subsystems.SwerveSubsystem;
+
+import static frc.robot.Constants.Controller;
+import static frc.robot.Constants.Button;
 
 public class RobotContainer {
 
@@ -50,7 +54,12 @@ public class RobotContainer {
     }
 
     private void configureButtonBindings() {
-        new JoystickButton(driverJoytick, 2).onTrue(new InstantCommand(() -> swerveSubsystem.zeroHeading()));
+        new JoystickButton(driverJoytick, 2)
+                .onTrue(new InstantCommand(() -> swerveSubsystem.zeroHeading()));
+        new JoystickButton(auxController, Button.CLIMBER_UP)
+                .whileTrue(new ClimberUpCommand(climberSubsystem));
+        new JoystickButton(auxController, Button.CLIMBER_DOWN)
+                .whileTrue(new ClimberDownCommand(climberSubsystem));
     }
 
     public Command getAutonomousCommand() {
