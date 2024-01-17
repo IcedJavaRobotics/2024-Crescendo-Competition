@@ -22,25 +22,45 @@ public class IntakeSubsystem extends SubsystemBase {
     rollerMotor.setInverted(false);
   }
 
+  /**
+   * moves intake up at speed .2
+   */
   public void moveIntakeUp (){
     intakeMotor.set(.2);
   }
+  /**
+   * moves intake down at speed .2
+   */
   public void moveIntakeDown (){
     intakeMotor.set(-.2);
   }
+  /**
+   * turns rollers in at speed .2
+   */
   public void turnRollersIn(){
     rollerMotor.set(.2);
   }
+  /**
+   * turns rollers out at speed .2
+   */
   public void turnRollersOut(){
     rollerMotor.set(-.2);
   }
+  /**
+   * stops intake motor
+   */
   public void stopIntakeMotor (){
     intakeMotor.set(0);
   }
+  /**
+   * stops roller motor
+   */
   public void stopRollerMotor(){
     rollerMotor.set(0);
   }
-
+  /**
+   * turns scoring rollers out at speed .1
+   */
   public void turnScoringRollersOut () {
     rollerMotor.set(-.1);
   }
