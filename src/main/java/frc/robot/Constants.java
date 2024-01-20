@@ -7,12 +7,18 @@ import edu.wpi.first.math.util.Units;
 
 public final class Constants {
     
+    /**
+     * Controller constants
+     */
     public static class Controller {
 
         public static final int AUX_PORT = 0;
     
     }
     
+    /**
+     * Button constants
+     */
     public static class Button {
     
         public static final int CLIMBER_UP = 0;
@@ -20,10 +26,13 @@ public final class Constants {
         
     }
     
+    /**
+     * Climber subsystem constants
+     */
     public static class Climber {
     
-        public static final int LEFT_MOTOR = 170;
-        public static final int RIGHT_MOTOR = 171;
+        public static final int LEFT_TALON = 170;
+        public static final int RIGHT_TALON = 171;
     
         public static final int LEFT_LIMIT_SWITCH = 0;
         public static final int RIGHT_LIMIT_SWITCH = 1;

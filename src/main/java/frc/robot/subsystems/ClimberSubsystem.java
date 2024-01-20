@@ -19,8 +19,8 @@ import static frc.robot.Constants.Climber;
 public class ClimberSubsystem extends SubsystemBase {
   /** Creates a new ClimberSubsystem. */
 
-  private TalonSRX climberLeftMotor = new TalonSRX(Climber.LEFT_MOTOR);
-  private TalonSRX climberRightMotor = new TalonSRX(Climber.RIGHT_MOTOR);
+  private TalonSRX climberLeftMotor = new TalonSRX(Climber.LEFT_TALON);
+  private TalonSRX climberRightMotor = new TalonSRX(Climber.RIGHT_TALON);
 
   DigitalInput climberLeftLimitSwitch = new DigitalInput(Climber.LEFT_LIMIT_SWITCH);
   DigitalInput climberRightLimitSwitch = new DigitalInput(Climber.RIGHT_LIMIT_SWITCH);
@@ -35,18 +35,30 @@ public class ClimberSubsystem extends SubsystemBase {
 
   }
 
+  /**
+   * Variable speed command for right climber
+   * @param speed Speed of the motor (double)
+   */
   public void moveRightClimberMotor(double speed) {
 
     climberRightMotor.set(ControlMode.PercentOutput, speed);
 
   }
 
+  /**
+   * Variable speed command for left climber
+   * @param speed Speed of the motor 
+   */
   public void moveLeftClimberMotor(double speed) {
 
     climberLeftMotor.set(ControlMode.PercentOutput, speed);
 
   }
 
+  /**
+   * Moves both climbers up until encoder limits (in Constants).
+   * Puts climber motor encoder values on the Smart Dashboard
+   */
   public void moveClimberUp(){
     
     if(climberLeftMotor.getSelectedSensorPosition() <= Climber.UPPER_LEFT_LIMIT){
@@ -74,6 +86,9 @@ public class ClimberSubsystem extends SubsystemBase {
 
   }
 
+  /**
+   * Moves both climbers down until limit switch 
+   */
   public void moveClimberDown(){
     
     if(climberLeftLimitSwitch.get() == false){
@@ -98,6 +113,9 @@ public class ClimberSubsystem extends SubsystemBase {
     
   }
   
+  /**
+   * Stops climber movement 
+   */
   public void climberStop() {
 
     climberLeftMotor.set(ControlMode.PercentOutput, 0);
