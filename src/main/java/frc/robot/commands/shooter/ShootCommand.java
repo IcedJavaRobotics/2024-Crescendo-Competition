@@ -12,7 +12,7 @@ import static frc.robot.Constants.ShooterConstants;
 public class ShootCommand extends Command {
   
   private final ShooterSubsystem shooterSubsystem;
-  private int SecondsWarmedUp = 0;
+  
   /** Creates a new Shoe. */
   public ShootCommand(ShooterSubsystem shSubsystem) {
     // Use addRequirements() here to declare subsystem dependencies.
