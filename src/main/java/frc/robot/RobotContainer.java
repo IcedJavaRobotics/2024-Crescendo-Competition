@@ -60,18 +60,17 @@ public class RobotContainer {
         // Note: -y value is to the left (field relative)
         // This sa,ple is an example of a figure 8 auto path
         Trajectory trajectory = TrajectoryGenerator.generateTrajectory(
-                new Pose2d(0, 0, new Rotation2d(0)),
+                new Pose2d(1.9, 5.55, new Rotation2d(0)),
                 List.of(
-                        new Translation2d(.7, -0.7),
-                        new Translation2d(1.2, 0),
-                        new Translation2d(.7, 0.7),
-                        new Translation2d(0, 0),
-                        new Translation2d(-.7, -0.7),
-                        new Translation2d(-1.2, 0),
-                        new Translation2d(-.7, 0.7)
+                        new Translation2d(1.35, 5.55),
+                        new Translation2d(2.25, 5.55),
+                        new Translation2d(1.35, 5.55),//start
+                        new Translation2d(1.52, 4.15),//1
+                        new Translation2d(2.20, 4.15),//2
+                        new Translation2d(2.51, 3.08)//3
                         ),
                 new Pose2d(
-               0, 0
+               1.35, 5.55
                 , Rotation2d.fromDegrees(0)),
                 trajectoryConfig);      
 
