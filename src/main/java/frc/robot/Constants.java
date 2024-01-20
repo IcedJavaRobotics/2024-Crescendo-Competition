@@ -12,7 +12,7 @@ public final class Constants {
         public static final int ROLLER_MOTOR_ID = 151;
         
         public static final boolean INTAKE_MOTOR_INVERTED = false;
-        public static final boolean INTAKE_MOTOR_INVERTED = false;
+        public static final boolean ROLLER_MOTOR_INVERTED = false;
     }
 
     public static final class ModuleConstants {

@@ -7,12 +7,12 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.IntakeSubsystem;
 
-public class RollersOutCommand extends Command {
+public class RollerOutCommand extends Command {
   /** Creates a new RollersOutCommand. */
 
   private final IntakeSubsystem intakeSubsystem;
 
-  public RollersOutCommand(IntakeSubsystem subsystem) {
+  public RollerOutCommand(IntakeSubsystem subsystem) {
     intakeSubsystem = subsystem;
     addRequirements(intakeSubsystem);
     // Use addRequirements() here to declare subsystem dependencies.
@@ -20,13 +20,13 @@ public class RollersOutCommand extends Command {
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {
-    intakeSubsystem.turnRollerOut();
-  }
+  public void initialize() {}
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {}
+  public void execute() {
+    intakeSubsystem.turnRollerOut();
+  }
 
   // Called once the command ends or is interrupted.
   @Override
