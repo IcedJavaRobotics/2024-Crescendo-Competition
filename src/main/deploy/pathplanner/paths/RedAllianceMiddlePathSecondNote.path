@@ -8,24 +8,24 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 14.391223168411251,
-        "y": 5.503726295673142
+        "x": 14.52495857372667,
+        "y": 4.865911285707282
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 13.897430902631228,
-        "y": 5.51
+        "x": 14.14432703552124,
+        "y": 4.0943608704260015
       },
       "prevControl": {
-        "x": 14.545243359915034,
-        "y": 5.541309101807805
+        "x": 13.738684523148574,
+        "y": 3.3402085939021724
       },
       "nextControl": {
-        "x": 13.341914603628705,
-        "y": 5.483151617932309
+        "x": 14.874728095320853,
+        "y": 5.452289601321057
       },
       "isLocked": false,
       "linkedName": null
@@ -36,20 +36,26 @@
         "y": 5.51
       },
       "prevControl": {
-        "x": 13.897430902631228,
-        "y": 5.51401363454356
+        "x": 14.535245912597087,
+        "y": 4.865911285707283
       },
       "nextControl": null,
       "isLocked": false,
       "linkedName": null
     }
   ],
-  "rotationTargets": [],
+  "rotationTargets": [
+    {
+      "waypointRelativePos": 0,
+      "rotationDegrees": 177.68202233337738,
+      "rotateFast": false
+    }
+  ],
   "constraintZones": [],
   "eventMarkers": [
     {
       "name": "dropintake",
-      "waypointRelativePos": 0.55,
+      "waypointRelativePos": 0.3,
       "command": {
         "type": "parallel",
         "data": {
@@ -66,7 +72,7 @@
     },
     {
       "name": "pickupnote",
-      "waypointRelativePos": 0.9,
+      "waypointRelativePos": 0.55,
       "command": {
         "type": "parallel",
         "data": {
@@ -96,7 +102,7 @@
     },
     {
       "name": "pickupintake",
-      "waypointRelativePos": 1.45,
+      "waypointRelativePos": 1.1,
       "command": {
         "type": "parallel",
         "data": {
