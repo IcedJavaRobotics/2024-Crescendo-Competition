@@ -6,7 +6,10 @@
     "BlueAllianceMiddlePath",
     "RedAllianceMiddlePath"
   ],
-  "autoFolders": [],
+  "autoFolders": [
+    "New Folder",
+    "New New Folder"
+  ],
   "defaultMaxVel": 3.0,
   "defaultMaxAccel": 3.0,
   "defaultMaxAngVel": 540.0,

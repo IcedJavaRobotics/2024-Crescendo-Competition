@@ -3,6 +3,8 @@ package frc.robot;
 import java.util.List;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.controller.ProfiledPIDController;
 import edu.wpi.first.math.geometry.Pose2d;
@@ -13,6 +15,7 @@ import edu.wpi.first.math.trajectory.TrajectoryConfig;
 import edu.wpi.first.math.trajectory.TrajectoryGenerator;
 import edu.wpi.first.math.util.Units;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.SwerveControllerCommand;
@@ -23,14 +26,40 @@ import frc.robot.Constants.OIConstants;
 import frc.robot.commands.SwerveJoystickCmd;
 import frc.robot.subsystems.SwerveSubsystem;
 
+import com.pathplanner.lib.auto.AutoBuilder;
+import com.pathplanner.lib.auto.NamedCommands;
+import com.pathplanner.lib.commands.PathPlannerAuto;
+import com.pathplanner.lib.path.GoalEndState;
+import com.pathplanner.lib.path.PathConstraints;
+import com.pathplanner.lib.path.PathPlannerPath;
+
 public class RobotContainer {
 
     private final SwerveSubsystem swerveSubsystem = new SwerveSubsystem();
+
+    private final SendableChooser<Command> autoChooser; 
 
     private final Joystick driverJoytick = new Joystick(OIConstants.kDriverControllerPort);
     private final XboxController xboxController = new XboxController(OIConstants.kXboxControllerPort);
 
     public RobotContainer() {
+        
+
+
+        configureButtonBindings();
+        // Register named commands
+        NamedCommands.registerCommand("marker1", Commands.print("Passed marker 1"));
+        NamedCommands.registerCommand("marker2", Commands.print("Passed marker 2"));
+        NamedCommands.registerCommand("print hello", Commands.print("hello"));
+
+        autoChooser = AutoBuilder.buildAutoChooser(); // Default auto will be `Commands.none()`
+        SmartDashboard.putData("Auto Mode", autoChooser);
+
+
+    }
+
+    private void configureButtonBindings() {
+        configurePathfinderBindings();
         swerveSubsystem.setDefaultCommand(new SwerveJoystickCmd(
                 swerveSubsystem,
                 () -> -xboxController.getRawAxis(OIConstants.kDriverYAxis),
@@ -40,64 +69,62 @@ public class RobotContainer {
                 () -> driverJoytick.getRawAxis(OIConstants.kDriverThrottleAxis),
                 () -> driverJoytick.getRawButton(OIConstants.kDriverSlowTurnButtonIdx)
                 ));
-
-
-        configureButtonBindings();
-    }
-
-    private void configureButtonBindings() {
+        
         new JoystickButton(driverJoytick, 2).onTrue(new InstantCommand(() -> swerveSubsystem.zeroHeading()));
     }
-
+    
     public Command getAutonomousCommand() {
-        // 1. Create trajectory settings
-        TrajectoryConfig trajectoryConfig = new TrajectoryConfig(
-                AutoConstants.kMaxSpeedMetersPerSecond,
-                AutoConstants.kMaxAccelerationMetersPerSecondSquared)
-                        .setKinematics(DriveConstants.kDriveKinematics);
+        return autoChooser.getSelected();
+      }
+    
+    private void configurePathfinderBindings(){
+        // Add a button to run the example auto to SmartDashboard, this will also be in the auto chooser built above
+    SmartDashboard.putData("Example Auto", new PathPlannerAuto("Example Auto"));
 
-        // 2. Generate trajectory
-        // Note: -y value is to the left (field relative)
-        // This sa,ple is an example of a figure 8 auto path
-        Trajectory trajectory = TrajectoryGenerator.generateTrajectory(
-                new Pose2d(0, 0, new Rotation2d(0)),
-                List.of(
-                        new Translation2d(.7, -0.7),
-                        new Translation2d(1.2, 0),
-                        new Translation2d(.7, 0.7),
-                        new Translation2d(0, 0),
-                        new Translation2d(-.7, -0.7),
-                        new Translation2d(-1.2, 0),
-                        new Translation2d(-.7, 0.7)
-                        ),
-                new Pose2d(
-               0, 0
-                , Rotation2d.fromDegrees(0)),
-                trajectoryConfig);      
+    // Add a button to run pathfinding commands to SmartDashboard
+    SmartDashboard.putData("Pathfind to Pickup Pos", AutoBuilder.pathfindToPose(
+      new Pose2d(14.0, 6.5, Rotation2d.fromDegrees(0)), 
+      new PathConstraints(
+        4.0, 4.0, 
+        Units.degreesToRadians(360), Units.degreesToRadians(540)
+      ), 
+      0, 
+      2.0
+    ));
+    SmartDashboard.putData("Pathfind to Scoring Pos", AutoBuilder.pathfindToPose(
+      new Pose2d(2.15, 3.0, Rotation2d.fromDegrees(180)), 
+      new PathConstraints(
+        4.0, 4.0, 
+        Units.degreesToRadians(360), Units.degreesToRadians(540)
+      ), 
+      0, 
+      0
+    ));
 
+    // Add a button to SmartDashboard that will create and follow an on-the-fly path
+    // This example will simply move the robot 2m in the +X field direction
+    SmartDashboard.putData("On-the-fly path", Commands.runOnce(() -> {
+      Pose2d currentPose = swerveSubsystem.getPose();
+      
+      // The rotation component in these poses represents the direction of travel
+      Pose2d startPos = new Pose2d(currentPose.getTranslation(), new Rotation2d());
+      Pose2d endPos = new Pose2d(currentPose.getTranslation().plus(new Translation2d(2.0, 0.0)), new Rotation2d());
 
-        // 3. Define PID controllers for tracking trajectory
-        PIDController xController = new PIDController(AutoConstants.kPXController, 0, 0);
-        PIDController yController = new PIDController(AutoConstants.kPYController, 0, 0);
-        ProfiledPIDController thetaController = new ProfiledPIDController(
-                AutoConstants.kPThetaController, 0, 0, AutoConstants.kThetaControllerConstraints);
-        thetaController.enableContinuousInput(-Math.PI, Math.PI);
+      List<Translation2d> bezierPoints = PathPlannerPath.bezierFromPoses(startPos, endPos);
+      PathPlannerPath path = new PathPlannerPath(
+        bezierPoints, 
+        new PathConstraints(
+          4.0, 4.0, 
+          Units.degreesToRadians(360), Units.degreesToRadians(540)
+        ),  
+        new GoalEndState(0.0, currentPose.getRotation())
+      );
 
-        // 4. Construct command to follow trajectory
-        SwerveControllerCommand swerveControllerCommand = new SwerveControllerCommand(
-                trajectory,
-                swerveSubsystem::getPose,
-                DriveConstants.kDriveKinematics,
-                xController,
-                yController,
-                thetaController,
-                swerveSubsystem::setModuleStates,
-                swerveSubsystem);
+      // Prevent this path from being flipped on the red alliance, since the given positions are already correct
+      path.preventFlipping = true;
 
-        // 5. Add some init and wrap-up, and return everything
-        return new SequentialCommandGroup(
-                new InstantCommand(() -> swerveSubsystem.resetOdometry(trajectory.getInitialPose())),
-                swerveControllerCommand,
-                new InstantCommand(() -> swerveSubsystem.stopModules()));
+      AutoBuilder.followPath(path).schedule();
+    }));
     }
+    
 }
