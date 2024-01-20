@@ -31,7 +31,7 @@ public class ShooterSubsystem extends SubsystemBase {
     private final CANSparkMax leftMotor;
     private final CANSparkMax rightMotor;
 
-    private double timeShot;
+    private double timeShot;      //Tracks when controller trigger is let go
     private boolean shooterWaitingToCooldown = false;
 
   /** Creates a new ShooterSubsystem. */
@@ -64,6 +64,7 @@ public class ShooterSubsystem extends SubsystemBase {
   }
   public void cooldownShooter(){
     if(shooterWaitingToCooldown){
+      //If it has been COOLDOWN_TIME amount of time since fired set speed to 0
       if((timeShot-Timer.getMatchTime()) > ShooterConstants.COOLDOWN_TIME){
         setSpeed(0);
         this.shooterWaitingToCooldown = false;
