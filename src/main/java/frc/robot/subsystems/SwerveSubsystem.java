@@ -168,10 +168,8 @@ public class SwerveSubsystem extends SubsystemBase {
           positions[i] = modules[i].getPosition();
         }
         return positions;
-      }
+    }
     
-
-
     public void zeroHeading() {
         gyro.setYaw(0);
     }

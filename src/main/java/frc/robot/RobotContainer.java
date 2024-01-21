@@ -79,6 +79,7 @@ public class RobotContainer {
     private void configurePathfinderBindings(){
 
         SmartDashboard.putData("BlueAllianceMiddleAuto", new PathPlannerAuto("BlueAllianceMiddleAuto"));
+        SmartDashboard.putData("North Atlantic Cod", new PathPlannerAuto("Line auto"));
         // Add a button to run the example auto to SmartDashboard, this will also be in the auto chooser built above
     // SmartDashboard.putData("Example Auto", new PathPlannerAuto("Example Auto"));
     // // Add a button to run pathfinding commands to SmartDashboard
