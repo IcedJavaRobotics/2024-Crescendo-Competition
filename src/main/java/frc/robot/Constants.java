@@ -84,10 +84,10 @@ public final class Constants {
 
         //The offset of the CANcoder's position from the zero position (Straight forward)
         //Measure this by rotating all the modules to the forward position and reading the CANcoder's value
-        public static final double kFrontLeftDriveAbsoluteEncoderOffsetRad = Units.degreesToRadians(-171.035); // 361.143
-        public static final double kFrontRightDriveAbsoluteEncoderOffsetRad = Units.degreesToRadians(173.408); //1799.209
-        public static final double kBackLeftDriveAbsoluteEncoderOffsetRad = Units.degreesToRadians(125.508); // 1440.176
-        public static final double kBackRightDriveAbsoluteEncoderOffsetRad = Units.degreesToRadians(-92.285); //3240.088
+        public static final double kFrontLeftDriveAbsoluteEncoderOffsetRad = Units.degreesToRadians(99.404); // 361.143
+        public static final double kFrontRightDriveAbsoluteEncoderOffsetRad = Units.degreesToRadians(82.969); //1799.209
+        public static final double kBackLeftDriveAbsoluteEncoderOffsetRad = Units.degreesToRadians(34.893); // 1440.176
+        public static final double kBackRightDriveAbsoluteEncoderOffsetRad = Units.degreesToRadians(177.891); //3240.088
 
         // in m/s, based on MK4 L2 speed of 14.5 ft/s
         public static final double kPhysicalMaxSpeedMetersPerSecond = Units.feetToMeters(14.5);  //14.5

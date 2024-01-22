@@ -69,17 +69,18 @@ public class RobotContainer {
                 () -> driverJoytick.getRawButton(OIConstants.kDriverSlowTurnButtonIdx)
                 ));
         
-        new JoystickButton(driverJoytick, 2).onTrue(new InstantCommand(() -> swerveSubsystem.zeroHeading()));
+        new JoystickButton(xboxController, 2).onTrue(new InstantCommand(() -> swerveSubsystem.zeroHeading()));
     }
     
     public Command getAutonomousCommand() {
-        return autoChooser.getSelected();
+        //return autoChooser.getSelected();
+        return AutoBuilder.buildAuto("LineAuto");
       }
     
     private void configurePathfinderBindings(){
 
         SmartDashboard.putData("BlueAllianceMiddleAuto", new PathPlannerAuto("BlueAllianceMiddleAuto"));
-        SmartDashboard.putData("North Atlantic Cod", new PathPlannerAuto("Line auto"));
+        SmartDashboard.putData("Line auto", new PathPlannerAuto("LineAuto"));
         // Add a button to run the example auto to SmartDashboard, this will also be in the auto chooser built above
     // SmartDashboard.putData("Example Auto", new PathPlannerAuto("Example Auto"));
     // // Add a button to run pathfinding commands to SmartDashboard
