@@ -74,7 +74,7 @@ public class SwerveModule {
         turningEncoder.setPositionConversionFactor(ModuleConstants.kTurningEncoderRot2Rad);
         turningEncoder.setVelocityConversionFactor(ModuleConstants.kTurningEncoderRPM2RadPerSec);
 
-        turningPidController = new PIDController(ModuleConstants.kPTurning, 0, 0); //kPTurning COnstant, 1, 0.001
+        turningPidController = new PIDController(ModuleConstants.kPTurning, 0, 0.001); //kPTurning COnstant, 1, 0.001
         turningPidController.enableContinuousInput(-Math.PI, Math.PI);
 
         absoluteEncoder.configAbsoluteSensorRange(AbsoluteSensorRange.Signed_PlusMinus180);
@@ -145,10 +145,7 @@ public class SwerveModule {
         }
         state = SwerveModuleState.optimize(state, getState().angle);
         driveMotor.set(state.speedMetersPerSecond / DriveConstants.kPhysicalMaxSpeedMetersPerSecond);
-        System.out.println("state speed:" + state.speedMetersPerSecond);
         pidCalculations = turningPidController.calculate(getAbsoluteEncoderRad(), state.angle.getRadians());
-        //System.out.println(pidCalculations);
-
         turningMotor.set(pidCalculations);
         SmartDashboard.putString("Swerve[" + moduleName + "] state", state.toString());
     }

@@ -1,6 +1,5 @@
 package frc.robot.commands;
 
-import java.security.cert.TrustAnchor;
 import java.util.function.Supplier;
 import edu.wpi.first.math.filter.SlewRateLimiter;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
@@ -70,8 +69,8 @@ public class SwerveJoystickCmd extends Command {
         xSpeed = xLimiter.calculate(xSpeed) * DriveConstants.kTeleDriveMaxSpeedMetersPerSecond;
         ySpeed = yLimiter.calculate(ySpeed) * DriveConstants.kTeleDriveMaxSpeedMetersPerSecond;
 
-        System.out.println("xSpeed: " + xSpeed);
-        System.out.println("ySpeed: " + ySpeed);
+        // System.out.println("xSpeed: " + xSpeed);
+        // System.out.println("ySpeed: " + ySpeed);
 
         // Slow turning speed on true of slowTurn button boolean supplier
         turningSpeed = turningLimiter.calculate(turningSpeed) * DriveConstants.kTeleDriveMaxAngularSpeedRadiansPerSecond;

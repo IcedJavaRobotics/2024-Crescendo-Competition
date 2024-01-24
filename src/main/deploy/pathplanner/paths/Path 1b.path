@@ -3,25 +3,25 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 1.3239288017037585,
-        "y": 5.4860202028096365
+        "x": 3.0,
+        "y": 5.59
       },
       "prevControl": null,
       "nextControl": {
-        "x": 1.5015337722983153,
-        "y": 5.4860202028096365
+        "x": 2.25,
+        "y": 5.59
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 2.60663136710889,
-        "y": 5.4860202028096365
+        "x": 1.25,
+        "y": 5.59
       },
       "prevControl": {
-        "x": 2.1922197690549248,
-        "y": 5.4860202028096365
+        "x": 1.31,
+        "y": 5.59
       },
       "nextControl": null,
       "isLocked": false,
@@ -43,10 +43,7 @@
     "rotateFast": false
   },
   "reversed": false,
-  "folder": null,
-  "previewStartingState": {
-    "rotation": 0,
-    "velocity": 0
-  },
+  "folder": "BlueAllianceAutoTwo",
+  "previewStartingState": null,
   "useDefaultConstraints": false
 }
