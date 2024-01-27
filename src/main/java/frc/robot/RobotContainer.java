@@ -36,7 +36,8 @@ public class RobotContainer {
         NamedCommands.registerCommand("print hello", Commands.print("hello"));
 
         autoChooser = AutoBuilder.buildAutoChooser(); // Default auto will be `Commands.none()`
-        SmartDashboard.putData("Auto Mode", autoChooser);
+        SmartDashboard.putData("AutoMode", autoChooser);
+        
 
 
     }
@@ -57,12 +58,15 @@ public class RobotContainer {
     
     public Command getAutonomousCommand() {
         return autoChooser.getSelected();
-      }
+    }
     
     private void configurePathfinderBindings(){
-
+        
+        SmartDashboard.updateValues();
         SmartDashboard.putData("BlueAllianceMiddleAuto", new PathPlannerAuto("BlueAllianceMiddleAuto"));
         SmartDashboard.putData("Line auto", new PathPlannerAuto("LineAuto"));
+        SmartDashboard.putData("Testing auto", new PathPlannerAuto("TestingAuto"));
+        SmartDashboard.updateValues();
         // Add a button to run the example auto to SmartDashboard, this will also be in the auto chooser built above
     // SmartDashboard.putData("Example Auto", new PathPlannerAuto("Example Auto"));
     // // Add a button to run pathfinding commands to SmartDashboard
