@@ -20,9 +20,10 @@ public class IntakeSubsystem extends SubsystemBase {
   public CANSparkMax rollerMotor = new CANSparkMax(IntakeConstants.ROLLER_MOTOR_ID, MotorType.kBrushless);
 
   // Creates distance sensor and limit switches
-  public Ultrasonic distanceSenor = new Ultrasonic(0, 1);
+
   public DigitalInput upperLimitSwitch = new DigitalInput(2);
   public DigitalInput lowerLimitSwitch = new DigitalInput(3);
+  public DigitalInput distanceSensor = new DigitalInput(0);
 
   /** Creates a new IntakeSubsystem. */
   public IntakeSubsystem() {
@@ -56,11 +57,11 @@ public class IntakeSubsystem extends SubsystemBase {
    * Turns rollers in at speed .2 until piece is picked up
    */
   public void turnRollerIn() {
-    if(distanceSenor.getRangeMM() <= 5) { 
-      stopRollerMotor();
-    } else {
+    // if(distanceSenor.getRangeMM() <= 5) { 
+    //   stopRollerMotor();
+    // } else {
       rollerMotor.set(.2);
-    }
+    // }
   }
 
   /**
@@ -82,6 +83,7 @@ public class IntakeSubsystem extends SubsystemBase {
    */
   public void stopIntakeMotor() {
     intakeMotor.set(0);
+  
   }
 
   /**
@@ -91,12 +93,12 @@ public class IntakeSubsystem extends SubsystemBase {
     rollerMotor.set(0);
   }
 
-  public boolean havePiece() {
-    if(distanceSenor.getRangeMM() <= 5) {
-      return true;
-    }
-    return false;
-  }
+  // public boolean havePiece() {
+  //   if(distanceSenor.getRangeMM() <= 5) {
+  //     return true;
+  //   }
+  //   return false;
+  // }
 
 
   @Override
@@ -104,6 +106,7 @@ public class IntakeSubsystem extends SubsystemBase {
     // This method will be called once per scheduler run
     SmartDashboard.putBoolean("IntakeUpperSwitch", upperLimitSwitch.get());
     SmartDashboard.putBoolean("IntakeLowerSwitch", lowerLimitSwitch.get());
-    SmartDashboard.putBoolean("IntakeLowerSwitch", havePiece());
+    SmartDashboard.putBoolean("Have piece", !distanceSensor.get());
+    //SmartDashboard.putBoolean("IntakeLowerSwitch", havePiece());
   }
 }

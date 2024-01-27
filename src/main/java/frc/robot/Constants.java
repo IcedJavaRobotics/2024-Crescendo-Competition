@@ -46,19 +46,19 @@ public final class Constants {
                 new Translation2d(-kWheelBase / 2, -kTrackWidth / 2)); /*BR*/
 
         //CAN IDs For the drive motor spark maxes on the swerve modules
-        public static final int kFrontLeftDriveMotorPort = 1;
-        public static final int kFrontRightDriveMotorPort = 3;
-        public static final int kBackLeftDriveMotorPort = 5;
-        public static final int kBackRightDriveMotorPort = 7;
+        public static final int kFrontLeftDriveMotorPort = 11;
+        public static final int kFrontRightDriveMotorPort = 21;
+        public static final int kBackLeftDriveMotorPort = 31;
+        public static final int kBackRightDriveMotorPort = 41;
 
         //CAN IDs for the turning motor spark maxes on the swerve modules
-        public static final int kFrontLeftTurningMotorPort = 2;
-        public static final int kFrontRightTurningMotorPort = 4;
-        public static final int kBackLeftTurningMotorPort = 6;
-        public static final int kBackRightTurningMotorPort = 8;
+        public static final int kFrontLeftTurningMotorPort = 12;
+        public static final int kFrontRightTurningMotorPort = 22;
+        public static final int kBackLeftTurningMotorPort = 32;
+        public static final int kBackRightTurningMotorPort = 42;
 
         //CTRE Pigeon 2.0
-        public static final int kPigeonPort = 13;
+        public static final int kPigeonPort = 1;
 
         //A boolean to control the inversion of the direction of the motor gievn a positive value
         //Positive values muest result in a counter-clockwise movment
@@ -75,10 +75,10 @@ public final class Constants {
         public static final boolean kBackRightDriveMotorReversed = false;
 
         //The CAN id's for the CANcoder's on the swerve modules
-        public static final int kFrontLeftDriveAbsoluteEncoderPort = 9;
-        public static final int kFrontRightDriveAbsoluteEncoderPort = 10;
-        public static final int kBackLeftDriveAbsoluteEncoderPort = 11;
-        public static final int kBackRightDriveAbsoluteEncoderPort = 12;
+        public static final int kFrontLeftDriveAbsoluteEncoderPort = 10;
+        public static final int kFrontRightDriveAbsoluteEncoderPort = 20;
+        public static final int kBackLeftDriveAbsoluteEncoderPort = 30;
+        public static final int kBackRightDriveAbsoluteEncoderPort = 40;
 
         //Inversion of the direction of the CANcoder
         //Positive values must result in a counter-clockwise movement
