@@ -44,6 +44,13 @@ public class LimelightSubsystem extends SubsystemBase {
   public double getTa() {
     return NetworkTableInstance.getDefault().getTable("limelight").getEntry("ta").getDouble(0);
   }
+  /**
+   * 
+   * @param mode 1.0 for on, 0.0 for off
+   */
+  public void setFlasher(double mode){
+    NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setDouble(mode);
+  }
 
   /**
    * whether or not the limelight sees a apriltag

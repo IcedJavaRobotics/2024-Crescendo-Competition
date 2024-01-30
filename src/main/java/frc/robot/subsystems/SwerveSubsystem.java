@@ -9,6 +9,7 @@ import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.math.kinematics.SwerveDriveOdometry;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
 import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.smartdashboard.Field2d;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.AutoConstants;
@@ -222,7 +223,7 @@ public class SwerveSubsystem extends SubsystemBase {
         SmartDashboard.putNumber("Pose X", getPose().getX());
         SmartDashboard.putNumber("Pose Y", getPose().getY());
         SmartDashboard.putNumber("Pose ROT", getPose().getRotation().getDegrees());
-
+        
 
     }
 
@@ -232,6 +233,7 @@ public class SwerveSubsystem extends SubsystemBase {
         backLeft.stop();
         backRight.stop();
         System.out.println("Swerve STOP done.");
+        
     }
 
     public void setModuleStates(SwerveModuleState[] desiredStates) {

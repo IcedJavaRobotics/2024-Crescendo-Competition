@@ -9,7 +9,9 @@ import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.Constants.OIConstants;
+import frc.robot.commands.Flasher;
 import frc.robot.commands.SwerveJoystickCmd;
+import frc.robot.subsystems.LimelightSubsystem;
 import frc.robot.subsystems.SwerveSubsystem;
 
 import com.pathplanner.lib.auto.AutoBuilder;
@@ -19,6 +21,7 @@ import com.pathplanner.lib.commands.PathPlannerAuto;
 public class RobotContainer {
 
     private final SwerveSubsystem swerveSubsystem = new SwerveSubsystem();
+    private final LimelightSubsystem limelightSubsystem = new LimelightSubsystem();
 
     private final SendableChooser<Command> autoChooser; 
 
@@ -53,13 +56,14 @@ public class RobotContainer {
                 () -> driverJoytick.getRawButton(OIConstants.kDriverSlowTurnButtonIdx)
                 ));
         
-        new JoystickButton(xboxController, 2).onTrue(new InstantCommand(() -> swerveSubsystem.zeroHeading()));
+        new JoystickButton(xboxController, XboxController.Button.kB.value).onTrue(new InstantCommand(() -> swerveSubsystem.zeroHeading()));
+        bindImportantFunctions();
     }
     
     public Command getAutonomousCommand() {
         return autoChooser.getSelected();
     }
-    
+    public void bindImportantFunctions(){new JoystickButton(xboxController, XboxController.Button.kStart.value).whileTrue(new Flasher(limelightSubsystem));}
     private void configurePathfinderBindings(){
         
         SmartDashboard.updateValues();
@@ -114,5 +118,5 @@ public class RobotContainer {
     //   AutoBuilder.followPath(path).schedule();
     // }));
     }
-    
+
 }
