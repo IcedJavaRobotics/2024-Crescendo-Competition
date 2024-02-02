@@ -38,13 +38,12 @@ public class ShootCommand extends Command {
   public void end(boolean interrupted) {
 
     //if the shooter is warmed up to less than 0.6 times the desired speed, dont fire anyway
-    if(shooterSubsystem.getSpeed() < (ShooterConstants.DESIRED_SPEAKER_SPEED * 0.6)){
+    if(shooterSubsystem.getSpeed() < (ShooterConstants.DESIRED_SPEAKER_SPEED * 0.9)){
       shooterSubsystem.setSpeed(0); //stop the motor in that case
     } else{   //if its more then that, fire anyway
-      //load note command goes here!! //TODO
-      shooterSubsystem.initSpeedDisabler(Timer.getMatchTime());
+      //load note command goes here!! //TODO reverse intake?
+      shooterSubsystem.initSpeedDisabler(Timer.getMatchTime()); //waits a second before setting the speed to 0.
 
-      
     }
 
   }

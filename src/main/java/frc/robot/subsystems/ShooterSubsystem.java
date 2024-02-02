@@ -58,6 +58,7 @@ public class ShooterSubsystem extends SubsystemBase {
     return leftMotor.getEncoder().getVelocity();
 
   }
+  
   public void initSpeedDisabler(double initMatchTime){
     this.timeShot = initMatchTime;
     this.shooterWaitingToCooldown = true;
