@@ -11,10 +11,9 @@ public final class Constants {
         public static final int INTAKE_SPARK_ID = 150;
         public static final int ROLLER_SPARK_ID = 151;
 
-        public static final int ULTRASONIC_ECHO_PORT = 0;
-        public static final int ULTRASONIC_PING_PORT = 0;
-        public static final int UPPER_LIMIT_SWITCH = 0;
-        public static final int LOWER_LIMIT_SWITCH = 0;
+        public static final int DISTANCE_SENSOR_ID = 0;
+        public static final int UPPER_ENCODER_LIMIT = 100;
+        public static final int LOWER_ENCODER_LIMIT = 0;
 
         public static final boolean INTAKE_MOTOR_INVERTED = false;
         public static final boolean ROLLER_MOTOR_INVERTED = false;
@@ -22,8 +21,6 @@ public final class Constants {
         public static final double INTAKE_SPEED = 0.2;
         public static final double ROLLER_SPEED = 0.2;
         public static final double SCORING_SPEED = 0.2;
-
-        public static final double ULTRASONIC_RANGE = 5;
         
     }
 

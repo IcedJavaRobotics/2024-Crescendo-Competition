@@ -8,7 +8,6 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.DigitalInput;
-import edu.wpi.first.wpilibj.Ultrasonic;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.IntakeConstants;
@@ -20,9 +19,7 @@ public class IntakeSubsystem extends SubsystemBase {
   public CANSparkMax rollerMotor = new CANSparkMax(IntakeConstants.ROLLER_SPARK_ID, MotorType.kBrushless);
 
   // Creates distance sensor and limit switches
-  public Ultrasonic distanceSenor = new Ultrasonic(IntakeConstants.ULTRASONIC_PING_PORT, IntakeConstants.ULTRASONIC_ECHO_PORT);
-  public DigitalInput upperLimitSwitch = new DigitalInput(IntakeConstants.UPPER_LIMIT_SWITCH);
-  public DigitalInput lowerLimitSwitch = new DigitalInput(IntakeConstants.LOWER_LIMIT_SWITCH);
+  public DigitalInput distanceSensor = new DigitalInput(IntakeConstants.DISTANCE_SENSOR_ID);
 
   /** Creates a new IntakeSubsystem. */
   public IntakeSubsystem() {
@@ -35,7 +32,7 @@ public class IntakeSubsystem extends SubsystemBase {
    */
   public void moveIntakeUp() {
 
-    if(upperLimitSwitch.get() == true) {
+    if(intakeMotor.getEncoder().getPosition() < IntakeConstants.UPPER_ENCODER_LIMIT) {
       stopIntakeMotor();
     } else {
       intakeMotor.set(IntakeConstants.INTAKE_SPEED);
@@ -48,7 +45,7 @@ public class IntakeSubsystem extends SubsystemBase {
    */
   public void moveIntakeDown() {      
     
-    if(lowerLimitSwitch.get() == true) {
+    if(intakeMotor.getEncoder().getPosition() > IntakeConstants.LOWER_ENCODER_LIMIT) {
       stopIntakeMotor();
     } else {
       intakeMotor.set(-IntakeConstants.INTAKE_SPEED);
@@ -114,7 +111,7 @@ public class IntakeSubsystem extends SubsystemBase {
   }
 
   public boolean havePiece() {
-    if(distanceSenor.getRangeMM() <= IntakeConstants.ULTRASONIC_RANGE) {
+    if(distanceSensor.get()) {
       return true;
     }
     return false;
@@ -124,8 +121,8 @@ public class IntakeSubsystem extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    SmartDashboard.putBoolean("IntakeUpperSwitch", upperLimitSwitch.get());
-    SmartDashboard.putBoolean("IntakeLowerSwitch", lowerLimitSwitch.get());
+    SmartDashboard.putBoolean("IntakeUpperSwitch", intakeMotor.getEncoder().getPosition() >= IntakeConstants.UPPER_ENCODER_LIMIT);
+    SmartDashboard.putBoolean("IntakeLowerSwitch", intakeMotor.getEncoder().getPosition() <= IntakeConstants.LOWER_ENCODER_LIMIT);
     SmartDashboard.putBoolean("IntakeLowerSwitch", havePiece());
   }
 }

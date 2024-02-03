@@ -37,7 +37,6 @@ public class IntakeUpCommand extends Command {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    intakeSubsystem.stopIntakeMotor();
     return false;
   }
 }
