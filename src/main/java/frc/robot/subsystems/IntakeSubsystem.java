@@ -16,14 +16,13 @@ import frc.robot.Constants.IntakeConstants;
 public class IntakeSubsystem extends SubsystemBase {
 
   // Creates motors for intake and rollers
-  public CANSparkMax intakeMotor = new CANSparkMax(IntakeConstants.INTAKE_MOTOR_ID, MotorType.kBrushless);
-  public CANSparkMax rollerMotor = new CANSparkMax(IntakeConstants.ROLLER_MOTOR_ID, MotorType.kBrushless);
+  public CANSparkMax intakeMotor = new CANSparkMax(IntakeConstants.INTAKE_SPARK_ID, MotorType.kBrushless);
+  public CANSparkMax rollerMotor = new CANSparkMax(IntakeConstants.ROLLER_SPARK_ID, MotorType.kBrushless);
 
   // Creates distance sensor and limit switches
-
-  public DigitalInput upperLimitSwitch = new DigitalInput(2);
-  public DigitalInput lowerLimitSwitch = new DigitalInput(3);
-  public DigitalInput distanceSensor = new DigitalInput(0);
+  public Ultrasonic distanceSenor = new Ultrasonic(IntakeConstants.ULTRASONIC_PING_PORT, IntakeConstants.ULTRASONIC_ECHO_PORT);
+  public DigitalInput upperLimitSwitch = new DigitalInput(IntakeConstants.UPPER_LIMIT_SWITCH);
+  public DigitalInput lowerLimitSwitch = new DigitalInput(IntakeConstants.LOWER_LIMIT_SWITCH);
 
   /** Creates a new IntakeSubsystem. */
   public IntakeSubsystem() {
@@ -32,50 +31,72 @@ public class IntakeSubsystem extends SubsystemBase {
   }
 
   /**
-   * Moves intake up at speed .2
+   * Moves intake up
    */
   public void moveIntakeUp() {
+
     if(upperLimitSwitch.get() == true) {
       stopIntakeMotor();
     } else {
-      intakeMotor.set(.2);
+      intakeMotor.set(IntakeConstants.INTAKE_SPEED);
     }
+
   }
 
   /**
-   * Moves intake down at speed .2 until lower limit switch is pressed
+   * Moves intake down until lower limit switch is pressed
    */
-  public void moveIntakeDown() {
+  public void moveIntakeDown() {      
+    
     if(lowerLimitSwitch.get() == true) {
       stopIntakeMotor();
     } else {
-      intakeMotor.set(-.2);
+      intakeMotor.set(-IntakeConstants.INTAKE_SPEED);
     }
+
   }
 
   /**
-   * Turns rollers in at speed .2 until piece is picked up
+   * Turns rollers in until piece is picked up
+   * @return true if note is acquired, false if there is no note
    */
-  public void turnRollerIn() {
-    // if(distanceSenor.getRangeMM() <= 5) { 
-    //   stopRollerMotor();
-    // } else {
-      rollerMotor.set(.2);
-    // }
+  public boolean turnRollerIn() {
+
+    rollerMotor.set(IntakeConstants.ROLLER_SPEED);
+    if(havePiece()) { 
+      stopRollerMotor();
+      return true;
+    } else {
+      return false;
+    }
+
   }
 
   /**
-   * Turns rollers out at speed .2
+   * Method for loading note into shooter
+   */
+  public void loadNote() {
+
+    if (havePiece()){
+      turnRollerOut();
+    } else {
+      stopRollerMotor();
+    }
+
+  }
+
+  /**
+   * Turns rollers out
    */
   public void turnRollerOut() {
-    rollerMotor.set(-.2);
+    rollerMotor.set(-IntakeConstants.ROLLER_SPEED);
   }
   
   /**
-   * Turns scoring rollers out at speed .1
+   * Turns rollers out at scoring speed
    */
   public void turnRollerScoring() {
-    rollerMotor.set(-.1);
+    rollerMotor.set(-IntakeConstants.SCORING_SPEED);
   }
   
   /**
@@ -83,7 +104,6 @@ public class IntakeSubsystem extends SubsystemBase {
    */
   public void stopIntakeMotor() {
     intakeMotor.set(0);
-  
   }
 
   /**
@@ -93,12 +113,12 @@ public class IntakeSubsystem extends SubsystemBase {
     rollerMotor.set(0);
   }
 
-  // public boolean havePiece() {
-  //   if(distanceSenor.getRangeMM() <= 5) {
-  //     return true;
-  //   }
-  //   return false;
-  // }
+  public boolean havePiece() {
+    if(distanceSenor.getRangeMM() <= IntakeConstants.ULTRASONIC_RANGE) {
+      return true;
+    }
+    return false;
+  }
 
 
   @Override
@@ -106,7 +126,6 @@ public class IntakeSubsystem extends SubsystemBase {
     // This method will be called once per scheduler run
     SmartDashboard.putBoolean("IntakeUpperSwitch", upperLimitSwitch.get());
     SmartDashboard.putBoolean("IntakeLowerSwitch", lowerLimitSwitch.get());
-    SmartDashboard.putBoolean("Have piece", !distanceSensor.get());
-    //SmartDashboard.putBoolean("IntakeLowerSwitch", havePiece());
+    SmartDashboard.putBoolean("IntakeLowerSwitch", havePiece());
   }
 }
