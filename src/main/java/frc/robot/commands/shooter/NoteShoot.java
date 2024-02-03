@@ -5,19 +5,23 @@
 package frc.robot.commands.shooter;
 
 import edu.wpi.first.wpilibj2.command.Command;
+import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
 import edu.wpi.first.wpilibj.Timer;
 import static frc.robot.Constants.ShooterConstants;
 
-public class ShootCommand extends Command {
+public class NoteShoot extends Command {
   
   private final ShooterSubsystem shooterSubsystem;
+  private final IntakeSubsystem intakesubsystem;
   
   /** Creates a new Shoe. */
-  public ShootCommand(ShooterSubsystem shSubsystem) {
+  public NoteShoot(ShooterSubsystem shSubsystem, IntakeSubsystem inSubsystem) {
     // Use addRequirements() here to declare subsystem dependencies.
     this.shooterSubsystem = shSubsystem;
+    intakesubsystem = inSubsystem;
     addRequirements(shooterSubsystem);
+    addRequirements(intakesubsystem);
   }
 
   // Called when the command is initially scheduled.
@@ -41,7 +45,8 @@ public class ShootCommand extends Command {
     if(shooterSubsystem.getSpeed() < (ShooterConstants.DESIRED_SPEAKER_SPEED * 0.9)){
       shooterSubsystem.setSpeed(0); //stop the motor in that case
     } else{   //if its more then that, fire anyway
-      //load note command goes here!! //TODO reverse intake?
+      
+      intakesubsystem.loadNote();
       shooterSubsystem.initSpeedDisabler(Timer.getMatchTime()); //waits a second before setting the speed to 0.
 
     }

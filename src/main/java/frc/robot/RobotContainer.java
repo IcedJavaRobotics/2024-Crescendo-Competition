@@ -30,7 +30,8 @@ import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
 import frc.robot.subsystems.SwerveSubsystem;
 
-import frc.robot.commands.shooter.ShootCommand;
+import frc.robot.commands.shooter.NoteShoot;
+import frc.robot.commands.shooter.ShooterOutCommand;
 
 public class RobotContainer {
 
@@ -41,6 +42,7 @@ public class RobotContainer {
 
     private final Joystick driverJoytick = new Joystick(OIConstants.kDriverControllerPort);
     private final XboxController xboxController = new XboxController(OIConstants.kXboxControllerPort);
+    private final XboxController auxController = new XboxController(OIConstants.AUX_CONTROLLER_PORT);
 
     public RobotContainer() {
         swerveSubsystem.setDefaultCommand(new SwerveJoystickCmd(
@@ -54,8 +56,10 @@ public class RobotContainer {
                 ));
 
 
-        new JoystickButton(xboxController, XboxController.Axis.kRightTrigger.value)
-                .whileTrue(new ShootCommand(shooterSubsystem));
+        new JoystickButton(auxController, XboxController.Axis.kRightTrigger.value)
+                .whileTrue(new NoteShoot(shooterSubsystem, intakeSubsystem));
+        new JoystickButton(auxController, XboxController.Button.kA.value)
+                .whileTrue(new ShooterOutCommand(shooterSubsystem));
         
         configureButtonBindings();
     }
@@ -63,7 +67,7 @@ public class RobotContainer {
     private void configureButtonBindings() {
         new JoystickButton(driverJoytick, 2)
                 .onTrue(new InstantCommand(() -> swerveSubsystem.zeroHeading()));
-
+                
         new JoystickButton (xboxController, 1)
                 .whileTrue(new IntakeDownCommand(intakeSubsystem));
         new JoystickButton (xboxController, 2)
