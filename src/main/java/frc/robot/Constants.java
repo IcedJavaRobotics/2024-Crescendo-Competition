@@ -39,6 +39,15 @@ public final class Constants {
         public static final double kPTurning = 0.4; //0.2
     }
 
+    public static final class ShooterConstants {
+
+        //CAN IDs For the Shooter motor spark maxes
+        public static final int kLeftMotorPort = 13;
+        public static final int kRightMotorPort = 14;
+
+        public static final double DESIRED_SPEAKER_SPEED = 1; //rate it spins
+        public static final double COOLDOWN_TIME = 1; //cooldown time in seconds
+    }
     public static final class DriveConstants {
 
         // Distance between right and left wheels
