@@ -4,6 +4,8 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkLowLevel.MotorType;
 
@@ -16,7 +18,7 @@ public class IntakeSubsystem extends SubsystemBase {
 
   // Creates motors for intake and rollers
   public CANSparkMax intakeMotor = new CANSparkMax(IntakeConstants.INTAKE_SPARK_ID, MotorType.kBrushless);
-  public CANSparkMax rollerMotor = new CANSparkMax(IntakeConstants.ROLLER_SPARK_ID, MotorType.kBrushless);
+  public VictorSPX rollerMotor = new VictorSPX(IntakeConstants.ROLLER_SPARK_ID);
 
   // Creates distance sensor and limit switches
   public DigitalInput distanceSensor = new DigitalInput(IntakeConstants.DISTANCE_SENSOR_ID);
@@ -59,7 +61,7 @@ public class IntakeSubsystem extends SubsystemBase {
    */
   public boolean turnRollerIn() {
 
-    rollerMotor.set(IntakeConstants.ROLLER_SPEED);
+    rollerMotor.set(ControlMode.PercentOutput, IntakeConstants.ROLLER_SPEED);
     if(havePiece()) { 
       stopRollerMotor();
       return true;
@@ -86,14 +88,14 @@ public class IntakeSubsystem extends SubsystemBase {
    * Turns rollers out
    */
   public void turnRollerOut() {
-    rollerMotor.set(-IntakeConstants.ROLLER_SPEED);
+    rollerMotor.set(ControlMode.PercentOutput, -IntakeConstants.ROLLER_SPEED);
   }
   
   /**
    * Turns rollers out at scoring speed
    */
   public void turnRollerScoring() {
-    rollerMotor.set(-IntakeConstants.SCORING_SPEED);
+    rollerMotor.set(ControlMode.PercentOutput, -IntakeConstants.SCORING_SPEED);
   }
   
   /**
@@ -107,7 +109,7 @@ public class IntakeSubsystem extends SubsystemBase {
    * Stops roller motor
    */
   public void stopRollerMotor() {
-    rollerMotor.set(0);
+    rollerMotor.set(ControlMode.PercentOutput, 0);
   }
 
   public boolean havePiece() {

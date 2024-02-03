@@ -148,6 +148,7 @@ public final class Constants {
         public static final int kDriverControllerPort = 0;
         public static final int kXboxControllerPort = 1;
         public static final int AUX_CONTROLLER_PORT = 2;
+        public static final int DRIVER_STATION_PORT = 3;
         // Axis used for the X, Y, Rotation, and Throttle
         public static final int kDriverYAxis = 1;
         public static final int kDriverXAxis = 0;

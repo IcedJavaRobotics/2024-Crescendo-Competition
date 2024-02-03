@@ -23,6 +23,7 @@ import frc.robot.Constants.OIConstants;
 import frc.robot.commands.IntakeDownCommand;
 import frc.robot.commands.IntakeShootCommand;
 import frc.robot.commands.IntakeUpCommand;
+import frc.robot.commands.PickupNoteCommand;
 import frc.robot.commands.RollerInCommand;
 import frc.robot.commands.RollerOutCommand;
 import frc.robot.commands.SwerveJoystickCmd;
@@ -39,10 +40,9 @@ public class RobotContainer {
     private final IntakeSubsystem intakeSubsystem = new IntakeSubsystem();
     private final ShooterSubsystem shooterSubsystem = new ShooterSubsystem();
 
-
-    private final Joystick driverJoytick = new Joystick(OIConstants.kDriverControllerPort);
     private final XboxController xboxController = new XboxController(OIConstants.kXboxControllerPort);
     private final XboxController auxController = new XboxController(OIConstants.AUX_CONTROLLER_PORT);
+    private final Joystick driverStation = new Joystick(OIConstants.DRIVER_STATION_PORT);
 
     public RobotContainer() {
         swerveSubsystem.setDefaultCommand(new SwerveJoystickCmd(
@@ -51,33 +51,36 @@ public class RobotContainer {
                 () -> -xboxController.getRawAxis(OIConstants.kDriverXAxis),
                 () -> -xboxController.getRawAxis(OIConstants.kDriverRotAxis),
                 () -> !xboxController.getRawButton(OIConstants.kDriverFieldOrientedButtonIdx),
-                () -> driverJoytick.getRawAxis(OIConstants.kDriverThrottleAxis),
-                () -> driverJoytick.getRawButton(OIConstants.kDriverSlowTurnButtonIdx)
+                () -> xboxController.getRawAxis(OIConstants.kDriverThrottleAxis),
+                () -> xboxController.getRawButton(OIConstants.kDriverSlowTurnButtonIdx)
                 ));
-
-
-        new JoystickButton(auxController, XboxController.Axis.kRightTrigger.value)
-                .whileTrue(new NoteShoot(shooterSubsystem, intakeSubsystem));
-        new JoystickButton(auxController, XboxController.Button.kA.value)
-                .whileTrue(new ShooterOutCommand(shooterSubsystem));
         
         configureButtonBindings();
     }
 
     private void configureButtonBindings() {
-        new JoystickButton(driverJoytick, 2)
+        new JoystickButton(xboxController, XboxController.Button.kB.value)
                 .onTrue(new InstantCommand(() -> swerveSubsystem.zeroHeading()));
                 
-        new JoystickButton (xboxController, 1)
+        new JoystickButton (driverStation, 1 ) //1
                 .whileTrue(new IntakeDownCommand(intakeSubsystem));
-        new JoystickButton (xboxController, 2)
+        new JoystickButton (driverStation, 6 ) //4
                 .whileTrue(new IntakeUpCommand(intakeSubsystem));  
-        new JoystickButton (xboxController, 3)
+
+        new JoystickButton (driverStation, 9 ) //2
                 .whileTrue(new RollerInCommand(intakeSubsystem));   
-        new JoystickButton (xboxController, 4)
+        new JoystickButton (driverStation, 8 ) //5
                 .whileTrue(new RollerOutCommand(intakeSubsystem));
-        new JoystickButton (xboxController, 5)
+
+        new JoystickButton (driverStation, 3 ) //6
                 .whileTrue(new IntakeShootCommand(intakeSubsystem));
+        new JoystickButton(auxController, XboxController.Axis.kLeftTrigger.value)
+                .whileTrue(new PickupNoteCommand(intakeSubsystem));
+
+        new JoystickButton(auxController, XboxController.Axis.kRightTrigger.value)
+                .whileTrue(new NoteShoot(shooterSubsystem, intakeSubsystem));
+        new JoystickButton(driverStation, 2) //3
+                .whileTrue(new ShooterOutCommand(shooterSubsystem));
     }
 
     public Command getAutonomousCommand() {
