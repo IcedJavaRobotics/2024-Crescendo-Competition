@@ -38,6 +38,8 @@ public class ShooterSubsystem extends SubsystemBase {
   public ShooterSubsystem() {
     leftMotor = new CANSparkMax(ShooterConstants.kLeftMotorPort,CANSparkLowLevel.MotorType.kBrushless);
     rightMotor = new CANSparkMax(ShooterConstants.kRightMotorPort,CANSparkLowLevel.MotorType.kBrushless);
+    rightMotor.setInverted(true);
+    leftMotor.setInverted(false);
   }
 
   @Override

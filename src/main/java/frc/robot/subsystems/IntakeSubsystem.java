@@ -34,11 +34,13 @@ public class IntakeSubsystem extends SubsystemBase {
    */
   public void moveIntakeUp() {
 
-    if(intakeMotor.getEncoder().getPosition() < IntakeConstants.UPPER_ENCODER_LIMIT) {
-      stopIntakeMotor();
-    } else {
-      intakeMotor.set(IntakeConstants.INTAKE_SPEED);
-    }
+    // if(intakeMotor.getEncoder().getPosition() < IntakeConstants.UPPER_ENCODER_LIMIT) {
+    //   stopIntakeMotor();
+    // } else {
+    //   intakeMotor.set(IntakeConstants.INTAKE_SPEED);
+    // }
+
+    intakeMotor.set(IntakeConstants.INTAKE_SPEED);
 
   }
 
@@ -47,11 +49,12 @@ public class IntakeSubsystem extends SubsystemBase {
    */
   public void moveIntakeDown() {      
     
-    if(intakeMotor.getEncoder().getPosition() > IntakeConstants.LOWER_ENCODER_LIMIT) {
-      stopIntakeMotor();
-    } else {
-      intakeMotor.set(-IntakeConstants.INTAKE_SPEED);
-    }
+    // if(intakeMotor.getEncoder().getPosition() > IntakeConstants.LOWER_ENCODER_LIMIT) {
+    //   stopIntakeMotor();
+    // } else {
+    //   intakeMotor.set(-IntakeConstants.INTAKE_SPEED);
+    // }
+    intakeMotor.set(-IntakeConstants.INTAKE_SPEED);
 
   }
 
@@ -59,15 +62,17 @@ public class IntakeSubsystem extends SubsystemBase {
    * Turns rollers in until piece is picked up
    * @return true if note is acquired, false if there is no note
    */
-  public boolean turnRollerIn() {
+  public void turnRollerIn() {  // return type was boolean
+
+    // rollerMotor.set(ControlMode.PercentOutput, IntakeConstants.ROLLER_SPEED);
+    // if(havePiece()) { 
+    //   stopRollerMotor();
+    //   return true;
+    // } else {
+    //   return false;
+    // }
 
     rollerMotor.set(ControlMode.PercentOutput, IntakeConstants.ROLLER_SPEED);
-    if(havePiece()) { 
-      stopRollerMotor();
-      return true;
-    } else {
-      return false;
-    }
 
   }
 
@@ -123,8 +128,8 @@ public class IntakeSubsystem extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    SmartDashboard.putBoolean("IntakeUpperSwitch", intakeMotor.getEncoder().getPosition() >= IntakeConstants.UPPER_ENCODER_LIMIT);
-    SmartDashboard.putBoolean("IntakeLowerSwitch", intakeMotor.getEncoder().getPosition() <= IntakeConstants.LOWER_ENCODER_LIMIT);
+    SmartDashboard.putNumber("IntakeUpperSwitch", intakeMotor.getEncoder().getPosition());
+    SmartDashboard.putNumber("IntakeLowerSwitch", intakeMotor.getEncoder().getPosition());
     SmartDashboard.putBoolean("IntakeLowerSwitch", havePiece());
   }
 }
