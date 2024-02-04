@@ -48,11 +48,12 @@ public class ShooterSubsystem extends SubsystemBase {
     cooldownShooter();
   }
 
-  public void setSpeed(double speed){
+  public void setSpeed(double speed) {
     leftMotor.set(speed);
     rightMotor.set(speed);
   }
-  public double getSpeed(){
+
+  public double getSpeed() {
     //test if motors are same speed, if not, print message
     if(leftMotor.getEncoder().getVelocity() != rightMotor.getEncoder().getVelocity()){
       System.out.println("Motors are at an uneven speed!");
@@ -60,15 +61,16 @@ public class ShooterSubsystem extends SubsystemBase {
     return leftMotor.getEncoder().getVelocity();
 
   }
-  
-  public void initSpeedDisabler(double initMatchTime){
+
+  public void initSpeedDisabler(double initMatchTime) {
     this.timeShot = initMatchTime;
     this.shooterWaitingToCooldown = true;
   }
+
   public void cooldownShooter(){
-    if(shooterWaitingToCooldown){
+    if(shooterWaitingToCooldown) {
       //If it has been COOLDOWN_TIME amount of time since fired set speed to 0
-      if((timeShot-Timer.getMatchTime()) > ShooterConstants.COOLDOWN_TIME){
+      if((timeShot-Timer.getMatchTime()) > ShooterConstants.COOLDOWN_TIME) {
         setSpeed(0);
         this.shooterWaitingToCooldown = false;
       }

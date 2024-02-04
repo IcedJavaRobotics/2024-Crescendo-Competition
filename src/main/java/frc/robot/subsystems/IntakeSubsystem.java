@@ -40,7 +40,7 @@ public class IntakeSubsystem extends SubsystemBase {
     //   intakeMotor.set(IntakeConstants.INTAKE_SPEED);
     // }
 
-    intakeMotor.set(IntakeConstants.INTAKE_SPEED);
+     intakeMotor.set(IntakeConstants.INTAKE_SPEED);
 
   }
 
@@ -54,9 +54,11 @@ public class IntakeSubsystem extends SubsystemBase {
     // } else {
     //   intakeMotor.set(-IntakeConstants.INTAKE_SPEED);
     // }
+
     intakeMotor.set(-IntakeConstants.INTAKE_SPEED);
 
   }
+
 
   /**
    * Turns rollers in until piece is picked up
@@ -117,19 +119,26 @@ public class IntakeSubsystem extends SubsystemBase {
     rollerMotor.set(ControlMode.PercentOutput, 0);
   }
 
+  /**
+   * Determines if there is a piece in the robot
+   * @return True if it detects a piece and false otherwise
+   */
   public boolean havePiece() {
-    if(distanceSensor.get()) {
-      return true;
-    }
-    return false;
+    return distanceSensor.get();
+  }
+
+/**
+ * Resets the intake encoder to 0
+ */
+  public void zeroIntakeEncoder() {
+    intakeMotor.getEncoder().setPosition(0);
   }
 
 
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    SmartDashboard.putNumber("IntakeUpperSwitch", intakeMotor.getEncoder().getPosition());
-    SmartDashboard.putNumber("IntakeLowerSwitch", intakeMotor.getEncoder().getPosition());
-    SmartDashboard.putBoolean("IntakeLowerSwitch", havePiece());
+    SmartDashboard.putNumber("Intake Encoder", intakeMotor.getEncoder().getPosition());
+    SmartDashboard.putBoolean("Have Piece?", havePiece());
   }
 }

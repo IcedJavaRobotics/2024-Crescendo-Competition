@@ -62,6 +62,8 @@ public class RobotContainer {
         // new JoystickButton(xboxController, XboxController.Button.kB.value)
         //         .onTrue(new InstantCommand(() -> swerveSubsystem.zeroHeading()));
                 
+        new JoystickButton(driverStation, 10 ) //9
+                .onTrue(new InstantCommand(() -> intakeSubsystem.zeroIntakeEncoder()));
         new JoystickButton (driverStation, 1 ) //1
                 .whileTrue(new IntakeDownCommand(intakeSubsystem));
         new JoystickButton (driverStation, 6 ) //4
