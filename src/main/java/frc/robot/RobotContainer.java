@@ -81,6 +81,7 @@ public class RobotContainer {
 
         new JoystickButton(auxController, XboxController.Button.kRightBumper.value)
                 .whileTrue(new NoteShoot(shooterSubsystem, intakeSubsystem));
+
         new JoystickButton(driverStation, 2) //3
                 .whileTrue(new ShooterOutCommand(shooterSubsystem));
     }

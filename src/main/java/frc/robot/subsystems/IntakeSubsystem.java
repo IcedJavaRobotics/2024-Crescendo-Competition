@@ -34,13 +34,13 @@ public class IntakeSubsystem extends SubsystemBase {
    */
   public void moveIntakeUp() {
 
-    // if(intakeMotor.getEncoder().getPosition() < IntakeConstants.UPPER_ENCODER_LIMIT) {
-    //   stopIntakeMotor();
-    // } else {
-    //   intakeMotor.set(IntakeConstants.INTAKE_SPEED);
-    // }
+    if(intakeMotor.getEncoder().getPosition() < IntakeConstants.UPPER_ENCODER_LIMIT) {
+      intakeMotor.set(IntakeConstants.INTAKE_SPEED);
+    } else {
+      stopIntakeMotor();
+    }
 
-     intakeMotor.set(IntakeConstants.INTAKE_SPEED);
+    // intakeMotor.set(IntakeConstants.INTAKE_SPEED);
 
   }
 
@@ -49,13 +49,13 @@ public class IntakeSubsystem extends SubsystemBase {
    */
   public void moveIntakeDown() {      
     
-    // if(intakeMotor.getEncoder().getPosition() > IntakeConstants.LOWER_ENCODER_LIMIT) {
-    //   stopIntakeMotor();
-    // } else {
-    //   intakeMotor.set(-IntakeConstants.INTAKE_SPEED);
-    // }
+    if(intakeMotor.getEncoder().getPosition() > IntakeConstants.LOWER_ENCODER_LIMIT) {
+      intakeMotor.set(-IntakeConstants.INTAKE_SPEED);
+    } else {
+      stopIntakeMotor();
+    }
 
-    intakeMotor.set(-IntakeConstants.INTAKE_SPEED);
+    // intakeMotor.set(-IntakeConstants.INTAKE_SPEED);
 
   }
 
@@ -74,7 +74,7 @@ public class IntakeSubsystem extends SubsystemBase {
     //   return false;
     // }
 
-    rollerMotor.set(ControlMode.PercentOutput, IntakeConstants.ROLLER_SPEED);
+    rollerMotor.set(ControlMode.PercentOutput, 0.5);
 
   }
 
@@ -95,14 +95,14 @@ public class IntakeSubsystem extends SubsystemBase {
    * Turns rollers out
    */
   public void turnRollerOut() {
-    rollerMotor.set(ControlMode.PercentOutput, -IntakeConstants.ROLLER_SPEED);
+    rollerMotor.set(ControlMode.PercentOutput, -.5);
   }
   
   /**
    * Turns rollers out at scoring speed
    */
   public void turnRollerScoring() {
-    rollerMotor.set(ControlMode.PercentOutput, -IntakeConstants.SCORING_SPEED);
+    rollerMotor.set(ControlMode.PercentOutput, -.5);
   }
   
   /**
@@ -139,6 +139,6 @@ public class IntakeSubsystem extends SubsystemBase {
   public void periodic() {
     // This method will be called once per scheduler run
     SmartDashboard.putNumber("Intake Encoder", intakeMotor.getEncoder().getPosition());
-    SmartDashboard.putBoolean("Have Piece?", havePiece());
+    SmartDashboard.putBoolean("Have Piece?", distanceSensor.get());
   }
 }
