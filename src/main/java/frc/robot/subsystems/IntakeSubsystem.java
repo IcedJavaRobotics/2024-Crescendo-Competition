@@ -4,33 +4,27 @@
 
 package frc.robot.subsystems;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkLowLevel.MotorType;
 
-import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.IntakeConstants;
 
 public class IntakeSubsystem extends SubsystemBase {
 
-  // Creates motors for intake and rollers
   public CANSparkMax intakeMotor = new CANSparkMax(IntakeConstants.INTAKE_SPARK_ID, MotorType.kBrushless);
-  public VictorSPX rollerMotor = new VictorSPX(IntakeConstants.ROLLER_SPARK_ID);
-
-  // Creates distance sensor and limit switches
-  public DigitalInput distanceSensor = new DigitalInput(IntakeConstants.DISTANCE_SENSOR_ID);
+  //public CANSparkMax rollerMotor = new CANSparkMax(IntakeConstants.ROLLER_MOTOR_ID, MotorType.kBrushless);
 
   /** Creates a new IntakeSubsystem. */
   public IntakeSubsystem() {
+
     intakeMotor.setInverted(IntakeConstants.INTAKE_MOTOR_INVERTED);
-    rollerMotor.setInverted(IntakeConstants.ROLLER_MOTOR_INVERTED);
+    //rollerMotor.setInverted(IntakeConstants.ROLLER_MOTOR_INVERTED);
   }
 
   /**
-   * Moves intake up
+   * Moves intake up until upper limit is reached
    */
   public void moveIntakeUp() {
 
@@ -41,11 +35,10 @@ public class IntakeSubsystem extends SubsystemBase {
     }
 
     // intakeMotor.set(IntakeConstants.INTAKE_SPEED);
-
   }
 
   /**
-   * Moves intake down until lower limit switch is pressed
+   * Moves intake down until lower limit is reached
    */
   public void moveIntakeDown() {      
     
@@ -56,54 +49,22 @@ public class IntakeSubsystem extends SubsystemBase {
     }
 
     // intakeMotor.set(-IntakeConstants.INTAKE_SPEED);
-
   }
 
+  // /**
+  //  * Turns rollers in at speed .2
+  //  */
+  // public void turnRollerIn() {
+  //   rollerMotor.set(.2);
+  // }
 
-  /**
-   * Turns rollers in until piece is picked up
-   * @return true if note is acquired, false if there is no note
-   */
-  public void turnRollerIn() {  // return type was boolean
-
-    // rollerMotor.set(ControlMode.PercentOutput, IntakeConstants.ROLLER_SPEED);
-    // if(havePiece()) { 
-    //   stopRollerMotor();
-    //   return true;
-    // } else {
-    //   return false;
-    // }
-
-    rollerMotor.set(ControlMode.PercentOutput, 0.5);
-
-  }
-
-  /**
-   * Method for loading note into shooter
-   */
-  public void loadNote() {
-
-    if (havePiece()){
-      turnRollerOut();
-    } else {
-      stopRollerMotor();
-    }
-
-  }
-
-  /**
-   * Turns rollers out
-   */
-  public void turnRollerOut() {
-    rollerMotor.set(ControlMode.PercentOutput, -.5);
-  }
+  // /**
+  //  * Turns rollers out at speed .2
+  //  */
+  // public void turnRollerOut() {
+  //   rollerMotor.set(-.2);
+  // }
   
-  /**
-   * Turns rollers out at scoring speed
-   */
-  public void turnRollerScoring() {
-    rollerMotor.set(ControlMode.PercentOutput, -.5);
-  }
   
   /**
    * Stops intake motor
@@ -112,33 +73,20 @@ public class IntakeSubsystem extends SubsystemBase {
     intakeMotor.set(0);
   }
 
-  /**
-   * Stops roller motor
-   */
-  public void stopRollerMotor() {
-    rollerMotor.set(ControlMode.PercentOutput, 0);
-  }
+  // /**
+  //  * Stops roller motor
+  //  */
+  // public void stopRollerMotor() {
+  //   rollerMotor.set(0);
+  // }
 
-  /**
-   * Determines if there is a piece in the robot
-   * @return True if it detects a piece and false otherwise
-   */
-  public boolean havePiece() {
-    return distanceSensor.get();
-  }
-
-/**
- * Resets the intake encoder to 0
- */
   public void zeroIntakeEncoder() {
     intakeMotor.getEncoder().setPosition(0);
   }
-
 
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
     SmartDashboard.putNumber("Intake Encoder", intakeMotor.getEncoder().getPosition());
-    SmartDashboard.putBoolean("Have Piece?", distanceSensor.get());
   }
 }

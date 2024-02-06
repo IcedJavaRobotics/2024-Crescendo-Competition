@@ -5,23 +5,23 @@
 package frc.robot.commands.shooter;
 
 import edu.wpi.first.wpilibj2.command.Command;
-import frc.robot.subsystems.IntakeSubsystem;
+import frc.robot.subsystems.RollerSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
 import edu.wpi.first.wpilibj.Timer;
 import static frc.robot.Constants.ShooterConstants;
 
-public class NoteShoot extends Command {
+public class NoteShootCommand extends Command {
   
   private final ShooterSubsystem shooterSubsystem;
-  private final IntakeSubsystem intakesubsystem;
+  private final RollerSubsystem rollersubsystem; 
   
   /** Creates a new Shoe. */
-  public NoteShoot(ShooterSubsystem shSubsystem, IntakeSubsystem inSubsystem) {
-    // Use addRequirements() here to declare subsystem dependencies.
-    this.shooterSubsystem = shSubsystem;
-    intakesubsystem = inSubsystem;
+  public NoteShootCommand(ShooterSubsystem subsystem, RollerSubsystem subsystem2) {
+    // Use addRequirements() here to declare subsystem dependencies.);
+    shooterSubsystem = subsystem;
+    rollersubsystem = subsystem2;
     addRequirements(shooterSubsystem);
-    addRequirements(intakesubsystem);
+    addRequirements(rollersubsystem);
   }
 
   // Called when the command is initially scheduled.
@@ -32,10 +32,7 @@ public class NoteShoot extends Command {
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {
-    
-  
-  }
+  public void execute() {}
 
   // Called once the command ends or is interrupted.
   @Override
@@ -44,9 +41,9 @@ public class NoteShoot extends Command {
     //if the shooter is warmed up to less than 0.6 times the desired speed, dont fire anyway
     if(shooterSubsystem.getSpeed() < (ShooterConstants.DESIRED_SPEAKER_SPEED * 0.9)){
       shooterSubsystem.setSpeed(0); //stop the motor in that case
-    }else{   //if its more then that, fire anyway
+    } else {   //if its more then that, fire anyway
       
-      intakesubsystem.loadNote();
+      rollersubsystem.loadNote();
       shooterSubsystem.initSpeedDisabler(Timer.getMatchTime()); //waits a second before setting the speed to 0.
 
     }

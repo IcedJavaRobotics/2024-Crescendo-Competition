@@ -21,23 +21,23 @@ import frc.robot.Constants.AutoConstants;
 import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.OIConstants;
 import frc.robot.commands.IntakeDownCommand;
-import frc.robot.commands.IntakeShootCommand;
 import frc.robot.commands.IntakeUpCommand;
-//import frc.robot.commands.PickupNoteCommand;
+import frc.robot.commands.PickupNoteCommand;
 import frc.robot.commands.RollerInCommand;
 import frc.robot.commands.RollerOutCommand;
+import frc.robot.commands.shooter.NoteShootCommand;
+import frc.robot.commands.shooter.ShooterOutCommand;
 import frc.robot.commands.SwerveJoystickCmd;
 import frc.robot.subsystems.IntakeSubsystem;
+import frc.robot.subsystems.RollerSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
 import frc.robot.subsystems.SwerveSubsystem;
-
-import frc.robot.commands.shooter.NoteShoot;
-import frc.robot.commands.shooter.ShooterOutCommand;
 
 public class RobotContainer {
 
     private final SwerveSubsystem swerveSubsystem = new SwerveSubsystem();
     private final IntakeSubsystem intakeSubsystem = new IntakeSubsystem();
+    private final RollerSubsystem rollerSubsystem = new RollerSubsystem();
     private final ShooterSubsystem shooterSubsystem = new ShooterSubsystem();
 
     private final XboxController xboxController = new XboxController(OIConstants.kXboxControllerPort);
@@ -64,26 +64,27 @@ public class RobotContainer {
                 
         new JoystickButton(driverStation, 10 ) //9
                 .onTrue(new InstantCommand(() -> intakeSubsystem.zeroIntakeEncoder()));
+
         new JoystickButton (driverStation, 1 ) //1
                 .whileTrue(new IntakeDownCommand(intakeSubsystem));
+
         new JoystickButton (driverStation, 6 ) //4
                 .whileTrue(new IntakeUpCommand(intakeSubsystem));  
 
         new JoystickButton (driverStation, 9 ) //2
-                .whileTrue(new RollerInCommand(intakeSubsystem));   
-        new JoystickButton (driverStation, 8 ) //5
-                .whileTrue(new RollerOutCommand(intakeSubsystem));
+                .whileTrue(new RollerInCommand(rollerSubsystem));  
 
-        new JoystickButton (driverStation, 3 ) //6
-                .whileTrue(new IntakeShootCommand(intakeSubsystem));
+        new JoystickButton (driverStation, 8 ) //5
+                .whileTrue(new RollerOutCommand(rollerSubsystem));
+
         // new JoystickButton(auxController, XboxController.Axis.kLeftTrigger.value)
         //         .whileTrue(new PickupNoteCommand(intakeSubsystem));
 
-        new JoystickButton(auxController, XboxController.Button.kRightBumper.value)
-                .whileTrue(new NoteShoot(shooterSubsystem, intakeSubsystem));
-
         new JoystickButton(driverStation, 2) //3
                 .whileTrue(new ShooterOutCommand(shooterSubsystem));
+
+        new JoystickButton(auxController, XboxController.Button.kRightBumper.value)
+                .whileTrue(new NoteShootCommand(shooterSubsystem, rollerSubsystem));
     }
 
 //     public Command getAutonomousCommand() {
