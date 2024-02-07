@@ -224,6 +224,10 @@ public class SwerveSubsystem extends SubsystemBase {
         SmartDashboard.putNumber("Pose Y", getPose().getY());
         SmartDashboard.putNumber("Pose ROT", getPose().getRotation().getDegrees());
         
+        SmartDashboard.putNumber("Front left velocity", frontLeft.getDriveVelocity());
+        SmartDashboard.putNumber("Front right velocity", frontRight.getDriveVelocity());
+        SmartDashboard.putNumber("back left velocity", backLeft.getDriveVelocity());
+        SmartDashboard.putNumber("back right velocity", backRight.getDriveVelocity());
 
     }
 
