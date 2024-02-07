@@ -8,17 +8,18 @@ import edu.wpi.first.math.util.Units;
 public final class Constants {
     
     public static class IntakeConstants {
-        public static final int INTAKE_SPARK_ID = 6;
+        public static final int kIntakeMotorPort = 6;
         // public static final int ROLLER_SPARK_ID = 5;
+        public static final int kIntakeLimitSwitchID = 1;
 
         // public static final int DISTANCE_SENSOR_ID = 0;
-        public static final int UPPER_ENCODER_LIMIT = 0;
-        public static final int LOWER_ENCODER_LIMIT = -123;
+        public static final int kUpperEncoderLimit = 0;
+        public static final int kLowerEncoderLimit = -123;
 
-        public static final boolean INTAKE_MOTOR_INVERTED = true;
+        public static final boolean kIntakeMotorInverted = true;
         // public static final boolean ROLLER_MOTOR_INVERTED = true;
 
-        public static final double INTAKE_SPEED = .2;
+        public static final double kIntakeSpeed = .2;
         // public static final double ROLLER_SPEED = 1; 
     }
 
