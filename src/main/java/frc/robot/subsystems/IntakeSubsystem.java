@@ -27,31 +27,30 @@ public class IntakeSubsystem extends SubsystemBase {
   }
 
   /**
-   * Moves intake up until upper limit is reached
+   * Moves intake up until limit switch is hit and resets encoder to 0
    */
   public void moveIntakeUp() {
 
-    if(intakeMotor.getEncoder().getPosition() < IntakeConstants.kUpperEncoderLimit) {
-      intakeMotor.set(IntakeConstants.kIntakeSpeed);
-    } else {
-      stopIntakeMotor();
+    if(intakeLimitSwitch.get()) {
+      intakeMotor.set(0);
+      zeroIntakeEncoder();
+      return;
     }
 
-    // intakeMotor.set(IntakeConstants.INTAKE_SPEED);
+    intakeMotor.set(IntakeConstants.kIntakeSpeed);
   }
 
   /**
    * Moves intake down until lower limit is reached
    */
   public void moveIntakeDown() {      
-    
-    if(intakeMotor.getEncoder().getPosition() > IntakeConstants.kLowerEncoderLimit) {
-      intakeMotor.set(-IntakeConstants.kIntakeSpeed);
-    } else {
+
+    if(intakeMotor.getEncoder().getPosition() <= IntakeConstants.kLowerEncoderLimit) {
       stopIntakeMotor();
+      return;
     }
 
-    // intakeMotor.set(-IntakeConstants.INTAKE_SPEED);
+    intakeMotor.set(IntakeConstants.kIntakeSpeed);
   }
 
   // /**
@@ -83,6 +82,9 @@ public class IntakeSubsystem extends SubsystemBase {
   //   rollerMotor.set(0);
   // }
 
+  /**
+   * Zeros the intake encoder
+   */
   public void zeroIntakeEncoder() {
     intakeMotor.getEncoder().setPosition(0);
   }
@@ -91,5 +93,6 @@ public class IntakeSubsystem extends SubsystemBase {
   public void periodic() {
     // This method will be called once per scheduler run
     SmartDashboard.putNumber("Intake Encoder", intakeMotor.getEncoder().getPosition());
+    SmartDashboard.putBoolean("Intake Limit Switch Pressed?", intakeLimitSwitch.get());
   }
 }
