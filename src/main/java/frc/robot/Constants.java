@@ -19,7 +19,7 @@ public final class Constants {
         public static final double kDriveEncoderRPM2MeterPerSec = kDriveEncoderRot2Meter / 60;
         public static final double kTurningEncoderRPM2RadPerSec = kTurningEncoderRot2Rad / 60;
         //The P value for the turning PID loop
-        public static final double kPTurning = .41; //0.2
+        public static final double kPTurning = .35; //0.2
     }
 
     public static final class DriveConstants {
