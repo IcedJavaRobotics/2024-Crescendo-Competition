@@ -26,15 +26,15 @@ public class PneumaticSubsystem extends SubsystemBase {
 
   public void releaseClimber() {
 
-    leftClimberRelease.set(DoubleSolenoid.Value.kForward);
-    rightClimberRelease.set(DoubleSolenoid.Value.kForward);
+    leftClimberRelease.set(DoubleSolenoid.Value.kReverse);
+    rightClimberRelease.set(DoubleSolenoid.Value.kReverse);
 
   }
 
   public void lockClimber() {
 
-    leftClimberRelease.set(DoubleSolenoid.Value.kReverse);
-    rightClimberRelease.set(DoubleSolenoid.Value.kReverse);
+    leftClimberRelease.set(DoubleSolenoid.Value.kForward);
+    rightClimberRelease.set(DoubleSolenoid.Value.kForward);
 
   }
 

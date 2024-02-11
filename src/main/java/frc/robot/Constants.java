@@ -29,7 +29,7 @@ public final class Constants {
     /**
      * Climber subsystem constants
      */
-    public static class Climber {
+    public static class ClimberConstants {
     
         public static final int LEFT_TALON = 170;
         public static final int RIGHT_TALON = 171;

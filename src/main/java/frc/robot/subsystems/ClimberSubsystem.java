@@ -5,6 +5,7 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix6.hardware.TalonFX;
 import com.ctre.phoenix6.signals.ControlModeValue;
@@ -13,22 +14,23 @@ import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import frc.robot.Constants.ClimberConstants;
 
-import static frc.robot.Constants.Climber;
+import static frc.robot.Constants.ClimberConstants;;
 
 public class ClimberSubsystem extends SubsystemBase {
   /** Creates a new ClimberSubsystem. */
 
-  private TalonSRX climberLeftMotor = new TalonSRX(Climber.LEFT_TALON);
-  private TalonSRX climberRightMotor = new TalonSRX(Climber.RIGHT_TALON);
+  private TalonSRX climberLeftMotor = new TalonSRX(ClimberConstants.LEFT_TALON);
+  private TalonSRX climberRightMotor = new TalonSRX(ClimberConstants.RIGHT_TALON);
 
-  DigitalInput climberLeftLimitSwitch = new DigitalInput(Climber.LEFT_LIMIT_SWITCH);
-  DigitalInput climberRightLimitSwitch = new DigitalInput(Climber.RIGHT_LIMIT_SWITCH);
+  DigitalInput climberLeftLimitSwitch = new DigitalInput(ClimberConstants.LEFT_LIMIT_SWITCH);
+  DigitalInput climberRightLimitSwitch = new DigitalInput(ClimberConstants.RIGHT_LIMIT_SWITCH);
 
   public ClimberSubsystem() {
 
-    climberRightMotor.setNeutralMode(null);;
-    climberLeftMotor.setNeutralMode(null);
+    climberRightMotor.setNeutralMode(NeutralMode.Brake);;
+    climberLeftMotor.setNeutralMode(NeutralMode.Brake);
 
     climberLeftMotor.setInverted(false);
     climberRightMotor.setInverted(false);
@@ -39,9 +41,9 @@ public class ClimberSubsystem extends SubsystemBase {
    * Variable speed command for right climber
    * @param speed Speed of the motor (double)
    */
-  public void moveRightClimberMotor(double speed) {
+  public void moveRightClimberMotor() {
 
-    climberRightMotor.set(ControlMode.PercentOutput, speed);
+    climberRightMotor.set(ControlMode.PercentOutput, ClimberConstants.SPEED);
 
   }
 
@@ -49,9 +51,9 @@ public class ClimberSubsystem extends SubsystemBase {
    * Variable speed command for left climber
    * @param speed Speed of the motor 
    */
-  public void moveLeftClimberMotor(double speed) {
+  public void moveLeftClimberMotor() {
 
-    climberLeftMotor.set(ControlMode.PercentOutput, speed);
+    climberLeftMotor.set(ControlMode.PercentOutput, ClimberConstants.SPEED);
 
   }
 
@@ -61,28 +63,25 @@ public class ClimberSubsystem extends SubsystemBase {
    */
   public void moveClimberUp(){
     
-    if(climberLeftMotor.getSelectedSensorPosition() <= Climber.UPPER_LEFT_LIMIT){
+    if(climberLeftMotor.getSelectedSensorPosition() < ClimberConstants.UPPER_LEFT_LIMIT){
 
-      moveLeftClimberMotor(Climber.SPEED);
-
-    } else {
-
-      moveLeftClimberMotor(0);
-
-    }
-
-    if(climberRightMotor.getSelectedSensorPosition() <= Climber.UPPER_RIGHT_LIMIT){
-
-      moveRightClimberMotor(Climber.SPEED);
+      moveLeftClimberMotor();
 
     } else {
 
-      moveRightClimberMotor(0);
+      leftClimberStop();
 
     }
-    
-    SmartDashboard.putNumber("Talon Left Climber", ( climberLeftMotor.getSelectedSensorPosition()));
-    SmartDashboard.putNumber("Talon Right Climber", ( climberRightMotor.getSelectedSensorPosition()));
+
+    if(climberRightMotor.getSelectedSensorPosition() < ClimberConstants.UPPER_RIGHT_LIMIT){
+
+      moveRightClimberMotor();
+
+    } else {
+
+      rightClimberStop();
+
+    }
 
   }
 
@@ -93,26 +92,37 @@ public class ClimberSubsystem extends SubsystemBase {
     
     if(climberLeftLimitSwitch.get() == false){
 
-      moveLeftClimberMotor(-Climber.SPEED);
+      moveLeftClimberMotor();
 
     } else {
 
-      moveLeftClimberMotor(0);
+      leftClimberStop();
 
     }
 
     if(climberRightLimitSwitch.get() == false){
 
-      moveRightClimberMotor(-Climber.SPEED);
+      moveRightClimberMotor();
 
     } else {
 
-      moveRightClimberMotor(0);
-
+      rightClimberStop();
     }
     
   }
   
+  public void leftClimberStop() {
+
+    climberLeftMotor.set(ControlMode.PercentOutput, 0);
+    
+  }
+
+  public void rightClimberStop() {
+
+    climberRightMotor.set(ControlMode.PercentOutput, 0);
+    
+  }
+
   /**
    * Stops climber movement 
    */
@@ -123,8 +133,12 @@ public class ClimberSubsystem extends SubsystemBase {
     
   }
 
+
+
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
+    SmartDashboard.putNumber("Talon Left Climber Encoder", ( climberLeftMotor.getSelectedSensorPosition()));
+    SmartDashboard.putNumber("Talon Right Climber Encoder", ( climberRightMotor.getSelectedSensorPosition()));
   }
 }
