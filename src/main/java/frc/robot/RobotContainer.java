@@ -20,15 +20,23 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.Constants.AutoConstants;
 import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.OIConstants;
+import frc.robot.commands.ClimberDownCommand;
+import frc.robot.commands.ClimberUpCommand;
 import frc.robot.commands.SwerveJoystickCmd;
+import frc.robot.subsystems.ClimberSubsystem;
 import frc.robot.subsystems.SwerveSubsystem;
+
+import static frc.robot.Constants.Controller;
+import static frc.robot.Constants.Button;
 
 public class RobotContainer {
 
     private final SwerveSubsystem swerveSubsystem = new SwerveSubsystem();
+    private final ClimberSubsystem climberSubsystem = new ClimberSubsystem();
 
     private final Joystick driverJoytick = new Joystick(OIConstants.kDriverControllerPort);
     private final XboxController xboxController = new XboxController(OIConstants.kXboxControllerPort);
+    private final XboxController auxController = new XboxController(Controller.AUX_PORT);
 
     public RobotContainer() {
         swerveSubsystem.setDefaultCommand(new SwerveJoystickCmd(
@@ -47,6 +55,12 @@ public class RobotContainer {
 
     private void configureButtonBindings() {
         new JoystickButton(xboxController, 2).onTrue(new InstantCommand(() -> swerveSubsystem.zeroHeading()));
+        new JoystickButton(driverJoytick, 2)
+                .onTrue(new InstantCommand(() -> swerveSubsystem.zeroHeading()));
+        new JoystickButton(auxController, Button.CLIMBER_UP)
+                .whileTrue(new ClimberUpCommand(climberSubsystem));
+        new JoystickButton(auxController, Button.CLIMBER_DOWN)
+                .whileTrue(new ClimberDownCommand(climberSubsystem));
     }
 
     public Command getAutonomousCommand() {
