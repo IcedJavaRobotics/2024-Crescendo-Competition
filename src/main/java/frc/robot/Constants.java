@@ -94,15 +94,15 @@ public final class Constants {
         // Robot turning speed
         public static final double kPhysicalMaxAngularSpeedRadiansPerSecond = 5 * Math.PI;
 
-        public static final double kTeleDriveMaxSpeedMetersPerSecond = kPhysicalMaxSpeedMetersPerSecond / 3;
-        public static final double kTeleDriveMaxAngularSpeedRadiansPerSecond = kPhysicalMaxAngularSpeedRadiansPerSecond / 3;  // Slowed down for testing
+        public static final double kTeleDriveMaxSpeedMetersPerSecond = kPhysicalMaxSpeedMetersPerSecond / 2;
+        public static final double kTeleDriveMaxAngularSpeedRadiansPerSecond = kPhysicalMaxAngularSpeedRadiansPerSecond / 2;  // Slowed down for testing
         public static final double kTeleDriveMaxAccelerationUnitsPerSecond = 3;
         public static final double kTeleDriveMaxAngularAccelerationUnitsPerSecond = 3;
     }
 
     public static final class AutoConstants {
-        public static final double kMaxSpeedMetersPerSecond = DriveConstants.kPhysicalMaxSpeedMetersPerSecond / 5; 
-        public static final double kMaxAngularSpeedRadiansPerSecond = DriveConstants.kPhysicalMaxAngularSpeedRadiansPerSecond / 5;
+        public static final double kMaxSpeedMetersPerSecond = DriveConstants.kPhysicalMaxSpeedMetersPerSecond / 2.2; 
+        public static final double kMaxAngularSpeedRadiansPerSecond = DriveConstants.kPhysicalMaxAngularSpeedRadiansPerSecond / 2.2;
         public static final double kMaxAccelerationMetersPerSecondSquared = 3;
         public static final double kMaxAngularAccelerationRadiansPerSecondSquared = Math.PI / 2;
         // The P value of the PID controller used in auto for the X and Y directions
@@ -129,7 +129,7 @@ public final class Constants {
         // Deadband for the controller
         public static final double kDeadband = 0.2;
         // Button used to enable robot orientation driving
-        public static final int kDriverFieldOrientedButtonIdx = 5;
+        public static final int kDriverFieldOrientedButtonIdx = 6;
         // Button used to enable slow turning
         public static final int kDriverSlowTurnButtonIdx=1;
 

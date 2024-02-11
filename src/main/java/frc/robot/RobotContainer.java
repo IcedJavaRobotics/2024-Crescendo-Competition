@@ -1,5 +1,8 @@
 package frc.robot;
 
+import edu.wpi.first.networktables.NetworkTable;
+import edu.wpi.first.networktables.NetworkTableEntry;
+import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -29,7 +32,8 @@ public class RobotContainer {
     private final XboxController xboxController = new XboxController(OIConstants.kXboxControllerPort);
 
     public RobotContainer() {
-        
+        // NetworkTableInstance.getDefault().getTable("SmartDashboard").getSubTable("AutoMode").getEntry("options").setValue(null);
+
 
 
         configureButtonBindings();
@@ -67,9 +71,7 @@ public class RobotContainer {
     private void configurePathfinderBindings(){
         
         SmartDashboard.updateValues();
-        SmartDashboard.putData("BlueAllianceMiddleAuto", new PathPlannerAuto("BlueAllianceMiddleAuto"));
-        SmartDashboard.putData("Line auto", new PathPlannerAuto("LineAuto"));
-        SmartDashboard.putData("Testing auto", new PathPlannerAuto("TestingAuto"));
+        SmartDashboard.putData("MiddleTwoPieceAuto", new PathPlannerAuto("MiddleTwoPieceAuto"));
         SmartDashboard.updateValues();
         // Add a button to run the example auto to SmartDashboard, this will also be in the auto chooser built above
     // SmartDashboard.putData("Example Auto", new PathPlannerAuto("Example Auto"));
