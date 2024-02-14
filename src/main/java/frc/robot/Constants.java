@@ -8,25 +8,6 @@ import edu.wpi.first.math.util.Units;
 public final class Constants {
     
     /**
-     * Controller constants
-     */
-    public static class Controller {
-
-        public static final int AUX_PORT = 0;
-    
-    }
-    
-    /**
-     * Button constants
-     */
-    public static class Button {
-    
-        public static final int CLIMBER_UP = 0;
-        public static final int CLIMBER_DOWN = 0;
-        
-    }
-    
-    /**
      * Climber subsystem constants
      */
     public static class ClimberConstants {
@@ -160,6 +141,7 @@ public final class Constants {
         // Port for the driver's controller 
         public static final int kDriverControllerPort = 0;
         public static final int kXboxControllerPort = 1;
+        public static final int AUX_PORT = 2;
         // Axis used for the X, Y, Rotation, and Throttle
         public static final int kDriverYAxis = 1;
         public static final int kDriverXAxis = 0;
