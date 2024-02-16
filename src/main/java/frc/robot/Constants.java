@@ -32,6 +32,23 @@ public final class Constants {
         
         public static final double ROLLER_SPEED = 1;
     }
+    /**
+     * Climber subsystem constants
+     */
+    public static class ClimberConstants {
+    
+        public static final int LEFT_TALON = 170;
+        public static final int RIGHT_TALON = 171;
+    
+        public static final int LEFT_LIMIT_SWITCH = 0;
+        public static final int RIGHT_LIMIT_SWITCH = 1;
+    
+        public static final int UPPER_LEFT_LIMIT = 1000000;
+        public static final int UPPER_RIGHT_LIMIT = 1000000; 
+    
+        public static final double SPEED = 0.5;
+    
+    }    
 
     public static final class ModuleConstants {
         //The diameter of the wheel on your swerve drive
@@ -85,7 +102,7 @@ public final class Constants {
         public static final int kBackRightTurningMotorPort = 42;
 
         //CTRE Pigeon 2.0
-        public static final int kPigeonPort = 13;
+        public static final int kPigeonPort = 1;
 
         //A boolean to control the inversion of the direction of the motor gievn a positive value
         //Positive values muest result in a counter-clockwise movment
@@ -115,22 +132,24 @@ public final class Constants {
         public static final boolean kBackRightDriveAbsoluteEncoderReversed = false;
 
         //Position must be counter-clockwise from the positive YAw
-        public static final boolean kGyroInverted = false;
+        public static final boolean kGyroInverted = false; // was false
 
         //The offset of the CANcoder's position from the zero position (Straight forward)
         //Measure this by rotating all the modules to the forward position and reading the CANcoder's value
-        public static final double kFrontLeftDriveAbsoluteEncoderOffsetRad = Units.degreesToRadians(-171.035); // 361.143
-        public static final double kFrontRightDriveAbsoluteEncoderOffsetRad = Units.degreesToRadians(173.408); //1799.209
-        public static final double kBackLeftDriveAbsoluteEncoderOffsetRad = Units.degreesToRadians(125.508); // 1440.176
-        public static final double kBackRightDriveAbsoluteEncoderOffsetRad = Units.degreesToRadians(-92.285); //3240.088
+
+        // Offsets changed 1/21/24
+        public static final double kFrontLeftDriveAbsoluteEncoderOffsetRad = Units.degreesToRadians(99.404); // -171.035
+        public static final double kFrontRightDriveAbsoluteEncoderOffsetRad = Units.degreesToRadians(82.969); // 173.408
+        public static final double kBackLeftDriveAbsoluteEncoderOffsetRad = Units.degreesToRadians(34.893); // 125.508
+        public static final double kBackRightDriveAbsoluteEncoderOffsetRad = Units.degreesToRadians(177.891); // -92.285
 
         // in m/s, based on MK4 L2 speed of 14.5 ft/s
         public static final double kPhysicalMaxSpeedMetersPerSecond = Units.feetToMeters(14.5);  //14.5
         // Robot turning speed
         public static final double kPhysicalMaxAngularSpeedRadiansPerSecond = 5 * Math.PI;
 
-        public static final double kTeleDriveMaxSpeedMetersPerSecond = kPhysicalMaxSpeedMetersPerSecond;
-        public static final double kTeleDriveMaxAngularSpeedRadiansPerSecond = kPhysicalMaxAngularSpeedRadiansPerSecond;  // Slowed down for testing
+        public static final double kTeleDriveMaxSpeedMetersPerSecond = kPhysicalMaxSpeedMetersPerSecond / 5;
+        public static final double kTeleDriveMaxAngularSpeedRadiansPerSecond = kPhysicalMaxAngularSpeedRadiansPerSecond / 5;  // Slowed down for testing
         public static final double kTeleDriveMaxAccelerationUnitsPerSecond = 3;
         public static final double kTeleDriveMaxAngularAccelerationUnitsPerSecond = 3;
     }
