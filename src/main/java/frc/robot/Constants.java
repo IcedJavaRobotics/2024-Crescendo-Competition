@@ -62,7 +62,7 @@ public final class Constants {
         public static final double kDriveEncoderRPM2MeterPerSec = kDriveEncoderRot2Meter / 60;
         public static final double kTurningEncoderRPM2RadPerSec = kTurningEncoderRot2Rad / 60;
         //The P value for the turning PID loop
-        public static final double kPTurning = 0.4; //0.2
+        public static final double kPTurning = .35; //0.2
     }
 
     public static final class ShooterConstants {
@@ -136,27 +136,25 @@ public final class Constants {
 
         //The offset of the CANcoder's position from the zero position (Straight forward)
         //Measure this by rotating all the modules to the forward position and reading the CANcoder's value
-
-        // Offsets changed 1/21/24
-        public static final double kFrontLeftDriveAbsoluteEncoderOffsetRad = Units.degreesToRadians(99.404); // -171.035
-        public static final double kFrontRightDriveAbsoluteEncoderOffsetRad = Units.degreesToRadians(82.969); // 173.408
-        public static final double kBackLeftDriveAbsoluteEncoderOffsetRad = Units.degreesToRadians(34.893); // 125.508
-        public static final double kBackRightDriveAbsoluteEncoderOffsetRad = Units.degreesToRadians(177.891); // -92.285
+        public static final double kFrontLeftDriveAbsoluteEncoderOffsetRad = Units.degreesToRadians(99.404); // 361.143
+        public static final double kFrontRightDriveAbsoluteEncoderOffsetRad = Units.degreesToRadians(82.969); //1799.209
+        public static final double kBackLeftDriveAbsoluteEncoderOffsetRad = Units.degreesToRadians(34.893); // 1440.176
+        public static final double kBackRightDriveAbsoluteEncoderOffsetRad = Units.degreesToRadians(177.891); //3240.088
 
         // in m/s, based on MK4 L2 speed of 14.5 ft/s
         public static final double kPhysicalMaxSpeedMetersPerSecond = Units.feetToMeters(14.5);  //14.5
         // Robot turning speed
         public static final double kPhysicalMaxAngularSpeedRadiansPerSecond = 5 * Math.PI;
 
-        public static final double kTeleDriveMaxSpeedMetersPerSecond = kPhysicalMaxSpeedMetersPerSecond / 5;
-        public static final double kTeleDriveMaxAngularSpeedRadiansPerSecond = kPhysicalMaxAngularSpeedRadiansPerSecond / 5;  // Slowed down for testing
+        public static final double kTeleDriveMaxSpeedMetersPerSecond = kPhysicalMaxSpeedMetersPerSecond / 2;
+        public static final double kTeleDriveMaxAngularSpeedRadiansPerSecond = kPhysicalMaxAngularSpeedRadiansPerSecond / 2;  // Slowed down for testing
         public static final double kTeleDriveMaxAccelerationUnitsPerSecond = 3;
         public static final double kTeleDriveMaxAngularAccelerationUnitsPerSecond = 3;
     }
 
     public static final class AutoConstants {
-        public static final double kMaxSpeedMetersPerSecond = DriveConstants.kPhysicalMaxSpeedMetersPerSecond / 5; 
-        public static final double kMaxAngularSpeedRadiansPerSecond = DriveConstants.kPhysicalMaxAngularSpeedRadiansPerSecond / 5;
+        public static final double kMaxSpeedMetersPerSecond = DriveConstants.kPhysicalMaxSpeedMetersPerSecond / 2.2; 
+        public static final double kMaxAngularSpeedRadiansPerSecond = DriveConstants.kPhysicalMaxAngularSpeedRadiansPerSecond / 2.2;
         public static final double kMaxAccelerationMetersPerSecondSquared = 3;
         public static final double kMaxAngularAccelerationRadiansPerSecondSquared = Math.PI / 2;
         // The P value of the PID controller used in auto for the X and Y directions
@@ -185,9 +183,23 @@ public final class Constants {
         // Deadband for the controller
         public static final double kDeadband = 0.2;
         // Button used to enable robot orientation driving
-        public static final int kDriverFieldOrientedButtonIdx = 5;
+        public static final int kDriverFieldOrientedButtonIdx = 6;
         // Button used to enable slow turning
         public static final int kDriverSlowTurnButtonIdx=1;
 
+    }
+
+    public static final class LimelightConstants {
+        /** upward angle of limelight camera [degrees] */
+        public static final double LIMELIGHT_ANGLE = 3.0;
+        /** distance from limelight lens from floor [inches] */
+        public static final double LIMELIGHT_HEIGHT = 18.5;
+        /** distance from apriltag to floor(bottom of tag) [inches] */
+        public static final double APRILTAG_HEIGHT = 14.25;
+        /**
+         * distance from apriltag to floor but its the double substation(bottom of tag)
+         * [inches]
+         */
+        public static final double APRILTAG_DOUBLE_SUBSTATION_HEIGHT = 23.375;
     }
 }
