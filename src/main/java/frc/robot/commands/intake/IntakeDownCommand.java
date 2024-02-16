@@ -2,19 +2,19 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-package frc.robot.commands;
+package frc.robot.commands.intake;
 
 import edu.wpi.first.wpilibj2.command.Command;
-import frc.robot.subsystems.RollerSubsystem;
+import frc.robot.subsystems.IntakeSubsystem;
 
-public class RollerInCommand extends Command {
-  /** Creates a new RollersInCommand. */
-
-  private final RollerSubsystem rollerSubsystem;
-
-  public RollerInCommand(RollerSubsystem subsystem) {
-    rollerSubsystem = subsystem;
-    addRequirements(rollerSubsystem);
+public class IntakeDownCommand extends Command {
+  /** Creates a new IntakeDownCommand. */
+  
+  private final IntakeSubsystem intakeSubsystem;
+  
+  public IntakeDownCommand(IntakeSubsystem subsystem) {
+    intakeSubsystem = subsystem;
+    addRequirements(intakeSubsystem);
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
@@ -25,13 +25,13 @@ public class RollerInCommand extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    rollerSubsystem.turnRollerIn();
+    intakeSubsystem.moveIntakeDown();
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    rollerSubsystem.stopRollerMotor();
+    intakeSubsystem.stopIntakeMotor();
   }
 
   // Returns true when the command should end.
