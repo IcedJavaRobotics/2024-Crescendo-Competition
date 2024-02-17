@@ -7,11 +7,11 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.LimelightSubsystem;
 
-public class Flasher extends Command {
+public class FlasherCommand extends Command {
 
   private final LimelightSubsystem limelightSubsystem;
   /** Creates a new Flasher. */
-  public Flasher(LimelightSubsystem lSubsystem) {
+  public FlasherCommand(LimelightSubsystem lSubsystem) {
     this.limelightSubsystem = lSubsystem;
     addRequirements(limelightSubsystem);
   }

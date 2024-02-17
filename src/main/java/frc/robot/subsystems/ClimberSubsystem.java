@@ -7,16 +7,11 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
-import com.ctre.phoenix6.hardware.TalonFX;
-import com.ctre.phoenix6.signals.ControlModeValue;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.Constants;
-import frc.robot.Constants.ClimberConstants;
-
-import static frc.robot.Constants.ClimberConstants;;
+import static frc.robot.Constants.ClimberConstants;
 
 public class ClimberSubsystem extends SubsystemBase {
   /** Creates a new ClimberSubsystem. */
@@ -29,11 +24,11 @@ public class ClimberSubsystem extends SubsystemBase {
 
   public ClimberSubsystem() {
 
-    climberRightMotor.setNeutralMode(NeutralMode.Brake);;
+    climberRightMotor.setNeutralMode(NeutralMode.Brake);
     climberLeftMotor.setNeutralMode(NeutralMode.Brake);
 
-    climberLeftMotor.setInverted(false);
-    climberRightMotor.setInverted(false);
+    climberLeftMotor.setInverted(ClimberConstants.LEFT_MOTOR_INVERTED);
+    climberRightMotor.setInverted(ClimberConstants.RIGHT_MOTOR_INVERTED);
 
   }
 

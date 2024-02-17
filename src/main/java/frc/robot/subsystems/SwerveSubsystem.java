@@ -27,41 +27,41 @@ public class SwerveSubsystem extends SubsystemBase {
     public final SwerveModule frontLeft = new SwerveModule(
             DriveConstants.FRONT_LEFT_DRIVE_SPARK_ID,
             DriveConstants.FRONT_LEFT_TURNING_SPARK_ID,
-            DriveConstants.kFrontLeftDriveMotorReversed,
-            DriveConstants.kFrontLeftTurningMotorReversed,
-            DriveConstants.kFrontLeftDriveAbsoluteEncoderPort,
-            DriveConstants.kFrontLeftDriveAbsoluteEncoderOffsetRad,
-            DriveConstants.kFrontLeftDriveAbsoluteEncoderReversed,
+            DriveConstants.FRONT_LEFT_DRIVE_MOTOR_REVERSED,
+            DriveConstants.FRONT_LEFT_TURNING_MOTOR_REVERSED,
+            DriveConstants.FRONT_LEFT_DRIVE_ABSOLUTE_ENCODER_PORT,
+            DriveConstants.FRONT_LEFT_DRIVE_ABSOLUTE_ENCODER_OFFSET_RAD,
+            DriveConstants.FRONT_LEFT_DRIVE_ABSOLUTE_ENCODER_REVERSED,
             "Front Left");
 
     public final SwerveModule frontRight = new SwerveModule(
             DriveConstants.FRONT_RIGHT_DRIVE_SPARK_ID,
             DriveConstants.FRONT_LEFT_TURNING_SPARK_ID,
-            DriveConstants.kFrontRightDriveMotorReversed,
-            DriveConstants.kFrontRightTurningMotorReversed,
-            DriveConstants.kFrontRightDriveAbsoluteEncoderPort,
-            DriveConstants.kFrontRightDriveAbsoluteEncoderOffsetRad,
-            DriveConstants.kFrontRightDriveAbsoluteEncoderReversed,
+            DriveConstants.FRONT_RIGHT_DRIVE_MOTOR_REVERSED,
+            DriveConstants.FRONT_RIGHT_TURNING_MOTOR_REVERSED,
+            DriveConstants.FRONT_RIGHT_DRIVE_ABSOLUTE_ENCODER_PORT,
+            DriveConstants.FRONT_RIGHT_DRIVE_ABSOLUTE_ENCODER_OFFSET_RAD,
+            DriveConstants.FRONT_RIGHT_DRIVE_ABSOLUTE_ENCODER_REVERSED,
             "Front Right");
 
     public final SwerveModule backLeft = new SwerveModule(
             DriveConstants.BACK_LEFT_DRIVE_SPARK_ID,
             DriveConstants.BACK_LEFT_TURNING_SPARK_ID,
-            DriveConstants.kBackLeftDriveMotorReversed,
-            DriveConstants.kBackLeftTurningMotorReversed,
-            DriveConstants.kBackLeftDriveAbsoluteEncoderPort,
-            DriveConstants.kBackLeftDriveAbsoluteEncoderOffsetRad,
-            DriveConstants.kBackLeftDriveAbsoluteEncoderReversed,
+            DriveConstants.BACK_LEFT_DRIVE_MOTOR_REVERSED,
+            DriveConstants.BACK_LEFT_TURNING_MOTOR_REVERSED,
+            DriveConstants.BACK_LEFT_DRIVE_ABSOLUTE_ENCODER_PORT,
+            DriveConstants.BACK_LEFT_DRIVE_ABSOLUTE_ENCODER_OFFSET_RAD,
+            DriveConstants.BACK_LEFT_DRIVE_ABSOLUTE_ENCODER_REVERSED,
             "Back Left");
 
     public final SwerveModule backRight = new SwerveModule(
             DriveConstants.BACK_RIGHT_DRIVE_SPARK_ID,
             DriveConstants.BACK_RIGHT_TURNING_SPARK_ID,
-            DriveConstants.kBackRightDriveMotorReversed,
-            DriveConstants.kBackRightTurningMotorReversed,
-            DriveConstants.kBackRightDriveAbsoluteEncoderPort,
-            DriveConstants.kBackRightDriveAbsoluteEncoderOffsetRad,
-            DriveConstants.kBackRightDriveAbsoluteEncoderReversed,
+            DriveConstants.BACK_RIGHT_DRIVE_MOTOR_REVERSED,
+            DriveConstants.BACK_RIGHT_TURNING_MOTOR_REVERSED,
+            DriveConstants.BACK_RIGHT_DRIVE_ABSOLUTE_ENCODER_PORT,
+            DriveConstants.BACK_RIGHT_DRIVE_ABSOLUTE_ENCODER_OFFSET_RAD,
+            DriveConstants.BACK_RIGHT_DRIVE_ABSOLUTE_ENCODER_REVERSED,
             "Back Right");
 
     //Pigeon2 is CTRE gyro module 
@@ -92,8 +92,8 @@ public class SwerveSubsystem extends SubsystemBase {
                 this::getRobotRelativeSpeeds, // ChassisSpeeds supplier. MUST BE ROBOT RELATIVE
                 this::driveRobotRelative, // Method that will drive the robot given ROBOT RELATIVE ChassisSpeeds
                 new HolonomicPathFollowerConfig( // HolonomicPathFollowerConfig, this should likely live in your Constants class
-                        new PIDConstants(AutoConstants.kPXController, 0, 0.0), // Translation PID constants
-                        new PIDConstants(AutoConstants.kPThetaController, 0, 0.0), // Rotation PID constants
+                        new PIDConstants(AutoConstants.PX_CONTROLLER, 0, 0.0), // Translation PID constants
+                        new PIDConstants(AutoConstants.P_THETA_CONTROLLER, 0, 0.0), // Rotation PID constants
                         7.5, // Max module speed, in m/s
                         0.4, // Drive base radius in meters. Distance from robot center to furthest module.
                         new ReplanningConfig() // Default path replanning config. See the API for the options here
@@ -133,7 +133,7 @@ public class SwerveSubsystem extends SubsystemBase {
     }
 
     public void setStates(SwerveModuleState[] targetStates) {
-    SwerveDriveKinematics.desaturateWheelSpeeds(targetStates, AutoConstants.kMaxSpeedMetersPerSecond);
+    SwerveDriveKinematics.desaturateWheelSpeeds(targetStates, AutoConstants.MAX_SPEED_METERS_PER_SECOND);
 
         for (int i = 0; i < modules.length; i++) {
             // modules[i].setTargetState(targetStates[i]);
@@ -171,7 +171,7 @@ public class SwerveSubsystem extends SubsystemBase {
     }
 
     public double getHeading() {
-        return ((DriveConstants.kGyroInverted?-1.0:1.0) * Math.IEEEremainder(getYaw(), 360));
+        return ((DriveConstants.GYRO_INVERTED?-1.0:1.0) * Math.IEEEremainder(getYaw(), 360));
     }
 
     public Rotation2d getRotation2d() {
@@ -241,7 +241,7 @@ public class SwerveSubsystem extends SubsystemBase {
     }
 
     public void setModuleStates(SwerveModuleState[] desiredStates) {
-        SwerveDriveKinematics.desaturateWheelSpeeds(desiredStates, DriveConstants.kPhysicalMaxSpeedMetersPerSecond);
+        SwerveDriveKinematics.desaturateWheelSpeeds(desiredStates, DriveConstants.PHYSICAL_MAX_SPEED_METERS_PER_SECOND);
         frontLeft.setDesiredState(desiredStates[0]);
         frontRight.setDesiredState(desiredStates[1]);
         backLeft.setDesiredState(desiredStates[2]);

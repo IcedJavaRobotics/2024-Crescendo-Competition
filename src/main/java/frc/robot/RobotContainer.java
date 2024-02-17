@@ -32,7 +32,7 @@ import frc.robot.subsystems.SwerveSubsystem;
 
 // import static frc.robot.Constants.Controller;
 // import static frc.robot.Constants.Button;
-import frc.robot.commands.Flasher;
+import frc.robot.commands.FlasherCommand;
 import frc.robot.commands.SwerveJoystickCmd;
 import frc.robot.subsystems.LimelightSubsystem;
 import frc.robot.subsystems.SwerveSubsystem;
@@ -113,7 +113,7 @@ public class RobotContainer {
                 .whileTrue(new ClimberDownCommand(climberSubsystem, pneumaticSubsystem));
 
         new JoystickButton(driverController, XboxController.Button.kStart.value)
-                .whileTrue(new Flasher(limelightSubsystem));
+                .whileTrue(new FlasherCommand(limelightSubsystem));
         
     }
     

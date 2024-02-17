@@ -35,11 +35,14 @@ public final class Constants {
      */
     public static class ClimberConstants {
     
-        public static final int LEFT_TALON = 170;
-        public static final int RIGHT_TALON = 171;
+        public static final int LEFT_TALON = 54;
+        public static final int RIGHT_TALON = 55;
+
+        public static final boolean LEFT_MOTOR_INVERTED = false;
+        public static final boolean RIGHT_MOTOR_INVERTED = false;
     
-        public static final int LEFT_LIMIT_SWITCH = 0;
-        public static final int RIGHT_LIMIT_SWITCH = 1;
+        public static final int LEFT_LIMIT_SWITCH = 2;
+        public static final int RIGHT_LIMIT_SWITCH = 3;
     
         public static final int UPPER_LEFT_LIMIT = 1000000;
         public static final int UPPER_RIGHT_LIMIT = 1000000; 
@@ -47,6 +50,24 @@ public final class Constants {
         public static final double SPEED = 0.5;
     
     }    
+
+    public static final class ShooterConstants {
+
+        //CAN IDs For the Shooter motor spark maxes
+        public static final int LEFT_SPARK_ID = 52;
+        public static final int RIGHT_SPARK_ID = 53;
+
+        public static final boolean LEFT_MOTOR_INVERTED = false;
+        public static final boolean RIGHT_MOTOR_INVERTED = true;
+
+        public static final double SPEAKER_SPEED = 1; //rate it spins
+        public static final double COOLDOWN_TIME = 0.3; //cooldown time in seconds
+
+    }
+
+    public static final class PneumaticsConstants {
+        public static final int COMPRESSOR_ID = 3;
+    }
 
     public static final class ModuleConstants {
         //The diameter of the wheel on your swerve drive
@@ -61,17 +82,6 @@ public final class Constants {
         public static final double TURNING_ENCODER_RPM_2_METER_PER_SEC = TURNING_ENCODER_ROT_2_RAD / 60;
         //The P value for the turning PID loop
         public static final double P_TURNING = .35; //0.2
-    }
-
-    public static final class ShooterConstants {
-
-        //CAN IDs For the Shooter motor spark maxes
-        public static final int LEFT_SPARK_ID = 52;
-        public static final int RIGHT_SPARK_ID = 53;
-
-        public static final double SPEAKER_SPEED = 1; //rate it spins
-        public static final double COOLDOWN_TIME = 0.3; //cooldown time in seconds
-
     }
 
     public static final class DriveConstants {
@@ -106,67 +116,67 @@ public final class Constants {
 
         //A boolean to control the inversion of the direction of the motor gievn a positive value
         //Positive values muest result in a counter-clockwise movment
-        public static final boolean kFrontLeftTurningMotorReversed = true;
-        public static final boolean kFrontRightTurningMotorReversed = true;
-        public static final boolean kBackLeftTurningMotorReversed = true;
-        public static final boolean kBackRightTurningMotorReversed = true;
+        public static final boolean FRONT_LEFT_TURNING_MOTOR_REVERSED = true;
+        public static final boolean FRONT_RIGHT_TURNING_MOTOR_REVERSED = true;
+        public static final boolean BACK_LEFT_TURNING_MOTOR_REVERSED = true;
+        public static final boolean BACK_RIGHT_TURNING_MOTOR_REVERSED = true;
 
         //A boolean to control the inversion of the direction of the motor gievn a positive value
         //Positive values must result in a forward movement
-        public static final boolean kFrontLeftDriveMotorReversed = false;
-        public static final boolean kFrontRightDriveMotorReversed = false;
-        public static final boolean kBackLeftDriveMotorReversed = false;
-        public static final boolean kBackRightDriveMotorReversed = false;
+        public static final boolean FRONT_LEFT_DRIVE_MOTOR_REVERSED = false;
+        public static final boolean FRONT_RIGHT_DRIVE_MOTOR_REVERSED = false;
+        public static final boolean BACK_LEFT_DRIVE_MOTOR_REVERSED = false;
+        public static final boolean BACK_RIGHT_DRIVE_MOTOR_REVERSED = false;
 
         //The CAN id's for the CANcoder's on the swerve modules
-        public static final int kFrontLeftDriveAbsoluteEncoderPort = 10;
-        public static final int kFrontRightDriveAbsoluteEncoderPort = 20;
-        public static final int kBackLeftDriveAbsoluteEncoderPort = 30;
-        public static final int kBackRightDriveAbsoluteEncoderPort = 40;
+        public static final int FRONT_LEFT_DRIVE_ABSOLUTE_ENCODER_PORT = 10;
+        public static final int FRONT_RIGHT_DRIVE_ABSOLUTE_ENCODER_PORT = 20;
+        public static final int BACK_LEFT_DRIVE_ABSOLUTE_ENCODER_PORT = 30;
+        public static final int BACK_RIGHT_DRIVE_ABSOLUTE_ENCODER_PORT = 40;
 
         //Inversion of the direction of the CANcoder
         //Positive values must result in a counter-clockwise movement
-        public static final boolean kFrontLeftDriveAbsoluteEncoderReversed = false;
-        public static final boolean kFrontRightDriveAbsoluteEncoderReversed = false;
-        public static final boolean kBackLeftDriveAbsoluteEncoderReversed = false;
-        public static final boolean kBackRightDriveAbsoluteEncoderReversed = false;
+        public static final boolean FRONT_LEFT_DRIVE_ABSOLUTE_ENCODER_REVERSED = false;
+        public static final boolean FRONT_RIGHT_DRIVE_ABSOLUTE_ENCODER_REVERSED = false;
+        public static final boolean BACK_LEFT_DRIVE_ABSOLUTE_ENCODER_REVERSED = false;
+        public static final boolean BACK_RIGHT_DRIVE_ABSOLUTE_ENCODER_REVERSED = false;
 
         //Position must be counter-clockwise from the positive YAw
-        public static final boolean kGyroInverted = false; 
+        public static final boolean GYRO_INVERTED = false; 
 
         //The offset of the CANcoder's position from the zero position (Straight forward)
         //Measure this by rotating all the modules to the forward position and reading the CANcoder's value
-        public static final double kFrontLeftDriveAbsoluteEncoderOffsetRad = Units.degreesToRadians(99.404); // 361.143
-        public static final double kFrontRightDriveAbsoluteEncoderOffsetRad = Units.degreesToRadians(82.969); //1799.209
-        public static final double kBackLeftDriveAbsoluteEncoderOffsetRad = Units.degreesToRadians(34.893); // 1440.176
-        public static final double kBackRightDriveAbsoluteEncoderOffsetRad = Units.degreesToRadians(177.891); //3240.088
+        public static final double FRONT_LEFT_DRIVE_ABSOLUTE_ENCODER_OFFSET_RAD = Units.degreesToRadians(99.404); // 361.143
+        public static final double FRONT_RIGHT_DRIVE_ABSOLUTE_ENCODER_OFFSET_RAD = Units.degreesToRadians(82.969); //1799.209
+        public static final double BACK_LEFT_DRIVE_ABSOLUTE_ENCODER_OFFSET_RAD = Units.degreesToRadians(34.893); // 1440.176
+        public static final double BACK_RIGHT_DRIVE_ABSOLUTE_ENCODER_OFFSET_RAD = Units.degreesToRadians(177.891); //3240.088
 
         // in m/s, based on MK4 L2 speed of 14.5 ft/s
-        public static final double kPhysicalMaxSpeedMetersPerSecond = Units.feetToMeters(14.5);  //14.5
+        public static final double PHYSICAL_MAX_SPEED_METERS_PER_SECOND = Units.feetToMeters(14.5);  //14.5
         // Robot turning speed
-        public static final double kPhysicalMaxAngularSpeedRadiansPerSecond = 5 * Math.PI;
+        public static final double PHYSICAL_MAX_ANGULAR_SPEED_RADIANS_PER_SECOND = 5 * Math.PI;
 
-        public static final double kTeleDriveMaxSpeedMetersPerSecond = kPhysicalMaxSpeedMetersPerSecond / 2;
-        public static final double kTeleDriveMaxAngularSpeedRadiansPerSecond = kPhysicalMaxAngularSpeedRadiansPerSecond / 2;  // Slowed down for testing
-        public static final double kTeleDriveMaxAccelerationUnitsPerSecond = 3;
-        public static final double kTeleDriveMaxAngularAccelerationUnitsPerSecond = 3;
+        public static final double TELE_DRIVE_MAX_SPEED_METERS_PER_SECOND = PHYSICAL_MAX_SPEED_METERS_PER_SECOND / 2;
+        public static final double TELE_DRIVE_MAX_ANGULAR_SPEED_RADIANS_PER_SECOND = PHYSICAL_MAX_SPEED_METERS_PER_SECOND / 2;  // Slowed down for testing
+        public static final double TELE_DRIVE_MAX_ACCELERATION_UNITS_PER_SECOND = 3;
+        public static final double TELE_DRIVE_MAX_ANGULAR_ACCELERATION_UNITS_PER_SECOND = 3;
     }
 
     public static final class AutoConstants {
-        public static final double kMaxSpeedMetersPerSecond = DriveConstants.kPhysicalMaxSpeedMetersPerSecond / 2.2; 
-        public static final double kMaxAngularSpeedRadiansPerSecond = DriveConstants.kPhysicalMaxAngularSpeedRadiansPerSecond / 2.2;
-        public static final double kMaxAccelerationMetersPerSecondSquared = 3;
-        public static final double kMaxAngularAccelerationRadiansPerSecondSquared = Math.PI / 2;
+        public static final double MAX_SPEED_METERS_PER_SECOND = DriveConstants.PHYSICAL_MAX_SPEED_METERS_PER_SECOND / 2.2; 
+        public static final double MAX_ANGULAR_SPEED_RADIANS_PER_SECOND = DriveConstants.PHYSICAL_MAX_SPEED_METERS_PER_SECOND / 2.2;
+        public static final double MAX_ACCELERATION_METERS_PER_SECOND_SQUARED = 3;
+        public static final double MAX_ANGULAR_ACCELERATION_RADIANS_PER_SECOND_SQUARED = Math.PI / 2;
         // The P value of the PID controller used in auto for the X and Y directions
-        public static final double kPXController = 1.5; //1.5 before change
-        public static final double kPYController = 1.5; //1.5 before change
+        public static final double PX_CONTROLLER = 1.5; //1.5 before change
+        public static final double PY_CONTROLLER = 1.5; //1.5 before change
         // The P value of the PID controller used in auto for the theta (rotation) direction
-        public static final double kPThetaController = 3;
+        public static final double P_THETA_CONTROLLER = 3;
 
-        public static final TrapezoidProfile.Constraints kThetaControllerConstraints =
+        public static final TrapezoidProfile.Constraints THETA_CONTROLLER_CONSTRAINTS =
                 new TrapezoidProfile.Constraints(
-                        kMaxAngularSpeedRadiansPerSecond,
-                        kMaxAngularAccelerationRadiansPerSecondSquared);
+                        MAX_ANGULAR_SPEED_RADIANS_PER_SECOND,
+                        MAX_ANGULAR_ACCELERATION_RADIANS_PER_SECOND_SQUARED);
     }
 
     public static final class OIConstants {
