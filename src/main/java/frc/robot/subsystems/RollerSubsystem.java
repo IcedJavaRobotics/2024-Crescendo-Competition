@@ -27,14 +27,14 @@ public class RollerSubsystem extends SubsystemBase {
    * @return true if note is acquired, false if there is no note
    */
   public void turnRollerIn() {  // return type was boolean
-    rollerMotor.set(ControlMode.PercentOutput, RollerConstants.SPEED);
+    rollerMotor.set(ControlMode.PercentOutput, 0.5);
   }
 
   /**
    * Turns rollers out
    */
-  public void turnRollerOut() {
-    rollerMotor.set(ControlMode.PercentOutput, -RollerConstants.SPEED);
+  public void turnRollerOut(double Speed) {
+    rollerMotor.set(ControlMode.PercentOutput, Speed);
   }
 
   public void pickUpNote() {
@@ -53,10 +53,20 @@ public class RollerSubsystem extends SubsystemBase {
     return distanceSensor.get();
   }
 
-  public void loadNote() {
+  public void loadShooter() {
 
     if (havePiece()){
-      turnRollerOut();
+      turnRollerOut(RollerConstants.SHOOTER_SPEED);
+    } else {
+      stopRollerMotor();
+    }
+
+  }
+
+  public void loadFlipper() {
+
+    if (havePiece()){
+      turnRollerOut(RollerConstants.FLIPPER_SPEED);
     } else {
       stopRollerMotor();
     }

@@ -21,6 +21,8 @@ import frc.robot.commands.shooter.ShooterOutCommand;
 import frc.robot.commands.SwerveJoystickCmd;
 import frc.robot.commands.climber.ClimberDownCommand;
 import frc.robot.commands.climber.ClimberUpCommand;
+import frc.robot.commands.flipper.AmpScoreCommand;
+import frc.robot.commands.flipper.LoadFlipperCommand;
 import frc.robot.commands.intake.IntakeDownCommand;
 import frc.robot.commands.intake.IntakeUpCommand;
 import frc.robot.commands.intake.PickupNoteCommand;
@@ -125,6 +127,12 @@ public class RobotContainer {
 
         new JoystickButton(driverController, XboxController.Button.kStart.value)
                 .whileTrue(new FlasherCommand(limelightSubsystem));
+
+        new JoystickButton(auxController, XboxController.Button.kB.value)
+                .whileTrue(new AmpScoreCommand(pneumaticSubsystem));
+                
+        new JoystickButton(auxController, XboxController.Button.kX.value)
+                .whileTrue(new LoadFlipperCommand(rollerSubsystem, intakeSubsystem));
         
     }
     

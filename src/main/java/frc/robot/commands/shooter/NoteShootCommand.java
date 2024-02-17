@@ -43,7 +43,7 @@ public class NoteShootCommand extends Command {
       shooterSubsystem.setSpeed(0); //stop the motor in that case
     } else {   //if its more then that, fire anyway
       
-      rollersubsystem.loadNote();
+      rollersubsystem.loadShooter();
       shooterSubsystem.initSpeedDisabler(Timer.getMatchTime()); //waits a second before setting the speed to 0.
 
     }

@@ -18,6 +18,8 @@ public final class Constants {
         public static final boolean MOTOR_INVERTED = true;
 
         public static final double SPEED = .2;
+
+        public static final int FLIPPER_LIMIT = 1000000;
    
     }
 
@@ -28,7 +30,10 @@ public final class Constants {
 
         public static final boolean MOTOR_INVERTED = true;
         
-        public static final double SPEED = 1;
+        public static final double SHOOTER_SPEED = 1;
+
+        public static final double FLIPPER_SPEED = .2;
+
     }
     /**
      * Climber subsystem constants
