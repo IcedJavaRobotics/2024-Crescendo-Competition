@@ -18,7 +18,7 @@ public class PneumaticSubsystem extends SubsystemBase {
   Compressor compressor = new Compressor(PneumaticsConstants.COMPRESSOR_ID, PneumaticsModuleType.REVPH);
 
   public PneumaticSubsystem() {
-
+    
     ampPlaceholderName.set(DoubleSolenoid.Value.kReverse);
     leftClimberRelease.set(DoubleSolenoid.Value.kReverse);
     rightClimberRelease.set(DoubleSolenoid.Value.kReverse);
