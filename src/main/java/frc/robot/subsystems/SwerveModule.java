@@ -69,12 +69,12 @@ public class SwerveModule {
         driveEncoder = driveMotor.getEncoder();
         turningEncoder = turningMotor.getEncoder();
 
-        driveEncoder.setPositionConversionFactor(ModuleConstants.kDriveEncoderRot2Meter);
-        driveEncoder.setVelocityConversionFactor(ModuleConstants.kDriveEncoderRPM2MeterPerSec);
-        turningEncoder.setPositionConversionFactor(ModuleConstants.kTurningEncoderRot2Rad);
-        turningEncoder.setVelocityConversionFactor(ModuleConstants.kTurningEncoderRPM2RadPerSec);
+        driveEncoder.setPositionConversionFactor(ModuleConstants.DRIVE_ENCODER_ROT_2_METER);
+        driveEncoder.setVelocityConversionFactor(ModuleConstants.DRIVE_ENCODER_RPM_2_METER_PER_SEC);
+        turningEncoder.setPositionConversionFactor(ModuleConstants.TURNING_ENCODER_ROT_2_RAD);
+        turningEncoder.setVelocityConversionFactor(ModuleConstants.TURNING_ENCODER_RPM_2_METER_PER_SEC);
 
-        turningPidController = new PIDController(ModuleConstants.kPTurning, 0, 0.001); //kPTurning COnstant, 1, 0.001
+        turningPidController = new PIDController(ModuleConstants.P_TURNING, 0, 0.001); //kPTurning COnstant, 1, 0.001
         turningPidController.enableContinuousInput(-Math.PI, Math.PI);
 
         absoluteEncoder.configAbsoluteSensorRange(AbsoluteSensorRange.Signed_PlusMinus180);

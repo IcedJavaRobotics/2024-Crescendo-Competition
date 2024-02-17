@@ -53,19 +53,19 @@ public class RobotContainer {
 
     private final SendableChooser<Command> autoChooser; 
 
-    private final XboxController xboxController = new XboxController(OIConstants.kXboxControllerPort);
+    private final XboxController driverController = new XboxController(OIConstants.DRIVER_CONTROLLER_PORT);
     private final XboxController auxController = new XboxController(OIConstants.AUX_CONTROLLER_PORT);
     private final Joystick driverStation = new Joystick(OIConstants.DRIVER_STATION_PORT);
 
     public RobotContainer() {
         swerveSubsystem.setDefaultCommand(new SwerveJoystickCmd(
                 swerveSubsystem,
-                () -> -xboxController.getRawAxis(OIConstants.kDriverYAxis),
-                () -> -xboxController.getRawAxis(OIConstants.kDriverXAxis),
-                () -> -xboxController.getRawAxis(OIConstants.kDriverRotAxis),
-                () -> !xboxController.getRawButton(OIConstants.kDriverFieldOrientedButtonIdx),
-                () -> xboxController.getRawAxis(OIConstants.kDriverThrottleAxis),
-                () -> xboxController.getRawButton(OIConstants.kDriverSlowTurnButtonIdx)
+                () -> -driverController.getRawAxis(OIConstants.DRIVER_Y_AXIS),
+                () -> -driverController.getRawAxis(OIConstants.DRIVER_X_AXIS),
+                () -> -driverController.getRawAxis(OIConstants.DRIVER_ROT_AXIS),
+                () -> !driverController.getRawButton(OIConstants.FIELD_ORIENTATED_BUTTON),
+                () -> driverController.getRawAxis(OIConstants.DRIVER_THROTTLE_AXIS),
+                () -> driverController.getRawButton(OIConstants.SLOW_TURN_BUTTON)
                 ));
         
         configureButtonBindings();
@@ -79,7 +79,7 @@ public class RobotContainer {
     }
 
     private void configureButtonBindings() {
-        new JoystickButton(xboxController, XboxController.Button.kB.value)
+        new JoystickButton(driverController, XboxController.Button.kB.value)
                 .onTrue(new InstantCommand(() -> swerveSubsystem.zeroHeading()));
                 
         new JoystickButton(driverStation, 10 ) //9
@@ -112,7 +112,7 @@ public class RobotContainer {
         new JoystickButton(auxController, XboxController.Button.kLeftBumper.value)
                 .whileTrue(new ClimberDownCommand(climberSubsystem, pneumaticSubsystem));
 
-        new JoystickButton(xboxController, XboxController.Button.kStart.value)
+        new JoystickButton(driverController, XboxController.Button.kStart.value)
                 .whileTrue(new Flasher(limelightSubsystem));
         
     }

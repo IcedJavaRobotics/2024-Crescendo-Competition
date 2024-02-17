@@ -25,8 +25,8 @@ import edu.wpi.first.math.kinematics.SwerveModulePosition;
 
 public class SwerveSubsystem extends SubsystemBase {
     public final SwerveModule frontLeft = new SwerveModule(
-            DriveConstants.kFrontLeftDriveMotorPort,
-            DriveConstants.kFrontLeftTurningMotorPort,
+            DriveConstants.FRONT_LEFT_DRIVE_SPARK_ID,
+            DriveConstants.FRONT_LEFT_TURNING_SPARK_ID,
             DriveConstants.kFrontLeftDriveMotorReversed,
             DriveConstants.kFrontLeftTurningMotorReversed,
             DriveConstants.kFrontLeftDriveAbsoluteEncoderPort,
@@ -35,8 +35,8 @@ public class SwerveSubsystem extends SubsystemBase {
             "Front Left");
 
     public final SwerveModule frontRight = new SwerveModule(
-            DriveConstants.kFrontRightDriveMotorPort,
-            DriveConstants.kFrontRightTurningMotorPort,
+            DriveConstants.FRONT_RIGHT_DRIVE_SPARK_ID,
+            DriveConstants.FRONT_LEFT_TURNING_SPARK_ID,
             DriveConstants.kFrontRightDriveMotorReversed,
             DriveConstants.kFrontRightTurningMotorReversed,
             DriveConstants.kFrontRightDriveAbsoluteEncoderPort,
@@ -45,8 +45,8 @@ public class SwerveSubsystem extends SubsystemBase {
             "Front Right");
 
     public final SwerveModule backLeft = new SwerveModule(
-            DriveConstants.kBackLeftDriveMotorPort,
-            DriveConstants.kBackLeftTurningMotorPort,
+            DriveConstants.BACK_LEFT_DRIVE_SPARK_ID,
+            DriveConstants.BACK_LEFT_TURNING_SPARK_ID,
             DriveConstants.kBackLeftDriveMotorReversed,
             DriveConstants.kBackLeftTurningMotorReversed,
             DriveConstants.kBackLeftDriveAbsoluteEncoderPort,
@@ -55,8 +55,8 @@ public class SwerveSubsystem extends SubsystemBase {
             "Back Left");
 
     public final SwerveModule backRight = new SwerveModule(
-            DriveConstants.kBackRightDriveMotorPort,
-            DriveConstants.kBackRightTurningMotorPort,
+            DriveConstants.BACK_RIGHT_DRIVE_SPARK_ID,
+            DriveConstants.BACK_RIGHT_TURNING_SPARK_ID,
             DriveConstants.kBackRightDriveMotorReversed,
             DriveConstants.kBackRightTurningMotorReversed,
             DriveConstants.kBackRightDriveAbsoluteEncoderPort,
@@ -65,7 +65,7 @@ public class SwerveSubsystem extends SubsystemBase {
             "Back Right");
 
     //Pigeon2 is CTRE gyro module 
-    private final Pigeon2 gyro = new Pigeon2(frc.robot.Constants.DriveConstants.kPigeonPort);
+    private final Pigeon2 gyro = new Pigeon2(frc.robot.Constants.DriveConstants.PIGEON_ID);
     
     private final SwerveDriveOdometry odometer = new SwerveDriveOdometry(DriveConstants.kDriveKinematics,
             new Rotation2d(0), 

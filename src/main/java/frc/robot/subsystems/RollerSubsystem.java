@@ -15,11 +15,11 @@ import frc.robot.Constants.RollerConstants;
 public class RollerSubsystem extends SubsystemBase {
   /** Creates a new IntakeRollerSubsystem. */
 
-  public VictorSPX rollerMotor = new VictorSPX(RollerConstants.ROLLER_SPARK_ID);
+  public VictorSPX rollerMotor = new VictorSPX(RollerConstants.VICTOR_ID);
   public DigitalInput distanceSensor = new DigitalInput(RollerConstants.DISTANCE_SENSOR_ID);
 
   public RollerSubsystem() {
-    rollerMotor.setInverted(RollerConstants.ROLLER_MOTOR_INVERTED);
+    rollerMotor.setInverted(RollerConstants.MOTOR_INVERTED);
   }
 
   /**
@@ -27,14 +27,14 @@ public class RollerSubsystem extends SubsystemBase {
    * @return true if note is acquired, false if there is no note
    */
   public void turnRollerIn() {  // return type was boolean
-    rollerMotor.set(ControlMode.PercentOutput, RollerConstants.ROLLER_SPEED);
+    rollerMotor.set(ControlMode.PercentOutput, RollerConstants.SPEED);
   }
 
   /**
    * Turns rollers out
    */
   public void turnRollerOut() {
-    rollerMotor.set(ControlMode.PercentOutput, -RollerConstants.ROLLER_SPEED);
+    rollerMotor.set(ControlMode.PercentOutput, -RollerConstants.SPEED);
   }
 
   public void pickUpNote() {

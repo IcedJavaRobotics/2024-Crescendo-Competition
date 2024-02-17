@@ -25,7 +25,7 @@ public class ShooterOutCommand extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    shooterSubsystem.setSpeed(ShooterConstants.DESIRED_SPEAKER_SPEED);
+    shooterSubsystem.setSpeed(ShooterConstants.SPEAKER_SPEED);
   }
 
   // Called once the command ends or is interrupted.

@@ -14,15 +14,15 @@ import frc.robot.Constants.IntakeConstants;
 
 public class IntakeSubsystem extends SubsystemBase {
 
-  public CANSparkMax intakeMotor = new CANSparkMax(IntakeConstants.kIntakeMotorPort, MotorType.kBrushless);
+  public CANSparkMax intakeMotor = new CANSparkMax(IntakeConstants.SPARK_MAX_ID, MotorType.kBrushless);
   //public CANSparkMax rollerMotor = new CANSparkMax(IntakeConstants.ROLLER_MOTOR_ID, MotorType.kBrushless);
 
-  public DigitalInput intakeLimitSwitch = new DigitalInput(IntakeConstants.kIntakeLimitSwitchID);
+  public DigitalInput intakeLimitSwitch = new DigitalInput(IntakeConstants.LIMIT_SWITCH_ID);
 
   /** Creates a new IntakeSubsystem. */
   public IntakeSubsystem() {
 
-    intakeMotor.setInverted(IntakeConstants.kIntakeMotorInverted);
+    intakeMotor.setInverted(IntakeConstants.MOTOR_INVERTED);
     //rollerMotor.setInverted(IntakeConstants.ROLLER_MOTOR_INVERTED);
   }
 
@@ -37,7 +37,7 @@ public class IntakeSubsystem extends SubsystemBase {
       return;
     }
 
-    intakeMotor.set(IntakeConstants.kIntakeSpeed);
+    intakeMotor.set(IntakeConstants.SPEED);
   }
 
   /**
@@ -45,27 +45,13 @@ public class IntakeSubsystem extends SubsystemBase {
    */
   public void moveIntakeDown() {      
 
-    if(intakeMotor.getEncoder().getPosition() <= IntakeConstants.kLowerEncoderLimit) {
+    if(intakeMotor.getEncoder().getPosition() <= IntakeConstants.LOWER_ENCODER_LIMIT) {
       stopIntakeMotor();
       return;
     }
 
-    intakeMotor.set(IntakeConstants.kIntakeSpeed);
+    intakeMotor.set(IntakeConstants.SPEED);
   }
-
-  // /**
-  //  * Turns rollers in at speed .2
-  //  */
-  // public void turnRollerIn() {
-  //   rollerMotor.set(.2);
-  // }
-
-  // /**
-  //  * Turns rollers out at speed .2
-  //  */
-  // public void turnRollerOut() {
-  //   rollerMotor.set(-.2);
-  // }
   
   
   /**
@@ -74,13 +60,6 @@ public class IntakeSubsystem extends SubsystemBase {
   public void stopIntakeMotor() {
     intakeMotor.set(0);
   }
-
-  // /**
-  //  * Stops roller motor
-  //  */
-  // public void stopRollerMotor() {
-  //   rollerMotor.set(0);
-  // }
 
   /**
    * Zeros the intake encoder
