@@ -26,11 +26,11 @@ import frc.robot.commands.intake.IntakeUpCommand;
 import frc.robot.commands.intake.PickupNoteCommand;
 import frc.robot.commands.intake.RollerInCommand;
 import frc.robot.commands.intake.RollerOutCommand;
-import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.RollerSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
 
 import frc.robot.subsystems.ClimberSubsystem;
+import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.PneumaticSubsystem;
 import frc.robot.subsystems.SwerveSubsystem;
 import frc.robot.commands.FlasherCommand;
@@ -90,6 +90,7 @@ public class RobotContainer {
     }
 
     private void configureButtonBindings() {
+
         new JoystickButton(driverController, XboxController.Button.kB.value)
                 .onTrue(new InstantCommand(() -> swerveSubsystem.zeroHeading()));
                 
@@ -125,6 +126,9 @@ public class RobotContainer {
 
         new JoystickButton(driverController, XboxController.Button.kStart.value)
                 .whileTrue(new FlasherCommand(limelightSubsystem));
+
+        new JoystickButton(driverStation, 4) //8
+                .onTrue(new InstantCommand(() -> blinkinSubsystem.autoBlinkin()));
         
     }
     
