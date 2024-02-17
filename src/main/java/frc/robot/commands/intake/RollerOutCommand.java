@@ -5,6 +5,7 @@
 package frc.robot.commands.intake;
 
 import edu.wpi.first.wpilibj2.command.Command;
+import frc.robot.Constants.RollerConstants;
 import frc.robot.subsystems.RollerSubsystem;
 
 public class RollerOutCommand extends Command {
@@ -25,7 +26,7 @@ public class RollerOutCommand extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    rollerSubsystem.turnRollerOut();
+    rollerSubsystem.turnRollerOut(-RollerConstants.SHOOTER_SPEED);
   }
 
   // Called once the command ends or is interrupted.
