@@ -19,7 +19,7 @@ public final class Constants {
 
         public static final double SPEED = .2;
 
-        public static final int FLIPPER_LIMIT = 1000000;
+        public static final int FLIPPER_LIMIT = -30;
    
     }
 
@@ -94,6 +94,7 @@ public final class Constants {
         public static final double TURNING_ENCODER_RPM_2_METER_PER_SEC = TURNING_ENCODER_ROT_2_RAD / 60;
         //The P value for the turning PID loop
         public static final double P_TURNING = .35; //0.2
+        
     }
 
     public static final class DriveConstants {

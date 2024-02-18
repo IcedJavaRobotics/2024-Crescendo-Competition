@@ -37,16 +37,6 @@ public class IntakeSubsystem extends SubsystemBase {
     intakeMotor.set(IntakeConstants.SPEED);
   }
 
-  public boolean flipperSpot() {
-
-    if(intakeMotor.get() < IntakeConstants.FLIPPER_LIMIT) {
-      moveIntakeUp();
-      return false;
-    } else {
-      stopIntakeMotor();
-      return true;
-    }
-  }
   /**
    * Moves intake down until lower limit is reached
    */
@@ -58,6 +48,17 @@ public class IntakeSubsystem extends SubsystemBase {
     }
 
     intakeMotor.set(IntakeConstants.SPEED);
+  }
+
+  public boolean flipperSpot() {
+
+    if(intakeMotor.getEncoder().getPosition() <= IntakeConstants.FLIPPER_LIMIT) {
+      stopIntakeMotor();
+      return true;
+    } else {
+      intakeMotor.set(IntakeConstants.SPEED);
+      return false;
+    }
   }
   
    
@@ -82,5 +83,4 @@ public class IntakeSubsystem extends SubsystemBase {
     SmartDashboard.putNumber("Intake Encoder", intakeMotor.getEncoder().getPosition());
     SmartDashboard.putBoolean("Intake Limit Switch Pressed?", intakeLimitSwitch.get());
   }
-
 }
