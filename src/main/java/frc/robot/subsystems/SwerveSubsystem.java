@@ -36,7 +36,7 @@ public class SwerveSubsystem extends SubsystemBase {
 
     public final SwerveModule frontRight = new SwerveModule(
             DriveConstants.FRONT_RIGHT_DRIVE_SPARK_ID,
-            DriveConstants.FRONT_LEFT_TURNING_SPARK_ID,
+            DriveConstants.FRONT_RIGHT_TURNING_SPARK_ID,
             DriveConstants.FRONT_RIGHT_DRIVE_MOTOR_REVERSED,
             DriveConstants.FRONT_RIGHT_TURNING_MOTOR_REVERSED,
             DriveConstants.FRONT_RIGHT_DRIVE_ABSOLUTE_ENCODER_PORT,

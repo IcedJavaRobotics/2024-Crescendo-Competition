@@ -56,12 +56,12 @@ public class RobotContainer {
     private final IntakeSubsystem intakeSubsystem = new IntakeSubsystem();
     private final RollerSubsystem rollerSubsystem = new RollerSubsystem();
     private final ShooterSubsystem shooterSubsystem = new ShooterSubsystem();
-    private final ClimberSubsystem climberSubsystem = new ClimberSubsystem();
-    private final PneumaticSubsystem pneumaticSubsystem = new PneumaticSubsystem();
+    //private final ClimberSubsystem climberSubsystem = new ClimberSubsystem();
+    //private final PneumaticSubsystem pneumaticSubsystem = new PneumaticSubsystem();
     private final LimelightSubsystem limelightSubsystem = new LimelightSubsystem();
     private final BlinkinSubsystem blinkinSubsystem = new BlinkinSubsystem();
 
-    private final SendableChooser<Command> autoChooser; 
+    //private final SendableChooser<Command> autoChooser; 
 
     private final XboxController driverController = new XboxController(OIConstants.DRIVER_CONTROLLER_PORT);
     private final XboxController auxController = new XboxController(OIConstants.AUX_CONTROLLER_PORT);
@@ -80,12 +80,12 @@ public class RobotContainer {
         
         configureButtonBindings();
          // Register named commands
-        NamedCommands.registerCommand("marker1", Commands.print("Passed marker 1"));
-        NamedCommands.registerCommand("marker2", Commands.print("Passed marker 2"));
-        NamedCommands.registerCommand("print hello", Commands.print("hello"));
+        // NamedCommands.registerCommand("marker1", Commands.print("Passed marker 1"));
+        // NamedCommands.registerCommand("marker2", Commands.print("Passed marker 2"));
+        // NamedCommands.registerCommand("print hello", Commands.print("hello"));
 
-        autoChooser = AutoBuilder.buildAutoChooser(); // Default auto will be `Commands.none()`
-        SmartDashboard.putData("AutoMode", autoChooser);
+        // autoChooser = AutoBuilder.buildAutoChooser(); // Default auto will be `Commands.none()`
+        // SmartDashboard.putData("AutoMode", autoChooser);
 
         blinkinSubsystem.autoBlinkin();
 
@@ -117,20 +117,20 @@ public class RobotContainer {
         new JoystickButton(driverStation, 2) //3
                 .whileTrue(new ShooterOutCommand(shooterSubsystem));
 
-        new JoystickButton(auxController, XboxController.Button.kRightBumper.value)
-                .whileTrue(new NoteShootCommand(shooterSubsystem, rollerSubsystem));
+        // new JoystickButton(auxController, XboxController.Button.kRightBumper.value)
+        //         .whileTrue(new NoteShootCommand(shooterSubsystem, rollerSubsystem));
 
-        new JoystickButton(auxController, XboxController.Button.kRightBumper.value)
-                .whileTrue(new ClimberUpCommand(climberSubsystem, pneumaticSubsystem));
+        // new JoystickButton(auxController, XboxController.Button.kRightBumper.value)
+        //         .whileTrue(new ClimberUpCommand(climberSubsystem, pneumaticSubsystem));
 
-        new JoystickButton(auxController, XboxController.Button.kLeftBumper.value)
-                .whileTrue(new ClimberDownCommand(climberSubsystem, pneumaticSubsystem));
+        // new JoystickButton(auxController, XboxController.Button.kLeftBumper.value)
+        //         .whileTrue(new ClimberDownCommand(climberSubsystem, pneumaticSubsystem));
 
         // new JoystickButton(driverController, XboxController.Button.kStart.value)
         //         .whileTrue(new FlasherCommand(limelightSubsystem));
 
-        new JoystickButton(auxController, XboxController.Button.kB.value)
-                .whileTrue(new AmpScoreCommand(pneumaticSubsystem));
+        // new JoystickButton(auxController, XboxController.Button.kB.value)
+        //         .whileTrue(new AmpScoreCommand(pneumaticSubsystem));
                 
         new JoystickButton(auxController, XboxController.Button.kX.value)
                 .whileTrue(new LoadFlipperCommand(rollerSubsystem, intakeSubsystem));
@@ -140,8 +140,8 @@ public class RobotContainer {
         
     }
     
-    public Command getAutonomousCommand() {
-        return autoChooser.getSelected();
-    }
+//     public Command getAutonomousCommand() {
+//         return autoChooser.getSelected();
+//     }
 
 }

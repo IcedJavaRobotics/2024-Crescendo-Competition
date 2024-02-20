@@ -12,9 +12,9 @@ import frc.robot.Constants.PneumaticsConstants;
 
 public class PneumaticSubsystem extends SubsystemBase {
   /** Creates a new PneumaticSubsystem. */
-  DoubleSolenoid ampPlaceholderName = new DoubleSolenoid(PneumaticsModuleType.REVPH, 0, 0);
-  DoubleSolenoid leftClimberRelease = new DoubleSolenoid(PneumaticsModuleType.REVPH, 0, 0);
-  DoubleSolenoid rightClimberRelease =  new DoubleSolenoid(PneumaticsModuleType.REVPH, 0, 0);
+  DoubleSolenoid ampPlaceholderName = new DoubleSolenoid(PneumaticsModuleType.REVPH, 0, 1);
+  DoubleSolenoid leftClimberRelease = new DoubleSolenoid(PneumaticsModuleType.REVPH, 2, 3);
+  DoubleSolenoid rightClimberRelease =  new DoubleSolenoid(PneumaticsModuleType.REVPH, 4, 5);
   Compressor compressor = new Compressor(PneumaticsConstants.COMPRESSOR_ID, PneumaticsModuleType.REVPH);
 
   public PneumaticSubsystem() {

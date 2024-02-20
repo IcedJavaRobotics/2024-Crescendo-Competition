@@ -17,7 +17,7 @@ public final class Constants {
 
         public static final boolean MOTOR_INVERTED = true;
 
-        public static final double SPEED = .2;
+        public static final double SPEED = .1;
 
         public static final int FLIPPER_LIMIT = -30;
    
@@ -30,9 +30,9 @@ public final class Constants {
 
         public static final boolean MOTOR_INVERTED = true;
         
-        public static final double SHOOTER_SPEED = 1;
+        public static final double SHOOTER_SPEED = .3;
 
-        public static final double FLIPPER_SPEED = .2;
+        public static final double FLIPPER_SPEED = .3;
 
     }
     /**
@@ -52,7 +52,7 @@ public final class Constants {
         public static final int UPPER_LEFT_LIMIT = 1000000;
         public static final int UPPER_RIGHT_LIMIT = 1000000; 
     
-        public static final double SPEED = 0.5;
+        public static final double SPEED = 0.1;
     
     }    
 
@@ -62,10 +62,10 @@ public final class Constants {
         public static final int LEFT_SPARK_ID = 52;
         public static final int RIGHT_SPARK_ID = 53;
 
-        public static final boolean LEFT_MOTOR_INVERTED = false;
-        public static final boolean RIGHT_MOTOR_INVERTED = true;
+        public static final boolean LEFT_MOTOR_INVERTED = true;
+        public static final boolean RIGHT_MOTOR_INVERTED = false;
 
-        public static final double SPEAKER_SPEED = 1; //rate it spins
+        public static final double SPEAKER_SPEED = .2; //rate it spins
         public static final double COOLDOWN_TIME = 0.3; //cooldown time in seconds
 
     }
@@ -73,13 +73,18 @@ public final class Constants {
     public static final class PneumaticsConstants {
         public static final int COMPRESSOR_ID = 3;
     }
-  public static final int BLINKIN = 0;
-  public static final double RED = .61; 
-  public static final double BLUE = .87;
-  public static final double RAINBOW = -.89; 
-  public static final double GREEN = .77; 
-  public static final double OCEAN = -.51; 
-  public static final double FOREST = -.71; 
+
+    public static final class BlinkinConstants {
+    
+        
+    }
+    public static final int BLINKIN = 0;
+    public static final double RED = .61; 
+    public static final double BLUE = .87;
+    public static final double RAINBOW = -.89; 
+    public static final double GREEN = .77; 
+    public static final double OCEAN = -.51; 
+    public static final double FOREST = -.71; 
 
     public static final class ModuleConstants {
         //The diameter of the wheel on your swerve drive
@@ -93,7 +98,7 @@ public final class Constants {
         public static final double DRIVE_ENCODER_RPM_2_METER_PER_SEC = DRIVE_ENCODER_ROT_2_METER / 60;
         public static final double TURNING_ENCODER_RPM_2_METER_PER_SEC = TURNING_ENCODER_ROT_2_RAD / 60;
         //The P value for the turning PID loop
-        public static final double P_TURNING = .35; //0.2
+        public static final double P_TURNING = .2; //0.2
         
     }
 
@@ -159,10 +164,10 @@ public final class Constants {
 
         //The offset of the CANcoder's position from the zero position (Straight forward)
         //Measure this by rotating all the modules to the forward position and reading the CANcoder's value
-        public static final double FRONT_LEFT_DRIVE_ABSOLUTE_ENCODER_OFFSET_RAD = Units.degreesToRadians(99.404); // 361.143
-        public static final double FRONT_RIGHT_DRIVE_ABSOLUTE_ENCODER_OFFSET_RAD = Units.degreesToRadians(82.969); //1799.209
-        public static final double BACK_LEFT_DRIVE_ABSOLUTE_ENCODER_OFFSET_RAD = Units.degreesToRadians(34.893); // 1440.176
-        public static final double BACK_RIGHT_DRIVE_ABSOLUTE_ENCODER_OFFSET_RAD = Units.degreesToRadians(177.891); //3240.088
+        public static final double FRONT_LEFT_DRIVE_ABSOLUTE_ENCODER_OFFSET_RAD = Units.degreesToRadians(-3.252);
+        public static final double FRONT_RIGHT_DRIVE_ABSOLUTE_ENCODER_OFFSET_RAD = Units.degreesToRadians(84.990);
+        public static final double BACK_LEFT_DRIVE_ABSOLUTE_ENCODER_OFFSET_RAD = Units.degreesToRadians(355.693);
+        public static final double BACK_RIGHT_DRIVE_ABSOLUTE_ENCODER_OFFSET_RAD = Units.degreesToRadians(-81.914);
 
         // in m/s, based on MK4 L2 speed of 14.5 ft/s
         public static final double PHYSICAL_MAX_SPEED_METERS_PER_SECOND = Units.feetToMeters(14.5);  //14.5
@@ -196,7 +201,7 @@ public final class Constants {
         // Port for the driver's controller 
         public static final int DRIVER_CONTROLLER_PORT = 0;
         public static final int AUX_CONTROLLER_PORT = 1;
-        public static final int DRIVER_STATION_PORT = 3;
+        public static final int DRIVER_STATION_PORT = 2;
         // Axis used for the X, Y, Rotation, and Throttle
         public static final int DRIVER_Y_AXIS = 1;
         public static final int DRIVER_X_AXIS = 0;

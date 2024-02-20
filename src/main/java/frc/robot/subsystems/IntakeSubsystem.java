@@ -28,7 +28,7 @@ public class IntakeSubsystem extends SubsystemBase {
    */
   public void moveIntakeUp() {
 
-    if(intakeLimitSwitch.get()) {
+    if(!intakeLimitSwitch.get()) {
       intakeMotor.set(0);
       zeroIntakeEncoder();
       return;
@@ -47,7 +47,7 @@ public class IntakeSubsystem extends SubsystemBase {
       return;
     }
 
-    intakeMotor.set(IntakeConstants.SPEED);
+    intakeMotor.set(-IntakeConstants.SPEED);
   }
 
   public boolean flipperSpot() {
@@ -56,7 +56,7 @@ public class IntakeSubsystem extends SubsystemBase {
       stopIntakeMotor();
       return true;
     } else {
-      intakeMotor.set(IntakeConstants.SPEED);
+      intakeMotor.set(-IntakeConstants.SPEED);
       return false;
     }
   }
@@ -81,6 +81,6 @@ public class IntakeSubsystem extends SubsystemBase {
   public void periodic() {
     // This method will be called once per scheduler run
     SmartDashboard.putNumber("Intake Encoder", intakeMotor.getEncoder().getPosition());
-    SmartDashboard.putBoolean("Intake Limit Switch Pressed?", intakeLimitSwitch.get());
+    SmartDashboard.putBoolean("Intake Limit Switch Pressed?", !intakeLimitSwitch.get());
   }
 }
