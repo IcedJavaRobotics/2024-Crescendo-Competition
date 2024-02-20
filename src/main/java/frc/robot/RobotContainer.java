@@ -117,8 +117,8 @@ public class RobotContainer {
         new JoystickButton(driverStation, 2) //3
                 .whileTrue(new ShooterOutCommand(shooterSubsystem));
 
-        // new JoystickButton(auxController, XboxController.Button.kRightBumper.value)
-        //         .whileTrue(new NoteShootCommand(shooterSubsystem, rollerSubsystem));
+        new JoystickButton(auxController, XboxController.Button.kA.value)
+                .whileTrue(new NoteShootCommand(shooterSubsystem, rollerSubsystem));
 
         // new JoystickButton(auxController, XboxController.Button.kRightBumper.value)
         //         .whileTrue(new ClimberUpCommand(climberSubsystem, pneumaticSubsystem));

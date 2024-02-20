@@ -19,7 +19,7 @@ public final class Constants {
 
         public static final double SPEED = .1;
 
-        public static final int FLIPPER_LIMIT = -30;
+        public static final int FLIPPER_LIMIT = -12;
    
     }
 
@@ -32,7 +32,7 @@ public final class Constants {
         
         public static final double SHOOTER_SPEED = .3;
 
-        public static final double FLIPPER_SPEED = .3;
+        public static final double FLIPPER_SPEED = .4;
 
     }
     /**

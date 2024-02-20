@@ -56,9 +56,9 @@ public class RollerSubsystem extends SubsystemBase {
   public void loadShooter() {
 
     if (havePiece()){
-      turnRollerOut(RollerConstants.SHOOTER_SPEED);
+      turnRollerOut(-RollerConstants.SHOOTER_SPEED);
     } else {
-      stopRollerMotor();
+      stopRollerMotor(); 
     }
 
   }
@@ -66,7 +66,7 @@ public class RollerSubsystem extends SubsystemBase {
   public void loadFlipper() {
 
     if (havePiece()){
-      turnRollerOut(RollerConstants.FLIPPER_SPEED);
+      turnRollerOut(-RollerConstants.FLIPPER_SPEED);
     } else {
       stopRollerMotor();
     }
