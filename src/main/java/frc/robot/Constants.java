@@ -30,9 +30,9 @@ public final class Constants {
 
         public static final boolean MOTOR_INVERTED = true;
         
-        public static final double SHOOTER_SPEED = .3;
+        public static final double SHOOTER_SPEED = .5;
 
-        public static final double FLIPPER_SPEED = .4;
+        public static final double FLIPPER_SPEED = .5;
 
     }
     /**
@@ -167,15 +167,16 @@ public final class Constants {
         public static final double FRONT_LEFT_DRIVE_ABSOLUTE_ENCODER_OFFSET_RAD = Units.degreesToRadians(-3.252);
         public static final double FRONT_RIGHT_DRIVE_ABSOLUTE_ENCODER_OFFSET_RAD = Units.degreesToRadians(84.990);
         public static final double BACK_LEFT_DRIVE_ABSOLUTE_ENCODER_OFFSET_RAD = Units.degreesToRadians(355.693);
-        public static final double BACK_RIGHT_DRIVE_ABSOLUTE_ENCODER_OFFSET_RAD = Units.degreesToRadians(-81.914);
+        public static final double BACK_RIGHT_DRIVE_ABSOLUTE_ENCODER_OFFSET_RAD = Units.degreesToRadians(360-81.914);
+        // TODO
 
         // in m/s, based on MK4 L2 speed of 14.5 ft/s
         public static final double PHYSICAL_MAX_SPEED_METERS_PER_SECOND = Units.feetToMeters(14.5);  //14.5
         // Robot turning speed
         public static final double PHYSICAL_MAX_ANGULAR_SPEED_RADIANS_PER_SECOND = 5 * Math.PI;
 
-        public static final double TELE_DRIVE_MAX_SPEED_METERS_PER_SECOND = PHYSICAL_MAX_SPEED_METERS_PER_SECOND / 2;
-        public static final double TELE_DRIVE_MAX_ANGULAR_SPEED_RADIANS_PER_SECOND = PHYSICAL_MAX_SPEED_METERS_PER_SECOND / 2;  // Slowed down for testing
+        public static final double TELE_DRIVE_MAX_SPEED_METERS_PER_SECOND = PHYSICAL_MAX_SPEED_METERS_PER_SECOND / 3;
+        public static final double TELE_DRIVE_MAX_ANGULAR_SPEED_RADIANS_PER_SECOND = PHYSICAL_MAX_SPEED_METERS_PER_SECOND / 3;  // Slowed down for testing
         public static final double TELE_DRIVE_MAX_ACCELERATION_UNITS_PER_SECOND = 3;
         public static final double TELE_DRIVE_MAX_ANGULAR_ACCELERATION_UNITS_PER_SECOND = 3;
     }
