@@ -18,38 +18,15 @@ public class IntakeSubsystem extends SubsystemBase {
 
   public DigitalInput intakeLimitSwitch = new DigitalInput(IntakeConstants.LIMIT_SWITCH_ID);
 
-  public boolean returnIntake = true;
-
   /** Creates a new IntakeSubsystem. */
   public IntakeSubsystem() {
     intakeMotor.setInverted(IntakeConstants.MOTOR_INVERTED);
   }
 
   /**
-   * Automatically moves the intake in after pickup note and flipper position
-   */
-  public void autoReturnIntake() {
-
-    if(returnIntake){
-
-      if(!intakeLimitSwitch.get()) {
-        intakeMotor.set(0);
-        zeroIntakeEncoder();
-        returnIntake = false;
-        // do not delete 'return;' please
-        return;
-      }
-
-      intakeMotor.set(IntakeConstants.SPEED);
-
-    }
-
-  }
-
-  /**
    * Moves intake up until limit switch is hit and resets encoder to 0
    */
-  public void moveIntakeIn() {
+  public void moveIntakeUp() {
 
     if(!intakeLimitSwitch.get()) {
       intakeMotor.set(0);
@@ -58,13 +35,12 @@ public class IntakeSubsystem extends SubsystemBase {
     }
 
     intakeMotor.set(IntakeConstants.SPEED);
-
   }
 
   /**
    * Moves intake down until lower limit is reached
    */
-  public void moveIntakeOut() {      
+  public void moveIntakeDown() {      
 
     if(intakeMotor.getEncoder().getPosition() <= IntakeConstants.LOWER_ENCODER_LIMIT) {
       stopIntakeMotor();

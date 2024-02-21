@@ -14,7 +14,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
-import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.Constants.OIConstants;
 import frc.robot.commands.shooter.NoteShootCommand;
@@ -24,8 +23,8 @@ import frc.robot.commands.climber.ClimberDownCommand;
 import frc.robot.commands.climber.ClimberUpCommand;
 import frc.robot.commands.flipper.AmpScoreCommand;
 import frc.robot.commands.flipper.LoadFlipperCommand;
-import frc.robot.commands.intake.IntakeOutCommand;
-import frc.robot.commands.intake.IntakeInCommand;
+import frc.robot.commands.intake.IntakeDownCommand;
+import frc.robot.commands.intake.IntakeUpCommand;
 import frc.robot.commands.intake.PickupNoteCommand;
 import frc.robot.commands.intake.RollerInCommand;
 import frc.robot.commands.intake.RollerOutCommand;
@@ -78,8 +77,6 @@ public class RobotContainer {
                 () -> driverController.getRawAxis(OIConstants.DRIVER_THROTTLE_AXIS),
                 () -> driverController.getRawButton(OIConstants.SLOW_TURN_BUTTON)
                 ));
-        shooterSubsystem.setDefaultCommand(new RunCommand(() -> shooterSubsystem.cooldownShooter(),shooterSubsystem));
-        // intakeSubsystem.setDefaultCommand(new RunCommand(() -> intakeSubsystem.autoReturnIntake(), intakeSubsystem));
         
         configureButtonBindings();
          // Register named commands
@@ -96,7 +93,6 @@ public class RobotContainer {
 
     private void configureButtonBindings() {
 
-
         new JoystickButton(driverController, XboxController.Button.kB.value)
                 .onTrue(new InstantCommand(() -> swerveSubsystem.zeroHeading()));
                 
@@ -104,10 +100,10 @@ public class RobotContainer {
                 .onTrue(new InstantCommand(() -> intakeSubsystem.zeroIntakeEncoder()));
 
         new JoystickButton (driverStation, 1 ) //1
-                .whileTrue(new IntakeOutCommand(intakeSubsystem));
+                .whileTrue(new IntakeDownCommand(intakeSubsystem));
 
         new JoystickButton (driverStation, 6 ) //4
-                .whileTrue(new IntakeInCommand(intakeSubsystem));  
+                .whileTrue(new IntakeUpCommand(intakeSubsystem));  
 
         new JoystickButton (driverStation, 9 ) //2
                 .whileTrue(new RollerInCommand(rollerSubsystem));  
@@ -115,7 +111,7 @@ public class RobotContainer {
         new JoystickButton (driverStation, 8 ) //5
                 .whileTrue(new RollerOutCommand(rollerSubsystem));
 
-        // new JoystickButton(auxController, XboxController.Button.k.value)
+        // new JoystickButton(auxController, XboxController.Axis.kLeftTrigger.value)
         //         .whileTrue(new PickupNoteCommand(intakeSubsystem));
 
         new JoystickButton(driverStation, 2) //3
@@ -138,11 +134,7 @@ public class RobotContainer {
                 
         new JoystickButton(auxController, XboxController.Button.kX.value)
                 .whileTrue(new LoadFlipperCommand(rollerSubsystem, intakeSubsystem));
-
-        new JoystickButton(auxController, XboxController.Button.kStart.value)
-                .whileTrue(new InstantCommand(() -> shooterSubsystem.setSpeed(0)))
-                .whileTrue(new InstantCommand(() -> rollerSubsystem.stopRollerMotor()));
-
+                
         new JoystickButton(driverStation, 4) //8
                 .onTrue(new InstantCommand(() -> blinkinSubsystem.autoBlinkin()));
         

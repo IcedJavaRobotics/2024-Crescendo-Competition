@@ -28,6 +28,12 @@ public class ShooterSubsystem extends SubsystemBase {
     rightMotor.setInverted(ShooterConstants.RIGHT_MOTOR_INVERTED);
   }
 
+  @Override
+  public void periodic() {
+    // This method will be called once per scheduler run
+    cooldownShooter();
+  }
+
   public void setSpeed(double speed) {
     leftMotor.set(speed);
     rightMotor.set(speed);
@@ -56,10 +62,4 @@ public class ShooterSubsystem extends SubsystemBase {
       }
     }
   }
-
-  @Override
-  public void periodic() {
-    // This method will be called once per scheduler run
-  }
-
 }

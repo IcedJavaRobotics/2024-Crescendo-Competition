@@ -42,7 +42,6 @@ public class LoadFlipperCommand extends Command {
   public void end(boolean interrupted) {
     rollerSubsystem.stopRollerMotor();
     intakeSubsystem.stopIntakeMotor();
-    // intakeSubsystem.returnIntake = true;
   }
 
   // Returns true when the command should end.

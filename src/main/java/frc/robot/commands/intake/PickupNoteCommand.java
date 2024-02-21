@@ -30,7 +30,7 @@ public class PickupNoteCommand extends Command {
   @Override
   public void execute() {
 
-    intakeSubsystem.moveIntakeOut();
+    intakeSubsystem.moveIntakeDown();
     rollerSubsystem.pickUpNote();
     
   }
@@ -39,8 +39,7 @@ public class PickupNoteCommand extends Command {
   @Override
   public void end(boolean interrupted) {
     rollerSubsystem.stopRollerMotor();
-    intakeSubsystem.moveIntakeIn();
-    //intakeSubsystem.returnIntake = true;
+    intakeSubsystem.moveIntakeUp();
   }
 
   // Returns true when the command should end.
