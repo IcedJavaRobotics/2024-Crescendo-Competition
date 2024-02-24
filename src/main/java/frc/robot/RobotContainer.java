@@ -16,22 +16,26 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.SwerveControllerCommand;
+import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.Constants.AutoConstants;
 import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.OIConstants;
 import frc.robot.commands.SwerveJoystickCmd;
+import frc.robot.commands.TestCommand;
 import frc.robot.subsystems.SwerveSubsystem;
+import frc.robot.subsystems.TestSubsystem;
 
 public class RobotContainer {
 
-    private final SwerveSubsystem swerveSubsystem = new SwerveSubsystem();
+        private final SwerveSubsystem swerveSubsystem = new SwerveSubsystem();
 
 //     private final Joystick driverJoytick = new Joystick(OIConstants.kDriverControllerPort);
 //     private final XboxController xboxController = new XboxController(OIConstants.kXboxControllerPort);
 
     private final CommandXboxController driverController = new CommandXboxController(0);
-
+    private final Trigger driverRightTrigger;
     
 
     public RobotContainer() {
@@ -46,11 +50,13 @@ public class RobotContainer {
         //         ));
 
 
-        // configureButtonBindings();
+        configureButtonBindings();
     }
 
     private void configureButtonBindings() {
         // new JoystickButton(xboxController, 2).onTrue(new InstantCommand(() -> swerveSubsystem.zeroHeading()));
+        driverRightTrigger = driverController.axisGreaterThan(3, 0.2);
+        driverRightTrigger.whileTrue(new TestCommand(TestSubsystem));
     }
 
     public Command getAutonomousCommand() {
