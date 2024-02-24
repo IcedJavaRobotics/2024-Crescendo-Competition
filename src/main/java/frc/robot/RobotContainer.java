@@ -27,26 +27,30 @@ public class RobotContainer {
 
     private final SwerveSubsystem swerveSubsystem = new SwerveSubsystem();
 
-    private final Joystick driverJoytick = new Joystick(OIConstants.kDriverControllerPort);
-    private final XboxController xboxController = new XboxController(OIConstants.kXboxControllerPort);
+//     private final Joystick driverJoytick = new Joystick(OIConstants.kDriverControllerPort);
+//     private final XboxController xboxController = new XboxController(OIConstants.kXboxControllerPort);
+
+    private final CommandXboxController driverController = new CommandXboxController(0);
+
+    
 
     public RobotContainer() {
-        swerveSubsystem.setDefaultCommand(new SwerveJoystickCmd(
-                swerveSubsystem,
-                () -> -xboxController.getRawAxis(OIConstants.kDriverYAxis),
-                () -> -xboxController.getRawAxis(OIConstants.kDriverXAxis),
-                () -> -xboxController.getRawAxis(OIConstants.kDriverRotAxis),
-                () -> !xboxController.getRawButton(OIConstants.kDriverFieldOrientedButtonIdx),
-                () -> driverJoytick.getRawAxis(OIConstants.kDriverThrottleAxis),
-                () -> driverJoytick.getRawButton(OIConstants.kDriverSlowTurnButtonIdx)
-                ));
+        // swerveSubsystem.setDefaultCommand(new SwerveJoystickCmd(
+        //         swerveSubsystem,
+        //         () -> -xboxController.getRawAxis(OIConstants.kDriverYAxis),
+        //         () -> -xboxController.getRawAxis(OIConstants.kDriverXAxis),
+        //         () -> -xboxController.getRawAxis(OIConstants.kDriverRotAxis),
+        //         () -> !xboxController.getRawButton(OIConstants.kDriverFieldOrientedButtonIdx),
+        //         () -> driverJoytick.getRawAxis(OIConstants.kDriverThrottleAxis),
+        //         () -> driverJoytick.getRawButton(OIConstants.kDriverSlowTurnButtonIdx)
+        //         ));
 
 
-        configureButtonBindings();
+        // configureButtonBindings();
     }
 
     private void configureButtonBindings() {
-        new JoystickButton(xboxController, 2).onTrue(new InstantCommand(() -> swerveSubsystem.zeroHeading()));
+        // new JoystickButton(xboxController, 2).onTrue(new InstantCommand(() -> swerveSubsystem.zeroHeading()));
     }
 
     public Command getAutonomousCommand() {
