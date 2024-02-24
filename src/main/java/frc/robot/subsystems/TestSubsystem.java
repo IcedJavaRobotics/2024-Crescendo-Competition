@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 public class TestSubsystem extends SubsystemBase {
   /** Creates a new TestSubsystem. */
 
-  private final CANSparkMax motor = new CANSparkMax(0, MotorType.kBrushless);
+  private final CANSparkMax motor = new CANSparkMax(1, MotorType.kBrushless);
 
   public TestSubsystem() {
     motor.setInverted(false);
