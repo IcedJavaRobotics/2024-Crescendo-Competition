@@ -13,15 +13,15 @@ public final class Constants {
         public static final int LIMIT_SWITCH_ID = 1;
 
         public static final int UPPER_ENCODER_LIMIT = 0;
-        public static final int LOWER_ENCODER_LIMIT = -123;
+        public static final int LOWER_ENCODER_LIMIT = -100; //-120
 
         public static final boolean MOTOR_INVERTED = true;
 
-        public static final double SPEED = .1;
+        public static final double SPEED = 0.5;
 
         public static final int FLIPPER_LIMIT = -12;
         
-        public static final double INTAKE_kP = 0.1;
+        public static final double INTAKE_kP = 0.009;
     }
 
     public static final class RollerConstants {

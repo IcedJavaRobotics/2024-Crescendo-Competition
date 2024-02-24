@@ -19,13 +19,14 @@ public class IntakeSubsystem extends SubsystemBase {
 
   public DigitalInput intakeLimitSwitch = new DigitalInput(IntakeConstants.LIMIT_SWITCH_ID);
 
-  public PIDController intakePidController;
-
-  private double pidCalculations;
+  public PIDController intakePidController = new PIDController(IntakeConstants.INTAKE_kP, 0, 0);
 
   /** Creates a new IntakeSubsystem. */
   public IntakeSubsystem() {
     intakeMotor.setInverted(IntakeConstants.MOTOR_INVERTED);
+
+    intakePidController.setTolerance(5, 0.01);
+
   }
 
   /**
@@ -39,7 +40,9 @@ public class IntakeSubsystem extends SubsystemBase {
       return;
     }
 
-    intakeMotor.set(IntakeConstants.SPEED);
+    // intakeMotor.set(IntakeConstants.SPEED);
+
+    intakeMotor.set(intakePidController.calculate(intakeMotor.getEncoder().getPosition(), 0.0));
   }
 
   /**
@@ -52,7 +55,9 @@ public class IntakeSubsystem extends SubsystemBase {
       return;
     }
 
-    intakeMotor.set(-IntakeConstants.SPEED);
+    // intakeMotor.set(-IntakeConstants.SPEED);
+
+    intakeMotor.set(intakePidController.calculate(intakeMotor.getEncoder().getPosition(), IntakeConstants.LOWER_ENCODER_LIMIT));
   }
 
   public boolean flipperSpot() {
@@ -61,9 +66,13 @@ public class IntakeSubsystem extends SubsystemBase {
       stopIntakeMotor();
       return true;
     } else {
-      intakeMotor.set(-IntakeConstants.SPEED);
+      // intakeMotor.set(-IntakeConstants.SPEED);
+      intakeMotor.set(intakePidController.calculate(intakeMotor.getEncoder().getPosition(), IntakeConstants.FLIPPER_LIMIT));
       return false;
     }
+
+    
+    
   }
   
    

@@ -9,6 +9,7 @@ import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -117,7 +118,12 @@ public class RobotContainer {
         new JoystickButton(driverStation, 2) //3
                 .whileTrue(new ShooterOutCommand(shooterSubsystem));
 
+ 
+
         new JoystickButton(auxController, XboxController.Button.kA.value)
+                .whileTrue(new NoteShootCommand(shooterSubsystem, rollerSubsystem));
+
+        new JoystickAxis(auxController, (XboxController.Axis.kRightTrigger.value > 0.2) ? true : false)
                 .whileTrue(new NoteShootCommand(shooterSubsystem, rollerSubsystem));
 
         // new JoystickButton(auxController, XboxController.Button.kRightBumper.value)
@@ -137,6 +143,9 @@ public class RobotContainer {
                 
         new JoystickButton(driverStation, 4) //8
                 .onTrue(new InstantCommand(() -> blinkinSubsystem.autoBlinkin()));
+
+        new JoystickButton(driverController, XboxController.Button.kLeftStick.value)
+                .whileTrue(new InstantCommand(() -> driverController.setRumble(RumbleType.kBothRumble, 1)));
         
     }
     

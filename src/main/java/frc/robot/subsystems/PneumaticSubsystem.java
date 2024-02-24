@@ -12,42 +12,41 @@ import frc.robot.Constants.PneumaticsConstants;
 
 public class PneumaticSubsystem extends SubsystemBase {
   /** Creates a new PneumaticSubsystem. */
-  DoubleSolenoid ampPlaceholderName = new DoubleSolenoid(PneumaticsModuleType.REVPH, 0, 1);
-  DoubleSolenoid leftClimberRelease = new DoubleSolenoid(PneumaticsModuleType.REVPH, 2, 3);
-  DoubleSolenoid rightClimberRelease =  new DoubleSolenoid(PneumaticsModuleType.REVPH, 4, 5);
+
+  // Declaring solenoids and compressor
+  DoubleSolenoid ampFlyswatter = new DoubleSolenoid(PneumaticsModuleType.REVPH, 0, 1);
+  DoubleSolenoid climberRelease = new DoubleSolenoid(PneumaticsModuleType.REVPH, 2, 3);
   Compressor compressor = new Compressor(PneumaticsConstants.COMPRESSOR_ID, PneumaticsModuleType.REVPH);
 
   public PneumaticSubsystem() {
     
-    ampPlaceholderName.set(DoubleSolenoid.Value.kReverse);
-    leftClimberRelease.set(DoubleSolenoid.Value.kReverse);
-    rightClimberRelease.set(DoubleSolenoid.Value.kReverse);
+    // Setting default states, will occur when robot is enabled
+    ampFlyswatter.set(DoubleSolenoid.Value.kReverse);
+    climberRelease.set(DoubleSolenoid.Value.kReverse);
 
   }
 
   public void releaseClimber() {
 
-    leftClimberRelease.set(DoubleSolenoid.Value.kReverse);
-    rightClimberRelease.set(DoubleSolenoid.Value.kReverse);
+    climberRelease.set(DoubleSolenoid.Value.kReverse);
 
   }
 
   public void lockClimber() {
 
-    leftClimberRelease.set(DoubleSolenoid.Value.kForward);
-    rightClimberRelease.set(DoubleSolenoid.Value.kForward);
+    climberRelease.set(DoubleSolenoid.Value.kForward);
 
   }
 
   public void ampScore() {
 
-    ampPlaceholderName.set(DoubleSolenoid.Value.kForward);
+    ampFlyswatter.set(DoubleSolenoid.Value.kForward);
 
   }
 
   public void ampRetract() {
 
-    ampPlaceholderName.set(DoubleSolenoid.Value.kReverse);
+    ampFlyswatter.set(DoubleSolenoid.Value.kReverse);
 
   }
 
