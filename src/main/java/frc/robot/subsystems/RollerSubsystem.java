@@ -5,6 +5,7 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
 import edu.wpi.first.wpilibj.DigitalInput;
@@ -20,6 +21,7 @@ public class RollerSubsystem extends SubsystemBase {
 
   public RollerSubsystem() {
     rollerMotor.setInverted(RollerConstants.MOTOR_INVERTED);
+    rollerMotor.setNeutralMode(NeutralMode.Brake);
   }
 
   /**
@@ -27,7 +29,13 @@ public class RollerSubsystem extends SubsystemBase {
    * @return true if note is acquired, false if there is no note
    */
   public void turnRollerIn() {  // return type was boolean
-    rollerMotor.set(ControlMode.PercentOutput, RollerConstants.SHOOTER_SPEED);
+    //rollerMotor.set(ControlMode.PercentOutput, RollerConstants.SHOOTER_SPEED);
+
+    if(havePiece()) {
+      stopRollerMotor();
+    } else {
+      rollerMotor.set(ControlMode.PercentOutput, RollerConstants.INTAKE_SPEED);
+    }
   }
 
   /**
@@ -50,7 +58,7 @@ public class RollerSubsystem extends SubsystemBase {
    * @return True if it detects a piece and false otherwise
    */
   public boolean havePiece() {
-    return distanceSensor.get();
+    return !distanceSensor.get();
   }
 
   public void loadShooter() {
@@ -65,11 +73,7 @@ public class RollerSubsystem extends SubsystemBase {
 
   public void loadFlipper() {
 
-    if (havePiece()){
-      turnRollerOut(-RollerConstants.FLIPPER_SPEED);
-    } else {
-      stopRollerMotor();
-    }
+    turnRollerOut(-RollerConstants.FLIPPER_SPEED);
 
   }
 

@@ -63,24 +63,16 @@ public class RobotContainer {
     private final IntakeSubsystem intakeSubsystem = new IntakeSubsystem();
     private final RollerSubsystem rollerSubsystem = new RollerSubsystem();
     private final ShooterSubsystem shooterSubsystem = new ShooterSubsystem();
-    //private final ClimberSubsystem climberSubsystem = new ClimberSubsystem();
-    //private final PneumaticSubsystem pneumaticSubsystem = new PneumaticSubsystem();
+    private final ClimberSubsystem climberSubsystem = new ClimberSubsystem();
+    private final PneumaticSubsystem pneumaticSubsystem = new PneumaticSubsystem();
     private final LimelightSubsystem limelightSubsystem = new LimelightSubsystem();
     private final BlinkinSubsystem blinkinSubsystem = new BlinkinSubsystem();
 
     //private final SendableChooser<Command> autoChooser; 
 
     private final XboxController driverController = new XboxController(OIConstants.DRIVER_CONTROLLER_PORT);
-    private final CommandXboxController driverController2 = new CommandXboxController(OIConstants.DRIVER_CONTROLLER_PORT);
     private final XboxController auxController = new XboxController(OIConstants.AUX_CONTROLLER_PORT);
     private final Joystick driverStation = new Joystick(OIConstants.DRIVER_STATION_PORT);
-
-    public Trigger rTrigger = auxController.getRightTriggerAxis();
-
-    public Trigger auxRTrigger = new Trigger(new BooleanSupplier bool = (driverController2.getRightTriggerAxis()>0.2));
-    BooleanSupplier boole = new BooleanSupplier(){
-        
-    }
 
     public RobotContainer() {
         swerveSubsystem.setDefaultCommand(new SwerveJoystickCmd(
@@ -126,28 +118,26 @@ public class RobotContainer {
         new JoystickButton (driverStation, 8 ) //5
                 .whileTrue(new RollerOutCommand(rollerSubsystem));
 
-        // new JoystickButton(auxController, XboxController.Axis.kLeftTrigger.value)
-        //         .whileTrue(new PickupNoteCommand(intakeSubsystem));
+        new JoystickButton(driverController, XboxController.Button.kRightBumper.value)
+                .whileTrue(new PickupNoteCommand(intakeSubsystem, rollerSubsystem));
 
         new JoystickButton(driverStation, 2) //3
                 .whileTrue(new ShooterOutCommand(shooterSubsystem));
 
- 
-
         new JoystickButton(auxController, XboxController.Button.kA.value)
                 .whileTrue(new NoteShootCommand(shooterSubsystem, rollerSubsystem));
 
-        // new JoystickButton(auxController, XboxController.Button.kRightBumper.value)
-        //         .whileTrue(new ClimberUpCommand(climberSubsystem, pneumaticSubsystem));
+        new JoystickButton(auxController, XboxController.Button.kRightBumper.value)
+                .whileTrue(new ClimberUpCommand(climberSubsystem, pneumaticSubsystem));
 
-        // new JoystickButton(auxController, XboxController.Button.kLeftBumper.value)
-        //         .whileTrue(new ClimberDownCommand(climberSubsystem, pneumaticSubsystem));
+        new JoystickButton(auxController, XboxController.Button.kLeftBumper.value)
+                .whileTrue(new ClimberDownCommand(climberSubsystem, pneumaticSubsystem));
 
         // new JoystickButton(driverController, XboxController.Button.kStart.value)
         //         .whileTrue(new FlasherCommand(limelightSubsystem));
 
-        // new JoystickButton(auxController, XboxController.Button.kB.value)
-        //         .whileTrue(new AmpScoreCommand(pneumaticSubsystem));
+        new JoystickButton(auxController, XboxController.Button.kB.value)
+                .whileTrue(new AmpScoreCommand(pneumaticSubsystem));
                 
         new JoystickButton(auxController, XboxController.Button.kX.value)
                 .whileTrue(new LoadFlipperCommand(rollerSubsystem, intakeSubsystem));
@@ -155,8 +145,8 @@ public class RobotContainer {
         new JoystickButton(driverStation, 4) //8
                 .onTrue(new InstantCommand(() -> blinkinSubsystem.autoBlinkin()));
 
-        new JoystickButton(driverController, XboxController.Button.kLeftStick.value)
-                .whileTrue(new InstantCommand(() -> driverController.setRumble(RumbleType.kBothRumble, 1)));
+        // new JoystickButton(driverController, XboxController.Button.kLeftStick.value)
+        //         .whileTrue(new InstantCommand(() -> driverController.setRumble(RumbleType.kBothRumble, 1)));
         
     }
     

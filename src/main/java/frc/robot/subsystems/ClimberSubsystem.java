@@ -19,9 +19,6 @@ public class ClimberSubsystem extends SubsystemBase {
   private TalonSRX climberLeftMotor = new TalonSRX(ClimberConstants.LEFT_TALON);
   private TalonSRX climberRightMotor = new TalonSRX(ClimberConstants.RIGHT_TALON);
 
-  DigitalInput climberLeftLimitSwitch = new DigitalInput(ClimberConstants.LEFT_LIMIT_SWITCH);
-  DigitalInput climberRightLimitSwitch = new DigitalInput(ClimberConstants.RIGHT_LIMIT_SWITCH);
-
   public ClimberSubsystem() {
 
     climberRightMotor.setNeutralMode(NeutralMode.Brake);
@@ -36,9 +33,9 @@ public class ClimberSubsystem extends SubsystemBase {
    * Variable speed command for right climber
    * @param speed Speed of the motor (double)
    */
-  public void moveRightClimberMotor() {
+  public void moveRightClimberMotor(double speed) {
 
-    climberRightMotor.set(ControlMode.PercentOutput, ClimberConstants.SPEED);
+    climberRightMotor.set(ControlMode.PercentOutput, speed);
 
   }
 
@@ -46,9 +43,9 @@ public class ClimberSubsystem extends SubsystemBase {
    * Variable speed command for left climber
    * @param speed Speed of the motor 
    */
-  public void moveLeftClimberMotor() {
+  public void moveLeftClimberMotor(double speed) {
 
-    climberLeftMotor.set(ControlMode.PercentOutput, ClimberConstants.SPEED);
+    climberLeftMotor.set(ControlMode.PercentOutput, speed);
 
   }
 
@@ -60,7 +57,7 @@ public class ClimberSubsystem extends SubsystemBase {
     
     if(climberLeftMotor.getSelectedSensorPosition() < ClimberConstants.UPPER_LEFT_LIMIT){
 
-      moveLeftClimberMotor();
+      moveLeftClimberMotor(ClimberConstants.SPEED);
 
     } else {
 
@@ -70,7 +67,7 @@ public class ClimberSubsystem extends SubsystemBase {
 
     if(climberRightMotor.getSelectedSensorPosition() < ClimberConstants.UPPER_RIGHT_LIMIT){
 
-      moveRightClimberMotor();
+      moveRightClimberMotor(ClimberConstants.SPEED);
 
     } else {
 
@@ -85,24 +82,26 @@ public class ClimberSubsystem extends SubsystemBase {
    */
   public void moveClimberDown(){
     
-    if(climberLeftLimitSwitch.get() == false){
-
-      moveLeftClimberMotor();
-
-    } else {
+    if(climberLeftMotor.getSelectedSensorPosition() < ClimberConstants.LOWER_LEFT_LIMIT){
 
       leftClimberStop();
 
+    } else {
+
+      moveLeftClimberMotor(-ClimberConstants.SPEED);
+
     }
 
-    if(climberRightLimitSwitch.get() == false){
+    if(climberRightMotor.getSelectedSensorPosition() < ClimberConstants.LOWER_RIGHT_LIMIT) {
 
-      moveRightClimberMotor();
+      rightClimberStop();
 
     } else {
 
-      rightClimberStop();
+      moveRightClimberMotor(-ClimberConstants.SPEED);
+
     }
+    
     
   }
   

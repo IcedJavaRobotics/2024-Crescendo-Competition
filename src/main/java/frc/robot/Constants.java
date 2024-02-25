@@ -13,13 +13,13 @@ public final class Constants {
         public static final int LIMIT_SWITCH_ID = 1;
 
         public static final int UPPER_ENCODER_LIMIT = 0;
-        public static final int LOWER_ENCODER_LIMIT = -100; //-120
+        public static final int LOWER_ENCODER_LIMIT = -119; //-120
 
         public static final boolean MOTOR_INVERTED = true;
 
-        public static final double SPEED = 0.5;
+        public static final double SPEED = 0.4;
 
-        public static final int FLIPPER_LIMIT = -12;
+        public static final int FLIPPER_LIMIT = -18;
         
         public static final double INTAKE_kP = 0.009;
     }
@@ -33,7 +33,9 @@ public final class Constants {
         
         public static final double SHOOTER_SPEED = .5;
 
-        public static final double FLIPPER_SPEED = .5;
+        public static final double FLIPPER_SPEED = .35;
+
+        public static final double INTAKE_SPEED = 0.4;
 
     }
     /**
@@ -45,15 +47,15 @@ public final class Constants {
         public static final int RIGHT_TALON = 55;
 
         public static final boolean LEFT_MOTOR_INVERTED = false;
-        public static final boolean RIGHT_MOTOR_INVERTED = false;
+        public static final boolean RIGHT_MOTOR_INVERTED = true;
     
-        public static final int LEFT_LIMIT_SWITCH = 2;
-        public static final int RIGHT_LIMIT_SWITCH = 3;
+        public static final int UPPER_LEFT_LIMIT = 12750;
+        public static final int UPPER_RIGHT_LIMIT = 14800; 
+
+        public static final int LOWER_LEFT_LIMIT = 100;
+        public static final int LOWER_RIGHT_LIMIT = 10; 
     
-        public static final int UPPER_LEFT_LIMIT = 1000000;
-        public static final int UPPER_RIGHT_LIMIT = 1000000; 
-    
-        public static final double SPEED = 0.1;
+        public static final double SPEED = 0.3;
     
     }    
 
@@ -73,6 +75,7 @@ public final class Constants {
 
     public static final class PneumaticsConstants {
         public static final int COMPRESSOR_ID = 3;
+        public static final int PNUEMATIC_HUB_ID = 3;
     }
 
     public static final class BlinkinConstants {
