@@ -19,9 +19,24 @@ public class RollerSubsystem extends SubsystemBase {
   public VictorSPX rollerMotor = new VictorSPX(RollerConstants.VICTOR_ID);
   public DigitalInput distanceSensor = new DigitalInput(RollerConstants.DISTANCE_SENSOR_ID);
 
+  public static boolean loading = false;
+
   public RollerSubsystem() {
     rollerMotor.setInverted(RollerConstants.MOTOR_INVERTED);
     rollerMotor.setNeutralMode(NeutralMode.Brake);
+  }
+
+  public void loadShooter() {
+    if(havePiece() && loading == true) {
+      rollerMotor.set(ControlMode.PercentOutput, -RollerConstants.INTAKE_SPEED);
+    } else {
+      stopRollerMotor();
+      loading = false;
+    }
+  }
+
+  public void slowRollIn() {
+    rollerMotor.set(ControlMode.PercentOutput, 0.2);
   }
 
   /**
@@ -61,15 +76,17 @@ public class RollerSubsystem extends SubsystemBase {
     return !distanceSensor.get();
   }
 
-  public void loadShooter() {
+  // public boolean loadShooter() {
 
-    if (havePiece()){
-      turnRollerOut(-RollerConstants.SHOOTER_SPEED);
-    } else {
-      stopRollerMotor(); 
-    }
+  //   if (havePiece()){
+  //     turnRollerOut(-RollerConstants.SHOOTER_SPEED);
+  //     return true;
+  //   } else {
+  //     stopRollerMotor();
+  //     return false;
+  //   }
 
-  }
+  // }
 
   public void loadFlipper() {
 
