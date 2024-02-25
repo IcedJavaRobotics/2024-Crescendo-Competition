@@ -92,23 +92,18 @@ public class RobotContainer {
     public RobotContainer() {
         swerveSubsystem.setDefaultCommand(new SwerveJoystickCmd(
                 swerveSubsystem,
-                () -> -driveController2.getRawAxis(OIConstants.DRIVER_Y_AXIS),
-                () -> -driveController2.getRawAxis(OIConstants.DRIVER_X_AXIS),
-                () -> -driveController2.getRawAxis(OIConstants.DRIVER_ROT_AXIS),
-                () -> !driveController2.getRawButton(OIConstants.FIELD_ORIENTATED_BUTTON),
-                () -> driveController2.getRawAxis(OIConstants.DRIVER_THROTTLE_AXIS),
-                () -> driveController2.getRawButton(OIConstants.SLOW_TURN_BUTTON)
+                () -> -driveController.getRawAxis(OIConstants.DRIVER_Y_AXIS),
+                () -> -driveController.getRawAxis(OIConstants.DRIVER_X_AXIS),
+                () -> -driveController.getRawAxis(OIConstants.DRIVER_ROT_AXIS),
+                () -> !driveController.button(OIConstants.FIELD_ORIENTATED_BUTTON).getAsBoolean(),
+                () -> driveController.getRawAxis(OIConstants.DRIVER_THROTTLE_AXIS),
+                () -> driveController.button(OIConstants.SLOW_TURN_BUTTON).getAsBoolean()
                 ));
         
         configureButtonBindings();
-         // Register named commands
-        // NamedCommands.registerCommand("marker1", Commands.print("Passed marker 1"));
-        // NamedCommands.registerCommand("marker2", Commands.print("Passed marker 2"));
-        // NamedCommands.registerCommand("print hello", Commands.print("hello"));
 
         // autoChooser = AutoBuilder.buildAutoChooser(); // Default auto will be `Commands.none()`
         // SmartDashboard.putData("AutoMode", autoChooser);
-
         blinkinSubsystem.autoBlinkin();
 
     }
@@ -121,7 +116,7 @@ public class RobotContainer {
         driverBButton = driveController.b();
         driverBButton.whileTrue(new InstantCommand(() -> swerveSubsystem.zeroHeading()));
 
-
+        
                 
         // new JoystickButton(driveStation2, 10 ) //9
         //         .onTrue(new InstantCommand(() -> intakeSubsystem.zeroIntakeEncoder()));
@@ -211,13 +206,15 @@ public class RobotContainer {
 
 
                 
-        new JoystickButton(driveStation2, 4) //8
-                .onTrue(new InstantCommand(() -> blinkinSubsystem.autoBlinkin()));
+        // new JoystickButton(driveStation2, 4) //8
+        //         .onTrue(new InstantCommand(() -> blinkinSubsystem.autoBlinkin()));
         driverStationLowerCenter = driverStation.button(4);
         driverStationLowerCenter.whileTrue(new InstantCommand(() -> blinkinSubsystem.autoBlinkin()));
 
-        new JoystickButton(driveController2, XboxController.Button.kLeftStick.value)
-                .whileTrue(new InstantCommand(() -> driveController2.setRumble(RumbleType.kBothRumble, 1)));
+
+
+        // new JoystickButton(driveController2, XboxController.Button.kLeftStick.value)
+        //         .whileTrue(new InstantCommand(() -> driveController2.setRumble(RumbleType.kBothRumble, 1)));
         
     }
     

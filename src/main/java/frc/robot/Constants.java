@@ -13,13 +13,13 @@ public final class Constants {
         public static final int LIMIT_SWITCH_ID = 1;
 
         public static final int UPPER_ENCODER_LIMIT = 0;
-        public static final int LOWER_ENCODER_LIMIT = -100; //-120
+        public static final int LOWER_ENCODER_LIMIT = -119; //-120
 
         public static final boolean MOTOR_INVERTED = true;
 
-        public static final double SPEED = 0.5;
+        public static final double SPEED = 0.4;
 
-        public static final int FLIPPER_LIMIT = -12;
+        public static final int FLIPPER_LIMIT = -13;
         
         public static final double INTAKE_kP = 0.009;
     }
