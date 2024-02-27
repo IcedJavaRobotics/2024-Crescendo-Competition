@@ -13,15 +13,15 @@ import static frc.robot.Constants.ShooterConstants;
 public class NoteShootCommand extends Command {
   
   private final ShooterSubsystem shooterSubsystem;
-  private final RollerSubsystem rollersubsystem; 
+  private final RollerSubsystem rollerSubsystem; 
   
   /** Creates a new Shoe. */
   public NoteShootCommand(ShooterSubsystem subsystem, RollerSubsystem subsystem2) {
     // Use addRequirements() here to declare subsystem dependencies.);
     shooterSubsystem = subsystem;
-    rollersubsystem = subsystem2;
+    rollerSubsystem = subsystem2;
     addRequirements(shooterSubsystem);
-    addRequirements(rollersubsystem);
+    addRequirements(rollerSubsystem);
   }
 
   // Called when the command is initially scheduled.
@@ -43,7 +43,7 @@ public class NoteShootCommand extends Command {
       shooterSubsystem.setSpeed(0); //stop the motor in that case
     } else {   //if its more then that, fire anyway
       
-      rollersubsystem.loadShooter();
+      RollerSubsystem.loading = true;
       shooterSubsystem.initSpeedDisabler(Timer.getMatchTime()); //waits a second before setting the speed to 0.
 
     }
