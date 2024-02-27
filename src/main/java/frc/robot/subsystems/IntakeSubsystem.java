@@ -29,10 +29,18 @@ public class IntakeSubsystem extends SubsystemBase {
     
   }
 
+  public void stopIntakeLimitSwitch() {
+    if(!intakeLimitSwitch.get()) {
+      stopIntakeMotor();
+      zeroIntakeEncoder();
+      return;
+    }
+  }
+  
   /**
    * Moves intake up until limit switch is hit and resets encoder to 0
    */
-  public void moveIntakeUp() {
+  public void moveIntakeIn() {
 
     if(!intakeLimitSwitch.get()) {
       intakeMotor.set(0);
@@ -48,7 +56,7 @@ public class IntakeSubsystem extends SubsystemBase {
   /**
    * Moves intake down until lower limit is reached
    */
-  public void moveIntakeDown() {      
+  public void moveIntakeOut() {      
 
     if(intakeMotor.getEncoder().getPosition() <= IntakeConstants.LOWER_ENCODER_LIMIT) {
       stopIntakeMotor();
