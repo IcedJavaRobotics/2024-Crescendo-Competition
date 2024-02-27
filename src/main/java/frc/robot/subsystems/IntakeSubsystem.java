@@ -26,7 +26,7 @@ public class IntakeSubsystem extends SubsystemBase {
     intakeMotor.setInverted(IntakeConstants.MOTOR_INVERTED);
 
     intakePidController.setTolerance(5, 0.01);
-
+    
   }
 
   /**
@@ -40,9 +40,9 @@ public class IntakeSubsystem extends SubsystemBase {
       return;
     }
 
-    // intakeMotor.set(IntakeConstants.SPEED);
+    intakeMotor.set(IntakeConstants.SPEED);
 
-    intakeMotor.set(intakePidController.calculate(intakeMotor.getEncoder().getPosition(), 0.0));
+    // intakeMotor.set(intakePidController.calculate(intakeMotor.getEncoder().getPosition(), 0.0));
   }
 
   /**
@@ -55,9 +55,9 @@ public class IntakeSubsystem extends SubsystemBase {
       return;
     }
 
-    // intakeMotor.set(-IntakeConstants.SPEED);
+    intakeMotor.set(-IntakeConstants.SPEED);
 
-    intakeMotor.set(intakePidController.calculate(intakeMotor.getEncoder().getPosition(), IntakeConstants.LOWER_ENCODER_LIMIT));
+    // intakeMotor.set(intakePidController.calculate(intakeMotor.getEncoder().getPosition(), IntakeConstants.LOWER_ENCODER_LIMIT));
   }
 
   public boolean flipperSpot() {
@@ -66,8 +66,8 @@ public class IntakeSubsystem extends SubsystemBase {
       stopIntakeMotor();
       return true;
     } else {
-      // intakeMotor.set(-IntakeConstants.SPEED);
-      intakeMotor.set(intakePidController.calculate(intakeMotor.getEncoder().getPosition(), IntakeConstants.FLIPPER_LIMIT));
+      intakeMotor.set(-IntakeConstants.SPEED);
+      // intakeMotor.set(intakePidController.calculate(intakeMotor.getEncoder().getPosition(), IntakeConstants.FLIPPER_LIMIT));
       return false;
     }
 
