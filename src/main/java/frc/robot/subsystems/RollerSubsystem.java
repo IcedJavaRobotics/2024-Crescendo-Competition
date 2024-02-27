@@ -20,6 +20,7 @@ public class RollerSubsystem extends SubsystemBase {
 
   public RollerSubsystem() {
     rollerMotor.setInverted(RollerConstants.MOTOR_INVERTED);
+    rollerMotor.setNeutralMode(NuetralMode.Brake);
   }
 
   /**
@@ -28,6 +29,11 @@ public class RollerSubsystem extends SubsystemBase {
    */
   public void turnRollerIn() {  // return type was boolean
     rollerMotor.set(ControlMode.PercentOutput, RollerConstants.SHOOTER_SPEED);
+
+    if(havePiece()) {
+      stopRollerMotor();
+    } else {
+      rollerMotor.set(ControlMode.PercentOutput, RollerConstants.INTAKE_SPEED);
   }
 
   /**
@@ -54,23 +60,15 @@ public class RollerSubsystem extends SubsystemBase {
   }
 
   public void loadShooter() {
-
     if (havePiece()){
       turnRollerOut(-RollerConstants.SHOOTER_SPEED);
     } else {
       stopRollerMotor(); 
     }
-
   }
 
   public void loadFlipper() {
-
-    if (havePiece()){
-      turnRollerOut(-RollerConstants.FLIPPER_SPEED);
-    } else {
-      stopRollerMotor();
-    }
-
+    turnRollerOut(-RolllerConstants.FLIPPER_SPEED);
   }
 
   /**
