@@ -112,6 +112,11 @@ public class RobotContainer {
 
     private void configureButtonBindings() {
 
+        // Default Commands
+        intakeSubsystem.setDefaultCommand(new RunCommand(() -> intakeSubsystem.stopIntakeLimitSwitch(), intakeSubsystem);
+        shooterSubsystem.setDefaultCommand(new RunCommand(() -> shooterSubsystem.cooldownShooter(), shooterSubsystem);
+        rollerSubsystem.setDefaultCommand(new RunCommand(() -> rollerSubsystem.loadShooter(), rollerSubsystem);
+      
         // Drive Controls
         driverBButton = driveController.b();
         driverBButton.whileTrue(new InstantCommand(() -> swerveSubsystem.zeroHeading()));
@@ -130,10 +135,10 @@ public class RobotContainer {
         driverStationLowerRight.whileTrue(new InstantCommand(() -> intakeSubsystem.zeroIntakeEncoder()));
 
         driverStationUpperLeft = driverStation.button(1);
-        driverStationUpperLeft.whileTrue(new IntakeDownCommand(intakeSubsystem));
+        driverStationUpperLeft.whileTrue(new IntakeOutCommand(intakeSubsystem));
         
         driverStationMiddleLeft = driverStation.button(6);
-        driverStationMiddleLeft.whileFalse(new IntakeUpCommand(intakeSubsystem));
+        driverStationMiddleLeft.whileFalse(new IntakeInCommand(intakeSubsystem));
 
 
         // Roller Controls
@@ -164,25 +169,18 @@ public class RobotContainer {
         auxXButton = auxController.x();
         auxXButton.whileTrue(new LoadFlipperCommand(rollerSubsystem, intakeSubsystem));
 
-        
 
-        // new JoystickButton(driveController2, XboxController.Button.kStart.value)
-        //         .whileTrue(new FlasherCommand(limelightSubsystem));
+        driverStationLowerCenter = driverStation.Button(4);
+        driverStationLowerCenter.whileTrue(new InstantCommand(() -> pneumaticSubsystem.releaseClimber()));
 
-
-        
-
-
-                
-        // new JoystickButton(driveStation2, 4) //8
-        //         .onTrue(new InstantCommand(() -> blinkinSubsystem.autoBlinkin()));
-        driverStationLowerCenter = driverStation.button(4);
-        driverStationLowerCenter.whileTrue(new InstantCommand(() -> blinkinSubsystem.autoBlinkin()));
-
-
+        // driverStationLowerCenter = driverStation.button(4);
+        // driverStationLowerCenter.whileTrue(new InstantCommand(() -> blinkinSubsystem.autoBlinkin()));
 
         // new JoystickButton(driveController2, XboxController.Button.kLeftStick.value)
         //         .whileTrue(new InstantCommand(() -> driveController2.setRumble(RumbleType.kBothRumble, 1)));
+
+        // new JoystickButton(driveController2, XboxController.Button.kStart.value)
+        //         .whileTrue(new FlasherCommand(limelightSubsystem));
         
     }
     
