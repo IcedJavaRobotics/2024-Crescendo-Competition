@@ -19,7 +19,7 @@ public final class Constants {
 
         public static final double SPEED = 0.4;
 
-        public static final int FLIPPER_LIMIT = -13;
+        public static final int FLIPPER_LIMIT = -18;
         
         public static final double INTAKE_kP = 0.009;
     }
@@ -31,9 +31,11 @@ public final class Constants {
 
         public static final boolean MOTOR_INVERTED = true;
         
-        public static final double SHOOTER_SPEED = .5;
+        public static final double SHOOTER_SPEED = .35;
 
         public static final double FLIPPER_SPEED = .5;
+
+        public static final double INTAKE_SPEED = 0.4;
 
     }
     /**
@@ -45,15 +47,15 @@ public final class Constants {
         public static final int RIGHT_TALON = 55;
 
         public static final boolean LEFT_MOTOR_INVERTED = false;
-        public static final boolean RIGHT_MOTOR_INVERTED = false;
+        public static final boolean RIGHT_MOTOR_INVERTED = true;
+
+        public static final int UPPER_LEFT_LIMIT = 12759;
+        public static final int UPPER_RIGHT_LIMIT = 14800; 
+
+        public static final int LOWER_LEFT_LIMIT = 50;
+        public static final int LOWER_RIGHT_LIMIT = 50;
     
-        public static final int LEFT_LIMIT_SWITCH = 2;
-        public static final int RIGHT_LIMIT_SWITCH = 3;
-    
-        public static final int UPPER_LEFT_LIMIT = 1000000;
-        public static final int UPPER_RIGHT_LIMIT = 1000000; 
-    
-        public static final double SPEED = 0.1;
+        public static final double SPEED = 1;
     
     }    
 
@@ -73,6 +75,7 @@ public final class Constants {
 
     public static final class PneumaticsConstants {
         public static final int COMPRESSOR_ID = 3;
+        public static final int PNEUMATICS_HUB_ID = 3;
     }
 
     public static final class BlinkinConstants {
@@ -169,7 +172,7 @@ public final class Constants {
         public static final double FRONT_RIGHT_DRIVE_ABSOLUTE_ENCODER_OFFSET_RAD = Units.degreesToRadians(84.990);
         public static final double BACK_LEFT_DRIVE_ABSOLUTE_ENCODER_OFFSET_RAD = Units.degreesToRadians(355.693);
         public static final double BACK_RIGHT_DRIVE_ABSOLUTE_ENCODER_OFFSET_RAD = Units.degreesToRadians(360-81.914);
-        // TODO
+        // TODO   
 
         // in m/s, based on MK4 L2 speed of 14.5 ft/s
         public static final double PHYSICAL_MAX_SPEED_METERS_PER_SECOND = Units.feetToMeters(14.5);  //14.5
@@ -212,7 +215,7 @@ public final class Constants {
         // Deadband for the controller
         public static final double DEADBAND = 0.2;
         // Button used to enable robot orientation driving
-        public static final int FIELD_ORIENTATED_BUTTON = 6;
+        public static final int FIELD_ORIENTATED_BUTTON = 4;
         // Button used to enable slow turning
         public static final int SLOW_TURN_BUTTON=1;
 

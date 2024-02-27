@@ -75,6 +75,8 @@ public class RobotContainer {
 
     private Trigger auxLeftTrigger;
     private Trigger auxRightTrigger;
+    private Trigger auxLeftBumper;
+    private Trigger auxRightBumper;
     private Trigger auxAButton;
     private Trigger auxBButton;
     private Trigger auxXButton;
@@ -110,80 +112,57 @@ public class RobotContainer {
 
     private void configureButtonBindings() {
 
-        // new JoystickButton(driveController2, XboxController.Button.kB.value)
-        //         .onTrue(new InstantCommand(() -> swerveSubsystem.zeroHeading()));
-
+        // Drive Controls
         driverBButton = driveController.b();
         driverBButton.whileTrue(new InstantCommand(() -> swerveSubsystem.zeroHeading()));
 
         
-                
-        // new JoystickButton(driveStation2, 10 ) //9
-        //         .onTrue(new InstantCommand(() -> intakeSubsystem.zeroIntakeEncoder()));
+        // Combo Controls
+        auxRightTrigger = auxController.axisGreaterThan(3, 0.2);
+        auxRightTrigger.whileTrue(new NoteShootCommand(shooterSubsystem, rollerSubsystem));
+
+        driverRightTrigger = driveController.axisGreaterThan(3, 0.2);
+        driverRightTrigger.whileTrue(new PickupNoteCommand(intakeSubsystem, rollerSubsystem));
+
+
+        // Intake Controls
         driverStationLowerRight = driverStation.button(10);
         driverStationLowerRight.whileTrue(new InstantCommand(() -> intakeSubsystem.zeroIntakeEncoder()));
 
-
-
-        // new JoystickButton (driveStation2, 1 ) //1
-        //         .whileTrue(new IntakeDownCommand(intakeSubsystem));
         driverStationUpperLeft = driverStation.button(1);
         driverStationUpperLeft.whileTrue(new IntakeDownCommand(intakeSubsystem));
         
-
-
-        // new JoystickButton (driveStation2, 6 ) //4
-        //         .whileTrue(new IntakeUpCommand(intakeSubsystem));  
         driverStationMiddleLeft = driverStation.button(6);
         driverStationMiddleLeft.whileFalse(new IntakeUpCommand(intakeSubsystem));
 
 
-
-        // new JoystickButton (driveStation2, 9 ) //2
-        //         .whileTrue(new RollerInCommand(rollerSubsystem)); 
+        // Roller Controls
         driverStationUpperCenter = driverStation.button(9);
         driverStationUpperCenter.whileTrue(new RollerInCommand(rollerSubsystem));
 
-
-
-        // new JoystickButton (driveStation2, 8 ) //5
-        //         .whileTrue(new RollerOutCommand(rollerSubsystem));
         driverStationMiddleCenter = driverStation.button(8);
         driverStationMiddleCenter.whileTrue(new RollerOutCommand(rollerSubsystem));
 
 
-
-        // new JoystickButton(auxController2, XboxController.Axis.kRightTrigger.value)
-        //         .whileTrue(new PickupNoteCommand(intakeSubsystem, rollerSubsystem));
-        driverRightTrigger = driveController.axisGreaterThan(3, 0.2);
-        driverRightTrigger.whileTrue(new PickupNoteCommand(intakeSubsystem, rollerSubsystem));
-
-        
-
-        new JoystickButton(driveStation2, 2) //3
-                .whileTrue(new ShooterOutCommand(shooterSubsystem));
+        // Shooter Controls 
         driverStationUpperRight = driverStation.button(2);
         driverStationUpperRight.whileTrue(new ShooterOutCommand(shooterSubsystem));
 
 
-        // new JoystickButton(auxController2, XboxController.Button.kA.value)
-        //         .whileTrue(new NoteShootCommand(shooterSubsystem, rollerSubsystem));
-        auxAButton = auxController.a();
-        auxAButton.whileTrue(new NoteShootCommand(shooterSubsystem, rollerSubsystem));
+        // Climber Controls
+        auxRightBumper = auxController.rightBumper();
+        auxRightBumper.whileTrue(new ClimberUpCommand(climberSubsystem, pneumaticSubsystem));
+
+        auxLeftBumper = auxController.leftBumper();
+        auxLeftBumper.whileTrue(new ClimberDownCommand(climberSubsystem, pneumaticSubsystem));
 
 
+        // Flipper Controls
+        auxBButton = auxController.b();
+        auxBButton.whileTrue(new AmpScoreCommand(pneumaticSubsystem));
 
-        // new JoystickButton(auxController2, XboxController.Button.kRightBumper.value)
-        //         .whileTrue(new ClimberUpCommand(climberSubsystem, pneumaticSubsystem));
-        auxRightTrigger = auxController.axisGreaterThan(3, .2);
-        auxRightTrigger.whileTrue(new ClimberUpCommand(climberSubsystem, pneumaticSubsystem));
-
-
-
-        // new JoystickButton(auxController2, XboxController.Button.kLeftBumper.value)
-        //         .whileTrue(new ClimberDownCommand(climberSubsystem, pneumaticSubsystem))
-        auxLeftTrigger = auxController.axisGreaterThan(2, 0.2);
-        auxLeftTrigger.whileTrue(new ClimberDownCommand(climberSubsystem, pneumaticSubsystem));
+        auxXButton = auxController.x();
+        auxXButton.whileTrue(new LoadFlipperCommand(rollerSubsystem, intakeSubsystem));
 
         
 
@@ -191,18 +170,7 @@ public class RobotContainer {
         //         .whileTrue(new FlasherCommand(limelightSubsystem));
 
 
-
-        // new JoystickButton(auxController2, XboxController.Button.kB.value)
-        //         .whileTrue(new AmpScoreCommand(pneumaticSubsystem));
-        auxBButton = auxController.b();
-        auxBButton.whileTrue(new AmpScoreCommand(pneumaticSubsystem));
-
-
-
-        // new JoystickButton(auxController2, XboxController.Button.kX.value)
-        //         .whileTrue(new LoadFlipperCommand(rollerSubsystem, intakeSubsystem));
-        auxXButton = auxController.x();
-        auxXButton.whileTrue(new LoadFlipperCommand(rollerSubsystem, intakeSubsystem));
+        
 
 
                 

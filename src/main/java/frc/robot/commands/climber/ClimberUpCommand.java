@@ -39,7 +39,6 @@ public class ClimberUpCommand extends Command {
   @Override
   public void end(boolean interrupted) {
     climberSubsystem.climberStop();
-    pneumaticSubsystem.lockClimber();
   }
 
   // Returns true when the command should end.
