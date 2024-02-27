@@ -13,7 +13,7 @@ public final class Constants {
         public static final int LIMIT_SWITCH_ID = 1;
 
         public static final int UPPER_ENCODER_LIMIT = 0;
-        public static final int LOWER_ENCODER_LIMIT = -119; //-120
+        public static final int LOWER_ENCODER_LIMIT = -118; //-120
 
         public static final boolean MOTOR_INVERTED = true;
 
@@ -35,7 +35,7 @@ public final class Constants {
 
         public static final double FLIPPER_SPEED = .5;
 
-        public static final double INTAKE_SPEED = 0.4;
+        public static final double INTAKE_SPEED = 0.75;
 
     }
     /**
@@ -68,7 +68,7 @@ public final class Constants {
         public static final boolean LEFT_MOTOR_INVERTED = true;
         public static final boolean RIGHT_MOTOR_INVERTED = false;
 
-        public static final double SPEAKER_SPEED = .2; //rate it spins
+        public static final double SPEAKER_SPEED = .7; //rate it spins
         public static final double COOLDOWN_TIME = 0.3; //cooldown time in seconds
 
     }
