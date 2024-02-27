@@ -72,6 +72,7 @@ public class RobotContainer {
 
     private Trigger driverRightTrigger;
     private Trigger driverBButton;
+    private Trigger driverXButton;
 
     private Trigger auxLeftTrigger;
     private Trigger auxRightTrigger;
@@ -147,6 +148,9 @@ public class RobotContainer {
 
         driverStationMiddleCenter = driverStation.button(8);
         driverStationMiddleCenter.whileTrue(new RollerOutCommand(rollerSubsystem));
+
+        driverXButton = driverController.button(3);
+        driverXButton.whileTrue(new InstantCommand(() -> rollerSubystem.slowRollIn()));
 
 
         // Shooter Controls 
