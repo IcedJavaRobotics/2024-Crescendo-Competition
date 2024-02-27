@@ -7,8 +7,6 @@ package frc.robot;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
-import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj.XboxController.Axis;
 import edu.wpi.first.wpilibj.event.EventLoop;
@@ -27,9 +25,9 @@ import frc.robot.commands.shooter.*;
 import frc.robot.commands.climber.*;
 import frc.robot.commands.flipper.*;
 import frc.robot.commands.intake.*;
+
 import frc.robot.subsystems.RollerSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
-
 import frc.robot.subsystems.ClimberSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.PneumaticSubsystem;
@@ -61,10 +59,6 @@ public class RobotContainer {
     private final BlinkinSubsystem blinkinSubsystem = new BlinkinSubsystem();
 
     //private final SendableChooser<Command> autoChooser; 
-
-    private final XboxController driveController2 = new XboxController(OIConstants.DRIVER_CONTROLLER_PORT);
-    private final XboxController auxController2 = new XboxController(OIConstants.AUX_CONTROLLER_PORT);
-    private final Joystick driveStation2 = new Joystick(OIConstants.DRIVER_STATION_PORT);
 
     private final CommandXboxController driveController = new CommandXboxController(OIConstants.DRIVER_CONTROLLER_PORT);
     private final CommandXboxController auxController = new CommandXboxController(OIConstants.AUX_CONTROLLER_PORT);
