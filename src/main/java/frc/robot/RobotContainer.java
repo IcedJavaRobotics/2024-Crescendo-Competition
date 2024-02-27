@@ -34,12 +34,11 @@ import frc.robot.subsystems.PneumaticSubsystem;
 import frc.robot.subsystems.SwerveSubsystem;
 import frc.robot.commands.FlasherCommand;
 import frc.robot.subsystems.LimelightSubsystem;
+import frc.robot.subsystems.BlinkinSubsystem;
 
 import com.pathplanner.lib.auto.AutoBuilder;
 import com.pathplanner.lib.auto.NamedCommands;
 import com.pathplanner.lib.commands.PathPlannerAuto;
-
-import frc.robot.subsystems.BlinkinSubsystem;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
