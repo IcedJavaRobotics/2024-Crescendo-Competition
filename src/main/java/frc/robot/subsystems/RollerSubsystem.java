@@ -18,11 +18,25 @@ public class RollerSubsystem extends SubsystemBase {
   public VictorSPX rollerMotor = new VictorSPX(RollerConstants.VICTOR_ID);
   public DigitalInput distanceSensor = new DigitalInput(RollerConstants.DISTANCE_SENSOR_ID);
 
+  public static boolean loading = false;
+
   public RollerSubsystem() {
     rollerMotor.setInverted(RollerConstants.MOTOR_INVERTED);
     rollerMotor.setNeutralMode(NuetralMode.Brake);
   }
 
+  public void loadShooter() {
+    if(havePiece() && loading == true) {
+      rollerMotor.set(ControlMode.PercentOutput, -RollerConstants.INTAKE_SPEED);
+    } else {
+      stopRollerMotor();
+      loading = false;
+    }
+  }
+
+  public void slowRollIn() {
+    rollerMotor.set(ControlMode.PercentOutput, 0.2);
+  
   /**
    * Turns rollers in until piece is picked up
    * @return true if note is acquired, false if there is no note
@@ -59,13 +73,16 @@ public class RollerSubsystem extends SubsystemBase {
     return distanceSensor.get();
   }
 
-  public void loadShooter() {
-    if (havePiece()){
-      turnRollerOut(-RollerConstants.SHOOTER_SPEED);
-    } else {
-      stopRollerMotor(); 
-    }
-  }
+  // public boolean loadShooter() {
+  //   if (havePiece()){
+  //     turnRollerOut(-RollerConstants.SHOOTER_SPEED);
+  //     return true;
+  //   } else {
+  //     stopRollerMotor();
+  //     return false;
+  //   }
+
+  // }
 
   public void loadFlipper() {
     turnRollerOut(-RolllerConstants.FLIPPER_SPEED);
