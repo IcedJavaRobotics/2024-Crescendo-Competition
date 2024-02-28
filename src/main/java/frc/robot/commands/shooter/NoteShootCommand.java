@@ -32,14 +32,18 @@ public class NoteShootCommand extends Command {
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {}
+  public void execute() {
+    if(shooterSubsystem.getSpeed() < (ShooterConstants.SPEAKER_SPEED)){
+      shooterSubsystem.shooterAtMaxSpeed = true;
+    }
+  }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
 
     //if the shooter is warmed up to less than 0.6 times the desired speed, dont fire anyway
-    if(shooterSubsystem.getSpeed() < (ShooterConstants.SPEAKER_SPEED * 0.9)){
+    if(shooterSubsystem.getSpeed() < (ShooterConstants.SPEAKER_SPEED)){
       shooterSubsystem.setSpeed(0); //stop the motor in that case
     } else {   //if its more then that, fire anyway
       

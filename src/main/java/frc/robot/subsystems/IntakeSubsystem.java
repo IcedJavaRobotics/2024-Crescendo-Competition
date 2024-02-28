@@ -52,7 +52,7 @@ public class IntakeSubsystem extends SubsystemBase {
 
     intakeMotor.set(IntakeConstants.SPEED);
 
-    //intakeMotor.set(intakePidController.calculate(intakeMotor.getEncoder().getPosition(), 0.0));
+    // intakeMotor.set(intakePidController.calculate(intakeMotor.getEncoder().getPosition(), 0.0));
   }
 
   /**

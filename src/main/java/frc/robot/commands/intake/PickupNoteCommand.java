@@ -5,6 +5,7 @@
 package frc.robot.commands.intake;
 
 import edu.wpi.first.wpilibj2.command.Command;
+import frc.robot.Constants.IntakeConstants;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.RollerSubsystem;
 
@@ -31,7 +32,9 @@ public class PickupNoteCommand extends Command {
   public void execute() {
 
     intakeSubsystem.moveIntakeOut();
-    rollerSubsystem.pickUpNote();
+    if(intakeSubsystem.intakeMotor.getEncoder().getPosition() < IntakeConstants.START_SPINNING_ENCODER_VALUE){
+      rollerSubsystem.pickUpNote();
+    }
     
   }
 

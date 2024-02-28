@@ -2,16 +2,16 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-package frc.robot.commands;
+package frc.robot.commands.climber;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.LimelightSubsystem;
 
-public class FlasherCommand extends Command {
+public class ClimberMiddleCommand extends Command {
 
   private final LimelightSubsystem limelightSubsystem;
   /** Creates a new Flasher. */
-  public FlasherCommand(LimelightSubsystem lSubsystem) {
+  public ClimberMiddleCommand(LimelightSubsystem lSubsystem) {
     this.limelightSubsystem = lSubsystem;
     addRequirements(limelightSubsystem);
   }

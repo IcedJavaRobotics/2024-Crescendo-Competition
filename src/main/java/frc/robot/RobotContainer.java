@@ -26,6 +26,7 @@ import frc.robot.commands.shooter.NoteShootCommand;
 import frc.robot.commands.shooter.ShooterOutCommand;
 import frc.robot.commands.SwerveJoystickCmd;
 import frc.robot.commands.climber.ClimberDownCommand;
+import frc.robot.commands.climber.ClimberMiddleCommand;
 import frc.robot.commands.climber.ClimberUpCommand;
 import frc.robot.commands.flipper.AmpScoreCommand;
 import frc.robot.commands.flipper.LoadFlipperCommand;
@@ -41,7 +42,6 @@ import frc.robot.subsystems.ClimberSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.PneumaticSubsystem;
 import frc.robot.subsystems.SwerveSubsystem;
-import frc.robot.commands.FlasherCommand;
 import frc.robot.subsystems.LimelightSubsystem;
 
 import java.util.function.BooleanSupplier;
@@ -139,6 +139,9 @@ public class RobotContainer {
         new JoystickButton(auxController, XboxController.Button.kLeftBumper.value)
                 .whileTrue(new ClimberDownCommand(climberSubsystem, pneumaticSubsystem));
 
+        new JoystickButton(auxController, XboxController.Button.kBack.value)
+                .whileTrue(new ClimberMiddleCommand(limelightSubsystem));
+                
         // new JoystickButton(driverController, XboxController.Button.kStart.value)
         //         .whileTrue(new FlasherCommand(limelightSubsystem));
 

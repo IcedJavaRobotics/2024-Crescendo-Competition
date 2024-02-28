@@ -10,6 +10,8 @@ import com.revrobotics.CANSparkMax;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 import static frc.robot.Constants.ShooterConstants;
 
 public class ShooterSubsystem extends SubsystemBase {
@@ -20,6 +22,8 @@ public class ShooterSubsystem extends SubsystemBase {
     private double timeShot;      //Tracks when controller trigger is let go
     private boolean shooterWaitingToCooldown = false;
 
+    public boolean shooterAtMaxSpeed = false;
+
   /** Creates a new ShooterSubsystem. */
   public ShooterSubsystem() {
     leftMotor = new CANSparkMax(ShooterConstants.LEFT_SPARK_ID, CANSparkLowLevel.MotorType.kBrushless);
@@ -28,11 +32,7 @@ public class ShooterSubsystem extends SubsystemBase {
     rightMotor.setInverted(ShooterConstants.RIGHT_MOTOR_INVERTED);
   }
 
-  @Override
-  public void periodic() {
-    // This method will be called once per scheduler run
-    cooldownShooter();
-  }
+  
 
   public void setSpeed(double speed) {
     leftMotor.set(speed);
@@ -51,6 +51,7 @@ public class ShooterSubsystem extends SubsystemBase {
   public void initSpeedDisabler(double initMatchTime) {
     this.timeShot = initMatchTime;
     this.shooterWaitingToCooldown = true;
+    this.shooterAtMaxSpeed = false;
   }
 
   public void cooldownShooter(){
@@ -62,4 +63,12 @@ public class ShooterSubsystem extends SubsystemBase {
       }
     }
   }
+
+  @Override
+  public void periodic() {
+    // This method will be called once per scheduler run
+    cooldownShooter();
+    SmartDashboard.putBoolean("RdyToFire", shooterAtMaxSpeed);
+  }
+
 }

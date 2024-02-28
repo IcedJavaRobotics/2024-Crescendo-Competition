@@ -14,6 +14,7 @@ public final class Constants {
 
         public static final int UPPER_ENCODER_LIMIT = 0;
         public static final int LOWER_ENCODER_LIMIT = -118; //-120
+        public static final int START_SPINNING_ENCODER_VALUE = -90;
 
         public static final boolean MOTOR_INVERTED = true;
 
@@ -22,6 +23,8 @@ public final class Constants {
         public static final int FLIPPER_LIMIT = -18;
         
         public static final double INTAKE_kP = 0.009;
+
+        
     }
 
     public static final class RollerConstants {
@@ -48,12 +51,12 @@ public final class Constants {
 
         public static final boolean LEFT_MOTOR_INVERTED = false;
         public static final boolean RIGHT_MOTOR_INVERTED = true;
-    
+
         public static final int UPPER_LEFT_LIMIT = 12750;
         public static final int UPPER_RIGHT_LIMIT = 14800; 
 
         public static final int LOWER_LEFT_LIMIT = 100;
-        public static final int LOWER_RIGHT_LIMIT = 10; 
+        public static final int LOWER_RIGHT_LIMIT = 10;
     
         public static final double SPEED = 1;
     
@@ -68,7 +71,7 @@ public final class Constants {
         public static final boolean LEFT_MOTOR_INVERTED = true;
         public static final boolean RIGHT_MOTOR_INVERTED = false;
 
-        public static final double SPEAKER_SPEED = .7; //rate it spins
+        public static final double SPEAKER_SPEED = .85; //rate it spins
         public static final double COOLDOWN_TIME = 0.3; //cooldown time in seconds
 
     }
@@ -179,8 +182,8 @@ public final class Constants {
         // Robot turning speed
         public static final double PHYSICAL_MAX_ANGULAR_SPEED_RADIANS_PER_SECOND = 5 * Math.PI;
 
-        public static final double TELE_DRIVE_MAX_SPEED_METERS_PER_SECOND = PHYSICAL_MAX_SPEED_METERS_PER_SECOND / 3;
-        public static final double TELE_DRIVE_MAX_ANGULAR_SPEED_RADIANS_PER_SECOND = PHYSICAL_MAX_SPEED_METERS_PER_SECOND / 3;  // Slowed down for testing
+        public static final double TELE_DRIVE_MAX_SPEED_METERS_PER_SECOND = PHYSICAL_MAX_SPEED_METERS_PER_SECOND / 2;
+        public static final double TELE_DRIVE_MAX_ANGULAR_SPEED_RADIANS_PER_SECOND = PHYSICAL_MAX_SPEED_METERS_PER_SECOND / 2;  // Slowed down for testing
         public static final double TELE_DRIVE_MAX_ACCELERATION_UNITS_PER_SECOND = 3;
         public static final double TELE_DRIVE_MAX_ANGULAR_ACCELERATION_UNITS_PER_SECOND = 3;
     }
@@ -217,7 +220,7 @@ public final class Constants {
         // Button used to enable robot orientation driving
         public static final int FIELD_ORIENTATED_BUTTON = 4;
         // Button used to enable slow turning
-        public static final int SLOW_TURN_BUTTON=1;
+        public static final int SLOW_TURN_BUTTON = 1;
 
     }
 
