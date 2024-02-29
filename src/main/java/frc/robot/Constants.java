@@ -22,6 +22,8 @@ public final class Constants {
 
         public static final int FLIPPER_LIMIT = -18;
         
+        public static final int EJECT_LIMIT = -50;
+
         public static final double INTAKE_kP = 0.009;
 
         
@@ -39,6 +41,11 @@ public final class Constants {
         public static final double FLIPPER_SPEED = .35;
 
         public static final double INTAKE_SPEED = 0.85;
+
+        public static final double MEDIUM_SPEED = 0.4;
+        public static final double SLOW_SPEED = 0.25;
+
+        public static final double EJECT_SPEED = 0.6;
 
     }
     /**

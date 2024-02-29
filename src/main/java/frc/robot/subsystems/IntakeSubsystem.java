@@ -80,9 +80,18 @@ public class IntakeSubsystem extends SubsystemBase {
       intakeMotor.set(intakePidController.calculate(intakeMotor.getEncoder().getPosition(), IntakeConstants.FLIPPER_LIMIT));
       return false;
     }
+  }
 
-    
-    
+  public boolean ejectSpot() {
+
+    if(intakeMotor.getEncoder().getPosition() <= IntakeConstants.EJECT_LIMIT) {
+      stopIntakeMotor();
+      return true;
+    } else {
+      //intakeMotor.set(-IntakeConstants.SPEED);
+      intakeMotor.set(intakePidController.calculate(intakeMotor.getEncoder().getPosition(), IntakeConstants.EJECT_LIMIT));
+      return false;
+    }
   }
   
    

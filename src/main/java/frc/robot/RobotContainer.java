@@ -31,10 +31,13 @@ import frc.robot.commands.climber.ClimberUpCommand;
 import frc.robot.commands.flipper.AmpScoreCommand;
 import frc.robot.commands.flipper.LoadFlipperCommand;
 import frc.robot.commands.intake.IntakeOutCommand;
+import frc.robot.commands.intake.EmergencyEjectCommand;
 import frc.robot.commands.intake.IntakeInCommand;
 import frc.robot.commands.intake.PickupNoteCommand;
 import frc.robot.commands.intake.RollerInCommand;
 import frc.robot.commands.intake.RollerOutCommand;
+import frc.robot.commands.roller.MediumRollerOutCommand;
+import frc.robot.commands.roller.SlowRollerInCommand;
 import frc.robot.subsystems.RollerSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
 
@@ -108,7 +111,16 @@ public class RobotContainer {
 
         new JoystickButton(driverController, XboxController.Button.kB.value)
                 .onTrue(new InstantCommand(() -> swerveSubsystem.zeroHeading()));
+
+        new JoystickButton(auxController, XboxController.Button.kStart.value)
+                .onTrue(new MediumRollerOutCommand(rollerSubsystem));
+
+        new JoystickButton(auxController, XboxController.Button.kBack.value)
+                .onTrue(new SlowRollerInCommand(rollerSubsystem));
                 
+        new JoystickButton(auxController, XboxController.Button.kY.value)
+                .onTrue(new EmergencyEjectCommand(rollerSubsystem, intakeSubsystem));
+
         new JoystickButton(driverStation, 10 ) //9
                 .onTrue(new InstantCommand(() -> intakeSubsystem.zeroIntakeEncoder()));
 
@@ -139,8 +151,8 @@ public class RobotContainer {
         new JoystickButton(auxController, XboxController.Button.kLeftBumper.value)
                 .whileTrue(new ClimberDownCommand(climberSubsystem, pneumaticSubsystem));
 
-        new JoystickButton(auxController, XboxController.Button.kBack.value)
-                .whileTrue(new ClimberMiddleCommand(limelightSubsystem));
+        // new JoystickButton(auxController, XboxController.Button.kBack.value)
+        //         .whileTrue(new ClimberMiddleCommand(limelightSubsystem));
                 
         // new JoystickButton(driverController, XboxController.Button.kStart.value)
         //         .whileTrue(new FlasherCommand(limelightSubsystem));

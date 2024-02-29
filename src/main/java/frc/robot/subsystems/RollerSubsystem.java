@@ -94,6 +94,9 @@ public class RollerSubsystem extends SubsystemBase {
 
   }
 
+  public void ejectNote(){
+    turnRollerOut(-RollerConstants.EJECT_SPEED);
+  }
   /**
    * Stops roller motor
    */
