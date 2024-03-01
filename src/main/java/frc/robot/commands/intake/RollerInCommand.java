@@ -25,10 +25,8 @@ public class RollerInCommand extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    rollerSubsystem.turnRollerIn();
-  }
-
-  // Called once the command ends or is interrupted.
+    rollerSubsystem.turnRollerInNoLimit();
+  }  // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
     rollerSubsystem.stopRollerMotor();

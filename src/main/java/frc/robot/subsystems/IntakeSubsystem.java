@@ -25,7 +25,7 @@ public class IntakeSubsystem extends SubsystemBase {
   public IntakeSubsystem() {
     intakeMotor.setInverted(IntakeConstants.MOTOR_INVERTED);
 
-    intakePidController.setTolerance(2, 0.01);
+    intakePidController.setTolerance(1, 0.01);
 
   }
 
@@ -44,15 +44,15 @@ public class IntakeSubsystem extends SubsystemBase {
    */
   public void moveIntakeIn() {
 
-    if(!intakeLimitSwitch.get()) {
+    if(!intakeLimitSwitch.get() || intakeMotor.getEncoder().getPosition() >= 0) {
       intakeMotor.set(0);
       zeroIntakeEncoder();
       return;
     }
 
-    // intakeMotor.set(IntakeConstants.SPEED);
+    intakeMotor.set(IntakeConstants.SPEED);
 
-    intakeMotor.set(intakePidController.calculate(intakeMotor.getEncoder().getPosition(), 0.0));
+    //intakeMotor.set(intakePidController.calculate(intakeMotor.getEncoder().getPosition(), 0.0));
   }
 
   /**
@@ -76,8 +76,8 @@ public class IntakeSubsystem extends SubsystemBase {
       stopIntakeMotor();
       return true;
     } else {
-      //intakeMotor.set(-IntakeConstants.SPEED);
-      intakeMotor.set(intakePidController.calculate(intakeMotor.getEncoder().getPosition(), IntakeConstants.FLIPPER_LIMIT));
+      intakeMotor.set(-IntakeConstants.SPEED);
+      //intakeMotor.set(intakePidController.calculate(intakeMotor.getEncoder().getPosition(), IntakeConstants.FLIPPER_LIMIT));
       return false;
     }
   }
