@@ -19,7 +19,7 @@ public class ShooterSubsystem extends SubsystemBase {
     private final CANSparkMax leftMotor;
     private final CANSparkMax rightMotor;
 
-    private double timeShot;      //Tracks when controller trigger is let go
+    private double timeShotShooter;      //Tracks when controller trigger is let go
     private boolean shooterWaitingToCooldown = false;
 
     public boolean shooterAtMaxSpeed = false;
@@ -41,15 +41,15 @@ public class ShooterSubsystem extends SubsystemBase {
 
   public double getSpeed() {
     //test if motors are same speed, if not, print message
-    if(leftMotor.getEncoder().getVelocity() != rightMotor.getEncoder().getVelocity()){
-      System.out.println("Motors are at an uneven speed!");
-    }
+    // if(leftMotor.getEncoder().getVelocity() != rightMotor.getEncoder().getVelocity()){
+    //   System.out.println("Motors are at an uneven speed!");
+    // }
     return leftMotor.getEncoder().getVelocity();
 
   }
 
   public void initSpeedDisabler(double initMatchTime) {
-    this.timeShot = initMatchTime;
+    this.timeShotShooter = initMatchTime;
     this.shooterWaitingToCooldown = true;
     this.shooterAtMaxSpeed = false;
   }
@@ -57,7 +57,7 @@ public class ShooterSubsystem extends SubsystemBase {
   public void cooldownShooter(){
     if(shooterWaitingToCooldown) {
       //If it has been COOLDOWN_TIME amount of time since fired set speed to 0
-      if((timeShot-Timer.getMatchTime()) > ShooterConstants.COOLDOWN_TIME) {
+      if((timeShotShooter-Timer.getMatchTime()) < ShooterConstants.COOLDOWN_TIME) {
         setSpeed(0);
         this.shooterWaitingToCooldown = false;
       }

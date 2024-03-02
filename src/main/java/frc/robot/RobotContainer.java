@@ -72,7 +72,7 @@ public class RobotContainer {
     private final LimelightSubsystem limelightSubsystem = new LimelightSubsystem();
     private final BlinkinSubsystem blinkinSubsystem = new BlinkinSubsystem();
 
-    private final SendableChooser<Command> autoChooser; 
+    // private final SendableChooser<Command> autoChooser; 
 
     private final XboxController driverController = new XboxController(OIConstants.DRIVER_CONTROLLER_PORT);
     private final XboxController auxController = new XboxController(OIConstants.AUX_CONTROLLER_PORT);
@@ -100,8 +100,8 @@ public class RobotContainer {
         // NamedCommands.registerCommand("marker2", Commands.print("Passed marker 2"));
         // NamedCommands.registerCommand("print hello", Commands.print("hello"));
 
-        autoChooser = AutoBuilder.buildAutoChooser(); // Default auto will be `Commands.none()`
-        SmartDashboard.putData("AutoMode", autoChooser);
+        // autoChooser = AutoBuilder.buildAutoChooser(); // Default auto will be `Commands.none()`
+        // SmartDashboard.putData("AutoMode", autoChooser);
 
         blinkinSubsystem.autoBlinkin();
 
@@ -176,8 +176,8 @@ public class RobotContainer {
         
     }
     
-    public Command getAutonomousCommand() {
-        return autoChooser.getSelected();
-    }
+//     public Command getAutonomousCommand() {
+//         return autoChooser.getSelected();
+//     }
 
 }
