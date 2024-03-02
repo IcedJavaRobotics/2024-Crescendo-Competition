@@ -5,10 +5,14 @@
 package frc.robot.commands.shooter;
 
 import edu.wpi.first.wpilibj2.command.Command;
+import frc.robot.Constants.RollerConstants;
+import frc.robot.Constants.ShooterConstants;
 import frc.robot.subsystems.RollerSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
 import edu.wpi.first.wpilibj.Timer;
 import static frc.robot.Constants.ShooterConstants;
+
+import com.ctre.phoenix.motorcontrol.ControlMode;
 
 public class NoteShootCommand extends Command {
   
@@ -28,6 +32,7 @@ public class NoteShootCommand extends Command {
   @Override
   public void initialize() {
     shooterSubsystem.setSpeed(ShooterConstants.SPEAKER_SPEED);
+    
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -46,9 +51,12 @@ public class NoteShootCommand extends Command {
     if(shooterSubsystem.getSpeed() < (ShooterConstants.SPEAKER_SPEED)){
       shooterSubsystem.setSpeed(0); //stop the motor in that case
     } else {   //if its more then that, fire anyway
-      
+
+
+      rollerSubsystem.rollerMotor.set(ControlMode.PercentOutput, -RollerConstants.SHOOTER_SPEED);
       RollerSubsystem.loading = true;
       shooterSubsystem.initSpeedDisabler(Timer.getMatchTime()); //waits a second before setting the speed to 0.
+      rollerSubsystem.initSpeedDisabler(Timer.getMatchTime());
 
     }
 

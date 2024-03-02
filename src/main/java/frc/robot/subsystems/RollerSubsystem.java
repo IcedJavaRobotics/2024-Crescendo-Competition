@@ -9,15 +9,20 @@ import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
 import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.RollerConstants;
+import frc.robot.Constants.ShooterConstants;
 
 public class RollerSubsystem extends SubsystemBase {
   /** Creates a new IntakeRollerSubsystem. */
 
   public VictorSPX rollerMotor = new VictorSPX(RollerConstants.VICTOR_ID);
   public DigitalInput distanceSensor = new DigitalInput(RollerConstants.DISTANCE_SENSOR_ID);
+
+  private double timeShot;      //Tracks when controller trigger is let go
+  private boolean rollerWaitingToCooldown = false;
 
   public static boolean loading = false;
 
@@ -27,6 +32,10 @@ public class RollerSubsystem extends SubsystemBase {
   }
 
   public void loadShooter() {
+    if(rollerWaitingToCooldown){
+      cooldownRoller();
+      return;
+    }
     if(havePiece() && loading == true) {
       rollerMotor.set(ControlMode.PercentOutput, -RollerConstants.INTAKE_SPEED);
     } else {
@@ -106,6 +115,21 @@ public class RollerSubsystem extends SubsystemBase {
    */
   public void stopRollerMotor() {
     rollerMotor.set(ControlMode.PercentOutput, 0);
+  }
+
+  public void initSpeedDisabler(double initMatchTime) {
+    this.timeShot = initMatchTime;
+    this.rollerWaitingToCooldown = true;
+  }
+
+  public void cooldownRoller(){
+    if(rollerWaitingToCooldown) {
+      //If it has been COOLDOWN_TIME amount of time since fired set speed to 0
+      if((timeShot-Timer.getMatchTime()) > ShooterConstants.COOLDOWN_TIME) {
+        stopRollerMotor();
+        this.rollerWaitingToCooldown = false;
+      }
+    }
   }
 
   @Override

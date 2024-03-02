@@ -59,5 +59,6 @@ public class PneumaticSubsystem extends SubsystemBase {
   public void periodic() {
     // This method will be called once per scheduler run  
     SmartDashboard.putNumber("pressure", compressor.getPressure());
+    SmartDashboard.putBoolean("climberLocked", !climberRelease.isRevSolenoidDisabled());
   }
 }

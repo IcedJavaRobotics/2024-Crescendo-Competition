@@ -19,7 +19,7 @@ public class IntakeSubsystem extends SubsystemBase {
 
   public DigitalInput intakeLimitSwitch = new DigitalInput(IntakeConstants.LIMIT_SWITCH_ID);
 
-  public PIDController intakePidController = new PIDController(0.018, 0, 0);
+  public PIDController intakePidController = new PIDController(0.028, 0, 0);
 
   /** Creates a new IntakeSubsystem. */
   public IntakeSubsystem() {

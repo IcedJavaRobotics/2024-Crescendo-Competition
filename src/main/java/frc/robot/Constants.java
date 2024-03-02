@@ -24,7 +24,7 @@ public final class Constants {
         
         public static final int EJECT_LIMIT = -50;
 
-        public static final double INTAKE_kP = 0.009;
+        public static final double INTAKE_kP = 0.05;
 
         
     }
@@ -36,7 +36,7 @@ public final class Constants {
 
         public static final boolean MOTOR_INVERTED = true;
         
-        public static final double SHOOTER_SPEED = .5;
+        public static final double SHOOTER_SPEED = 1;
 
         public static final double FLIPPER_SPEED = .35;
 
@@ -78,8 +78,8 @@ public final class Constants {
         public static final boolean LEFT_MOTOR_INVERTED = true;
         public static final boolean RIGHT_MOTOR_INVERTED = false;
 
-        public static final double SPEAKER_SPEED = .9; //rate it spins
-        public static final double COOLDOWN_TIME = 0.6; //cooldown time in seconds
+        public static final double SPEAKER_SPEED = 1; //rate it spins
+        public static final double COOLDOWN_TIME = 1; //cooldown time in seconds
 
     }
 
@@ -189,8 +189,8 @@ public final class Constants {
         // Robot turning speed
         public static final double PHYSICAL_MAX_ANGULAR_SPEED_RADIANS_PER_SECOND = 5 * Math.PI;
 
-        public static final double TELE_DRIVE_MAX_SPEED_METERS_PER_SECOND = PHYSICAL_MAX_SPEED_METERS_PER_SECOND / 1.45;
-        public static final double TELE_DRIVE_MAX_ANGULAR_SPEED_RADIANS_PER_SECOND = PHYSICAL_MAX_SPEED_METERS_PER_SECOND / 1.45;  // Slowed down for testing
+        public static final double TELE_DRIVE_MAX_SPEED_METERS_PER_SECOND = PHYSICAL_MAX_SPEED_METERS_PER_SECOND / 1;
+        public static final double TELE_DRIVE_MAX_ANGULAR_SPEED_RADIANS_PER_SECOND = PHYSICAL_MAX_SPEED_METERS_PER_SECOND / 1;  // Slowed down for testing
         public static final double TELE_DRIVE_MAX_ACCELERATION_UNITS_PER_SECOND = 3;
         public static final double TELE_DRIVE_MAX_ANGULAR_ACCELERATION_UNITS_PER_SECOND = 3;
     }
