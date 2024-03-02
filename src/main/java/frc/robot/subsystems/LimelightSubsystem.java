@@ -21,26 +21,31 @@ public class LimelightSubsystem extends SubsystemBase {
   // Creates a new LimelightSubsystem.
   public LimelightSubsystem() {
 
-    HttpCamera httpCamera = new HttpCamera("CoprocessorCamera", "http://limelight.local:5801/");
-    CameraServer.getVideo(httpCamera); 
-    Shuffleboard.getTab("LiveWindow").add(httpCamera);
+    HttpCamera lemonLight = new HttpCamera("CoprocessorCamera", "http://limelight.local:5801/");
+    CameraServer.getVideo(lemonLight); 
+    Shuffleboard.getTab("LiveWindow").add(lemonLight);
     
     //CameraServer.getInstance().addCamera(httpCamera); Shuffleboard.getTab("Tab") .add(httpCamera);
     
   }
 
+  //the id of the apriltag
   public double getTid() {
     return NetworkTableInstance.getDefault().getTable("limelight").getEntry("tid").getDouble(0);
   }
+
+  //the x away from the center
 
   public double getTx() {
     return NetworkTableInstance.getDefault().getTable("limelight").getEntry("tx").getDouble(0);
   }
 
+  //the y away from the center
   public double getTy() {
     return NetworkTableInstance.getDefault().getTable("limelight").getEntry("ty").getDouble(0);
   }
 
+  //the size of the apriltag
   public double getTa() {
     return NetworkTableInstance.getDefault().getTable("limelight").getEntry("ta").getDouble(0);
   }
@@ -76,10 +81,12 @@ public class LimelightSubsystem extends SubsystemBase {
     double goalHeightInches = LimelightConstants.APRILTAG_HEIGHT;
     double angleToGoalRadians = (LimelightConstants.LIMELIGHT_ANGLE + targetOffsetAngle_Vertical) * (3.14159 / 180);
 
-    if (getTid() == 4 || getTid() == 5) {
-      goalHeightInches = LimelightConstants.APRILTAG_DOUBLE_SUBSTATION_HEIGHT;
-    } // tid 4 and 5 are the double substations
-
+    if(getTid() == LimelightConstants.APRILTAG_SPEAKER_ID){
+      goalHeightInches = LimelightConstants.APRILTAG_SPEAKER_HEIGHT;
+    }
+    else if(getTid() == LimelightConstants.APRILTAG_AMP_ID){
+      goalHeightInches = LimelightConstants.APRILTAG_AMP_HEIGHT;
+    }
     // calculate distance
     if (getTy() >= 0) {
       return (goalHeightInches - LimelightConstants.LIMELIGHT_HEIGHT) / Math.tan(angleToGoalRadians);

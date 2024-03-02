@@ -4,6 +4,7 @@ import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.math.trajectory.TrapezoidProfile;
 import edu.wpi.first.math.util.Units;
+import edu.wpi.first.wpilibj.XboxController;
 
 public final class Constants {
     
@@ -228,6 +229,7 @@ public final class Constants {
         public static final int FIELD_ORIENTATED_BUTTON = 4;
         // Button used to enable slow turning
         public static final int SLOW_TURN_BUTTON = 1;
+        public static final int LOCK_ON_BUTTON = XboxController.Axis.kLeftTrigger.value;
 
     }
 
@@ -243,5 +245,11 @@ public final class Constants {
          * [inches]
          */
         public static final double APRILTAG_DOUBLE_SUBSTATION_HEIGHT = 23.375;
+
+        public static final double APRILTAG_SPEAKER_ID = 12345; //TODO
+        public static final double APRILTAG_SPEAKER_HEIGHT = 24.5; //TODO //in inches
+
+        public static final double APRILTAG_AMP_ID = 12345; //TODO
+        public static final double APRILTAG_AMP_HEIGHT = 24.5; //TODO //in inches
     }
 }

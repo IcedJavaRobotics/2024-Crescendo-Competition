@@ -86,7 +86,9 @@ public class RobotContainer {
                 () -> -driverController.getRawAxis(OIConstants.DRIVER_ROT_AXIS),
                 () -> !driverController.getRawButton(OIConstants.FIELD_ORIENTATED_BUTTON),
                 () -> driverController.getRawAxis(OIConstants.DRIVER_THROTTLE_AXIS),
-                () -> driverController.getRawButton(OIConstants.SLOW_TURN_BUTTON)
+                () -> driverController.getRawButton(OIConstants.SLOW_TURN_BUTTON),
+                () -> driverController.getRawAxis(OIConstants.LOCK_ON_BUTTON),
+                limelightSubsystem
                 ));
         
         configureButtonBindings();
