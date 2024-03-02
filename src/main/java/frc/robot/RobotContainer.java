@@ -97,10 +97,10 @@ public class RobotContainer {
         shooterSubsystem.setDefaultCommand(new RunCommand(() -> shooterSubsystem.cooldownShooter(), shooterSubsystem));
         rollerSubsystem.setDefaultCommand(new RunCommand(() -> rollerSubsystem.loadShooter(), rollerSubsystem));
 
-         // Register named commands
-        // NamedCommands.registerCommand("marker1", Commands.print("Passed marker 1"));
-        // NamedCommands.registerCommand("marker2", Commands.print("Passed marker 2"));
-        // NamedCommands.registerCommand("print hello", Commands.print("hello"));
+        //Register named commands
+        NamedCommands.registerCommand("marker1", Commands.print("Passed marker 1"));
+        NamedCommands.registerCommand("marker2", Commands.print("Passed marker 2"));
+        NamedCommands.registerCommand("print hello", Commands.print("hello"));
 
         autoChooser = AutoBuilder.buildAutoChooser(); // Default auto will be `Commands.none()`
         SmartDashboard.putData("AutoMode", autoChooser);
@@ -179,7 +179,8 @@ public class RobotContainer {
     }
     
     public Command getAutonomousCommand() {
-        return autoChooser.getSelected();
+        //return autoChooser.getSelected();
+        return AutoBuilder.buildAuto("MiddleThreePieceAuto");
     }
 
 }
