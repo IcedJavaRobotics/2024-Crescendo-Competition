@@ -17,6 +17,7 @@ public class SlowRollerInCommand extends Command {
 
   public SlowRollerInCommand(RollerSubsystem rSubsystem) {
     rollerSubsystem = rSubsystem;
+    addRequirements(rollerSubsystem);
     // Use addRequirements() here to declare subsystem dependencies.
   }
 

@@ -72,26 +72,26 @@ public class IntakeSubsystem extends SubsystemBase {
 
   public boolean flipperSpot() {
 
-    if(intakeMotor.getEncoder().getPosition() <= IntakeConstants.FLIPPER_LIMIT) {
+    if(Math.abs(intakeMotor.getEncoder().getPosition() - IntakeConstants.FLIPPER_LIMIT) < 1) {
       stopIntakeMotor();
       return true;
-    } else {
-      intakeMotor.set(-IntakeConstants.SPEED);
-      //intakeMotor.set(intakePidController.calculate(intakeMotor.getEncoder().getPosition(), IntakeConstants.FLIPPER_LIMIT));
-      return false;
     }
+    
+    //intakeMotor.set(-IntakeConstants.SPEED);
+    intakeMotor.set(intakePidController.calculate(intakeMotor.getEncoder().getPosition(), IntakeConstants.FLIPPER_LIMIT));
+    return false;
   }
 
   public boolean ejectSpot() {
 
-    if(intakeMotor.getEncoder().getPosition() <= IntakeConstants.EJECT_LIMIT) {
+    if((intakeMotor.getEncoder().getPosition() - IntakeConstants.EJECT_LIMIT) <= 0) {
       stopIntakeMotor();
       return true;
-    } else {
-      //intakeMotor.set(-IntakeConstants.SPEED);
-      intakeMotor.set(intakePidController.calculate(intakeMotor.getEncoder().getPosition(), IntakeConstants.EJECT_LIMIT));
-      return false;
     }
+
+    //intakeMotor.set(-IntakeConstants.SPEED);
+    intakeMotor.set(intakePidController.calculate(intakeMotor.getEncoder().getPosition(), IntakeConstants.EJECT_LIMIT));
+    return false;
   }
   
    

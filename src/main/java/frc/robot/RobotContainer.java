@@ -163,8 +163,8 @@ public class RobotContainer {
         new JoystickButton(auxController, XboxController.Button.kX.value)
                 .whileTrue(new LoadFlipperCommand(rollerSubsystem, intakeSubsystem));
                 
-        new JoystickButton(auxController, XboxController.Button.kStart.value)
-                .whileTrue(new InstantCommand(() -> shooterSubsystem.setSpeed(0)));
+        // new JoystickButton(auxController, XboxController.Button.kStart.value)
+        //         .whileTrue(new InstantCommand(() -> shooterSubsystem.setSpeed(0)));
         // new JoystickButton(driverStation, 4) //8
         //         .onTrue(new InstantCommand(() -> blinkinSubsystem.autoBlinkin()));
 
