@@ -24,6 +24,7 @@ import com.pathplanner.lib.util.ReplanningConfig;
 import edu.wpi.first.math.kinematics.SwerveModulePosition;
 
 public class SwerveSubsystem extends SubsystemBase {
+
     public final SwerveModule frontLeft = new SwerveModule(
             DriveConstants.FRONT_LEFT_DRIVE_SPARK_ID,
             DriveConstants.FRONT_LEFT_TURNING_SPARK_ID,
@@ -67,13 +68,16 @@ public class SwerveSubsystem extends SubsystemBase {
     //Pigeon2 is CTRE gyro module 
     private final Pigeon2 gyro = new Pigeon2(frc.robot.Constants.DriveConstants.PIGEON_ID);
     
+    private final LimelightSubsystem limelight;
+
     private final SwerveDriveOdometry odometer = new SwerveDriveOdometry(DriveConstants.kDriveKinematics,
             new Rotation2d(0), 
             getModulePositions());
 
             private SwerveModule[] modules;
 
-    public SwerveSubsystem() {
+    public SwerveSubsystem(LimelightSubsystem limeLightSubsystem) {
+        limelight = limeLightSubsystem;
         new Thread(() -> {
             try {
                 Thread.sleep(1000);

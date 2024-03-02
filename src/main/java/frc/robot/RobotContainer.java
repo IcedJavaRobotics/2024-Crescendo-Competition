@@ -63,13 +63,13 @@ import frc.robot.subsystems.BlinkinSubsystem;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
-    private final SwerveSubsystem swerveSubsystem = new SwerveSubsystem();
+    private final LimelightSubsystem lemonlightSubsystem = new LimelightSubsystem();
+    private final SwerveSubsystem swerveSubsystem = new SwerveSubsystem(lemonlightSubsystem);
     private final IntakeSubsystem intakeSubsystem = new IntakeSubsystem();
     private final RollerSubsystem rollerSubsystem = new RollerSubsystem();
     private final ShooterSubsystem shooterSubsystem = new ShooterSubsystem();
     private final ClimberSubsystem climberSubsystem = new ClimberSubsystem();
     private final PneumaticSubsystem pneumaticSubsystem = new PneumaticSubsystem();
-    private final LimelightSubsystem limelightSubsystem = new LimelightSubsystem();
     private final BlinkinSubsystem blinkinSubsystem = new BlinkinSubsystem();
 
     //private final SendableChooser<Command> autoChooser; 
@@ -86,7 +86,9 @@ public class RobotContainer {
                 () -> -driverController.getRawAxis(OIConstants.DRIVER_ROT_AXIS),
                 () -> !driverController.getRawButton(OIConstants.FIELD_ORIENTATED_BUTTON),
                 () -> driverController.getRawAxis(OIConstants.DRIVER_THROTTLE_AXIS),
-                () -> driverController.getRawButton(OIConstants.SLOW_TURN_BUTTON)
+                () -> driverController.getRawButton(OIConstants.SLOW_TURN_BUTTON),
+                () -> driverController.getRawAxis(OIConstants.LOCK_ON_BUTTON),
+                lemonlightSubsystem
                 ));
         
         configureButtonBindings();
@@ -163,8 +165,9 @@ public class RobotContainer {
         new JoystickButton(auxController, XboxController.Button.kX.value)
                 .whileTrue(new LoadFlipperCommand(rollerSubsystem, intakeSubsystem));
                 
-        new JoystickButton(auxController, XboxController.Button.kStart.value)
-                .whileTrue(new InstantCommand(() -> shooterSubsystem.setSpeed(0)));
+        // new JoystickButton(auxController, XboxController.Button.kStart.value)
+        //         .whileTrue(new InstantCommand(() -> shooterSubsystem.setSpeed(0)));
+
         // new JoystickButton(driverStation, 4) //8
         //         .onTrue(new InstantCommand(() -> blinkinSubsystem.autoBlinkin()));
 
