@@ -6,27 +6,29 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
-import edu.wpi.first.wpilibj.PneumaticHub;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
+import edu.wpi.first.wpilibj.Solenoid;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.PneumaticsConstants;
+import frc.robot.commands.flipper.AmpScoreCommand;
 
 public class PneumaticSubsystem extends SubsystemBase {
   /** Creates a new PneumaticSubsystem. */
 
   // Declaring solenoids and compressor
-  DoubleSolenoid ampFlyswatter = new DoubleSolenoid(PneumaticsConstants.PNUEMATIC_HUB_ID, PneumaticsModuleType.REVPH, 2, 3);
+  Solenoid ampFlyswatter = new Solenoid(PneumaticsConstants.PNUEMATIC_HUB_ID, PneumaticsModuleType.REVPH, 2);
   DoubleSolenoid climberRelease = new DoubleSolenoid(PneumaticsConstants.PNUEMATIC_HUB_ID, PneumaticsModuleType.REVPH, 0, 1);  
-  // DoubleSolenoid ampFlyswatter = new DoubleSolenoid(PneumaticsModuleType.REVPH, 2, 3);
-  // DoubleSolenoid climberRelease = new DoubleSolenoid(PneumaticsModuleType.REVPH, 0, 1);
   Compressor compressor = new Compressor(PneumaticsConstants.COMPRESSOR_ID, PneumaticsModuleType.REVPH);
 
+  private double timeScore;      //Tracks when controller is pressed
+  private boolean ampWaitingToCooldown = false;
 
   public PneumaticSubsystem() {
     
     // Setting default states, will occur when robot is enabled
-    ampFlyswatter.set(DoubleSolenoid.Value.kReverse);
+    ampFlyswatter.set(false);
     climberRelease.set(DoubleSolenoid.Value.kForward);
 
   }
@@ -45,14 +47,32 @@ public class PneumaticSubsystem extends SubsystemBase {
 
   public void ampScore() {
 
-    ampFlyswatter.set(DoubleSolenoid.Value.kForward);
+    ampFlyswatter.set(true);
 
   }
 
   public void ampRetract() {
 
-    ampFlyswatter.set(DoubleSolenoid.Value.kReverse);
+    ampFlyswatter.set(false);
 
+  }
+
+  public void initSpeedDisabler(double initMatchTime) {
+    this.timeScore = initMatchTime;
+  }
+
+  public void ampWaiting() {
+    this.ampWaitingToCooldown = true;
+  }
+
+  public void cooldownFlyswatter(){
+    if(ampWaitingToCooldown) {
+      //If it has been COOLDOWN_TIME amount of time since fired set speed to 0
+      if((timeScore-Timer.getMatchTime()) < PneumaticsConstants.AMP_HOLD_TIME) {
+        ampFlyswatter.set(false);
+        this.ampWaitingToCooldown = false;
+      }
+    }
   }
 
   @Override

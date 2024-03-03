@@ -93,7 +93,8 @@ public class RobotContainer {
 
         intakeSubsystem.setDefaultCommand(new RunCommand(() -> intakeSubsystem.stopIntakeLimitSwitch(), intakeSubsystem));
         shooterSubsystem.setDefaultCommand(new RunCommand(() -> shooterSubsystem.cooldownShooter(), shooterSubsystem));
-        rollerSubsystem.setDefaultCommand(new RunCommand(() -> rollerSubsystem.loadShooter(), rollerSubsystem));
+        rollerSubsystem.setDefaultCommand(new RunCommand(() -> rollerSubsystem.cooldownRoller(), rollerSubsystem));
+        pneumaticSubsystem.setDefaultCommand(new RunCommand(() -> pneumaticSubsystem.cooldownFlyswatter(), pneumaticSubsystem));
 
          // Register named commands
         // NamedCommands.registerCommand("marker1", Commands.print("Passed marker 1"));

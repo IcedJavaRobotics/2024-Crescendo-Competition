@@ -54,7 +54,6 @@ public class NoteShootCommand extends Command {
 
 
       rollerSubsystem.rollerMotor.set(ControlMode.PercentOutput, -RollerConstants.SHOOTER_SPEED);
-      RollerSubsystem.loading = true;
       shooterSubsystem.initSpeedDisabler(Timer.getMatchTime()); //waits a second before setting the speed to 0.
       rollerSubsystem.initSpeedDisabler(Timer.getMatchTime());
 

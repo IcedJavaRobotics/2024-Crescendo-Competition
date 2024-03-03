@@ -4,7 +4,9 @@
 
 package frc.robot.commands.flipper;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.Command;
+import frc.robot.Constants.PneumaticsConstants;
 import frc.robot.subsystems.PneumaticSubsystem;
 import frc.robot.subsystems.RollerSubsystem;
 
@@ -12,6 +14,8 @@ public class AmpScoreCommand extends Command {
   /** Creates a new AmpScoreCommand. */
 
   private final PneumaticSubsystem pneumaticSubsystem;
+
+  double scoreTime;
 
   public AmpScoreCommand(PneumaticSubsystem p_subsystem) {
     pneumaticSubsystem = p_subsystem;
@@ -23,6 +27,8 @@ public class AmpScoreCommand extends Command {
   @Override
   public void initialize() {
     pneumaticSubsystem.ampScore();
+    scoreTime = Timer.getMatchTime();
+    pneumaticSubsystem.initSpeedDisabler(Timer.getMatchTime());
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -34,7 +40,11 @@ public class AmpScoreCommand extends Command {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    pneumaticSubsystem.ampRetract();
+    if ((scoreTime - Timer.getMatchTime())> PneumaticsConstants.AMP_HOLD_TIME) {
+      pneumaticSubsystem.ampRetract();
+    } else {
+      pneumaticSubsystem.ampWaiting();
+    }
   }
 
   // Returns true when the command should end.

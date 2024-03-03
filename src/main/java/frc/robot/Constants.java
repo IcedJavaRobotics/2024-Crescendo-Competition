@@ -86,6 +86,7 @@ public final class Constants {
     public static final class PneumaticsConstants {
         public static final int COMPRESSOR_ID = 3;
         public static final int PNUEMATIC_HUB_ID = 3;
+        public static final int AMP_HOLD_TIME = 2;
     }
 
     public static final class BlinkinConstants {

@@ -31,19 +31,6 @@ public class RollerSubsystem extends SubsystemBase {
     rollerMotor.setNeutralMode(NeutralMode.Brake);
   }
 
-  public void loadShooter() {
-    if(rollerWaitingToCooldown){
-      cooldownRoller();
-      return;
-    }
-    if(havePiece() && loading == true) {
-      rollerMotor.set(ControlMode.PercentOutput, -RollerConstants.INTAKE_SPEED);
-    } else {
-      stopRollerMotor();
-      loading = false;
-    }
-  }
-
   public void slowRollIn() {
     rollerMotor.set(ControlMode.PercentOutput, 0.2);
   }
@@ -101,7 +88,7 @@ public class RollerSubsystem extends SubsystemBase {
 
   // }
 
-  public void loadFlipper() {
+  public void  loadFlipper() {
 
     turnRollerOut(-RollerConstants.FLIPPER_SPEED);
 
@@ -110,6 +97,7 @@ public class RollerSubsystem extends SubsystemBase {
   public void ejectNote(){
     turnRollerOut(-RollerConstants.EJECT_SPEED);
   }
+  
   /**
    * Stops roller motor
    */
