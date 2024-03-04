@@ -72,7 +72,7 @@ public class RobotContainer {
     private final LimelightSubsystem limelightSubsystem = new LimelightSubsystem();
     private final BlinkinSubsystem blinkinSubsystem = new BlinkinSubsystem();
 
-    // private final SendableChooser<Command> autoChooser; 
+    private final SendableChooser<Command> autoChooser; 
 
     private final XboxController driverController = new XboxController(OIConstants.DRIVER_CONTROLLER_PORT);
     private final XboxController auxController = new XboxController(OIConstants.AUX_CONTROLLER_PORT);
@@ -96,13 +96,15 @@ public class RobotContainer {
         rollerSubsystem.setDefaultCommand(new RunCommand(() -> rollerSubsystem.cooldownRoller(), rollerSubsystem));
         pneumaticSubsystem.setDefaultCommand(new RunCommand(() -> pneumaticSubsystem.cooldownFlyswatter(), pneumaticSubsystem));
 
+        NamedCommands.registerCommand("flasheron", new InstantCommand(() -> limelightSubsystem.setFlasher(3.0)));
+        NamedCommands.registerCommand("flasheroff", new InstantCommand(() -> limelightSubsystem.setFlasher(0.0)));
          // Register named commands
-        // NamedCommands.registerCommand("marker1", Commands.print("Passed marker 1"));
-        // NamedCommands.registerCommand("marker2", Commands.print("Passed marker 2"));
-        // NamedCommands.registerCommand("print hello", Commands.print("hello"));
+        NamedCommands.registerCommand("marker1", Commands.print("Passed marker 1"));
+        NamedCommands.registerCommand("marker2", Commands.print("Passed marker 2"));
+        NamedCommands.registerCommand("print hello", Commands.print("hello"));
 
-        // autoChooser = AutoBuilder.buildAutoChooser(); // Default auto will be `Commands.none()`
-        // SmartDashboard.putData("AutoMode", autoChooser);
+        autoChooser = AutoBuilder.buildAutoChooser(); // Default auto will be `Commands.none()`
+        SmartDashboard.putData("AutoMode", autoChooser);
 
         blinkinSubsystem.autoBlinkin();
 
@@ -146,11 +148,15 @@ public class RobotContainer {
         new JoystickButton(auxController, XboxController.Button.kA.value)
                 .whileTrue(new NoteShootCommand(shooterSubsystem, rollerSubsystem));
 
+
+
         new JoystickButton(auxController, XboxController.Button.kRightBumper.value)
                 .whileTrue(new ClimberUpCommand(climberSubsystem, pneumaticSubsystem));
 
         new JoystickButton(auxController, XboxController.Button.kLeftBumper.value)
                 .whileTrue(new ClimberDownCommand(climberSubsystem, pneumaticSubsystem));
+
+
 
         // new JoystickButton(auxController, XboxController.Button.kBack.value)
         //         .whileTrue(new ClimberMiddleCommand(limelightSubsystem));
@@ -169,16 +175,17 @@ public class RobotContainer {
         // new JoystickButton(driverStation, 4) //8
         //         .onTrue(new InstantCommand(() -> blinkinSubsystem.autoBlinkin()));
 
-        new JoystickButton(driverStation, 4)
-                .whileTrue(new InstantCommand(() -> pneumaticSubsystem.releaseClimber()));
+        // new JoystickButton(driverStation, 4)
+        //         .whileTrue(new InstantCommand(() -> pneumaticSubsystem.releaseClimber()));
 
         // new JoystickButton(driverController, XboxController.Button.kLeftStick.value)
         //         .whileTrue(new InstantCommand(() -> driverController.setRumble(RumbleType.kBothRumble, 1)));
         
     }
     
-//     public Command getAutonomousCommand() {
-//         return autoChooser.getSelected();
-//     }
+    public Command getAutonomousCommand() {
+        return AutoBuilder.buildAuto("MiddleThreePieceAuto");
+    }
+
 
 }
