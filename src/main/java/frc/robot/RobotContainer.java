@@ -4,29 +4,20 @@
 
 package frc.robot;
 
-import edu.wpi.first.networktables.NetworkTable;
-import edu.wpi.first.networktables.NetworkTableEntry;
-import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
-import edu.wpi.first.wpilibj.GenericHID.RumbleType;
-import edu.wpi.first.wpilibj.XboxController.Axis;
-import edu.wpi.first.wpilibj.event.EventLoop;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.RunCommand;
-import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.Constants.OIConstants;
 import frc.robot.commands.shooter.NoteShootCommand;
 import frc.robot.commands.shooter.ShooterOutCommand;
 import frc.robot.commands.SwerveJoystickCmd;
 import frc.robot.commands.climber.ClimberDownCommand;
-import frc.robot.commands.climber.ClimberMiddleCommand;
 import frc.robot.commands.climber.ClimberUpCommand;
 import frc.robot.commands.flipper.AmpScoreCommand;
 import frc.robot.commands.flipper.LoadFlipperCommand;
@@ -46,8 +37,6 @@ import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.PneumaticSubsystem;
 import frc.robot.subsystems.SwerveSubsystem;
 import frc.robot.subsystems.LimelightSubsystem;
-
-import java.util.function.BooleanSupplier;
 
 import com.pathplanner.lib.auto.AutoBuilder;
 import com.pathplanner.lib.auto.NamedCommands;
@@ -96,12 +85,7 @@ public class RobotContainer {
         rollerSubsystem.setDefaultCommand(new RunCommand(() -> rollerSubsystem.cooldownRoller(), rollerSubsystem));
         pneumaticSubsystem.setDefaultCommand(new RunCommand(() -> pneumaticSubsystem.cooldownFlyswatter(), pneumaticSubsystem));
 
-        NamedCommands.registerCommand("flasheron", new InstantCommand(() -> limelightSubsystem.setFlasher(3.0)));
-        NamedCommands.registerCommand("flasheroff", new InstantCommand(() -> limelightSubsystem.setFlasher(0.0)));
-         // Register named commands
-        NamedCommands.registerCommand("marker1", Commands.print("Passed marker 1"));
-        NamedCommands.registerCommand("marker2", Commands.print("Passed marker 2"));
-        NamedCommands.registerCommand("print hello", Commands.print("hello"));
+        registerNamedCommands();
 
         autoChooser = AutoBuilder.buildAutoChooser(); // Default auto will be `Commands.none()`
         SmartDashboard.putData("AutoMode", autoChooser);
@@ -150,11 +134,11 @@ public class RobotContainer {
 
 
 
-        new JoystickButton(auxController, XboxController.Button.kRightBumper.value)
-                .whileTrue(new ClimberUpCommand(climberSubsystem, pneumaticSubsystem));
+        // new JoystickButton(auxController, XboxController.Button.kRightBumper.value)
+        //         .whileTrue(new ClimberUpCommand(climberSubsystem, pneumaticSubsystem));
 
-        new JoystickButton(auxController, XboxController.Button.kLeftBumper.value)
-                .whileTrue(new ClimberDownCommand(climberSubsystem, pneumaticSubsystem));
+        // new JoystickButton(auxController, XboxController.Button.kLeftBumper.value)
+        //         .whileTrue(new ClimberDownCommand(climberSubsystem, pneumaticSubsystem));
 
 
 
@@ -164,8 +148,8 @@ public class RobotContainer {
         // new JoystickButton(driverController, XboxController.Button.kStart.value)
         //         .whileTrue(new FlasherCommand(limelightSubsystem));
 
-        new JoystickButton(auxController, XboxController.Button.kB.value)
-                .whileTrue(new AmpScoreCommand(pneumaticSubsystem));
+        // new JoystickButton(auxController, XboxController.Button.kB.value)
+        //         .whileTrue(new AmpScoreCommand(pneumaticSubsystem));
                 
         new JoystickButton(auxController, XboxController.Button.kX.value)
                 .whileTrue(new LoadFlipperCommand(rollerSubsystem, intakeSubsystem));
@@ -183,8 +167,16 @@ public class RobotContainer {
         
     }
     
+    public void registerNamedCommands(){
+        NamedCommands.registerCommand("flasheron", new InstantCommand(() -> limelightSubsystem.setFlasher(3.0)));
+        NamedCommands.registerCommand("flasheroff", new InstantCommand(() -> limelightSubsystem.setFlasher(0.0)));
+         // Register named commands
+        NamedCommands.registerCommand("marker1", Commands.print("Passed marker 1"));
+        NamedCommands.registerCommand("marker2", Commands.print("Passed marker 2"));
+        NamedCommands.registerCommand("print hello", Commands.print("hello"));
+    }
     public Command getAutonomousCommand() {
-        return AutoBuilder.buildAuto("MiddleThreePieceAuto");
+        return autoChooser.getSelected();
     }
 
 

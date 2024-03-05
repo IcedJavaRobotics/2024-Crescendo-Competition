@@ -19,7 +19,7 @@ public class ClimberMiddleCommand extends Command {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    System.out.println("damn thats crazy");
+    //System.out.println("damn thats crazy");
     limelightSubsystem.setFlasher(3.0);
   }
 

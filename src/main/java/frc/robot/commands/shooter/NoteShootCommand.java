@@ -6,7 +6,6 @@ package frc.robot.commands.shooter;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.Constants.RollerConstants;
-import frc.robot.Constants.ShooterConstants;
 import frc.robot.subsystems.RollerSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
 import edu.wpi.first.wpilibj.Timer;

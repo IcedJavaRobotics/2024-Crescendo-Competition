@@ -8,7 +8,6 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.Constants.PneumaticsConstants;
 import frc.robot.subsystems.PneumaticSubsystem;
-import frc.robot.subsystems.RollerSubsystem;
 
 public class AmpScoreCommand extends Command {
   /** Creates a new AmpScoreCommand. */
