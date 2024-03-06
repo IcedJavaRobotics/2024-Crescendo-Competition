@@ -34,7 +34,10 @@ public class LoadFlipperCommand extends Command {
     //intakeSubsystem.flipperSpot();
     if (intakeSubsystem.flipperSpot()) {
       rollerSubsystem.loadFlipper();
+      
     }
+
+    
   }
 
   // Called once the command ends or is interrupted.

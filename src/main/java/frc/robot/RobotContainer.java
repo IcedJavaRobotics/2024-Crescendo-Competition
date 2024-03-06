@@ -17,6 +17,7 @@ import frc.robot.Constants.OIConstants;
 import frc.robot.commands.shooter.NoteShootCommand;
 import frc.robot.commands.shooter.ShooterOutCommand;
 import frc.robot.commands.SwerveJoystickCmd;
+import frc.robot.commands.auto.startRollersCommand;
 import frc.robot.commands.climber.ClimberDownCommand;
 import frc.robot.commands.climber.ClimberUpCommand;
 import frc.robot.commands.flipper.AmpScoreCommand;
@@ -168,12 +169,11 @@ public class RobotContainer {
     }
     
     public void registerNamedCommands(){
+        //Limelight commandos
         NamedCommands.registerCommand("flasheron", new InstantCommand(() -> limelightSubsystem.setFlasher(3.0)));
         NamedCommands.registerCommand("flasheroff", new InstantCommand(() -> limelightSubsystem.setFlasher(0.0)));
-         // Register named commands
-        NamedCommands.registerCommand("marker1", Commands.print("Passed marker 1"));
-        NamedCommands.registerCommand("marker2", Commands.print("Passed marker 2"));
-        NamedCommands.registerCommand("print hello", Commands.print("hello"));
+        //Roller commandos
+        NamedCommands.registerCommand("testForTag", new startRollersCommand(limelightSubsystem));
     }
     public Command getAutonomousCommand() {
         return autoChooser.getSelected();
