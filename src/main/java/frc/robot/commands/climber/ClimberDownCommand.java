@@ -37,7 +37,10 @@ public class ClimberDownCommand extends Command {
   @Override
   public void end(boolean interrupted) {
     climberSubsystem.climberStop();
-    pneumaticSubsystem.lockClimber();
+
+    if(ClimberSubsystem.leftLimitSwitch.get() && ClimberSubsystem.rightLimitSwitch.get()) {
+      pneumaticSubsystem.lockClimber();
+    }
   }
 
   // Returns true when the command should end.

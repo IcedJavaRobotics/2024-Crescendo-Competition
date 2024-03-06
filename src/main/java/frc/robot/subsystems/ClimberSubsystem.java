@@ -8,6 +8,7 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import static frc.robot.Constants.ClimberConstants;
@@ -17,6 +18,9 @@ public class ClimberSubsystem extends SubsystemBase {
 
   private TalonSRX climberLeftMotor = new TalonSRX(ClimberConstants.LEFT_TALON);
   private TalonSRX climberRightMotor = new TalonSRX(ClimberConstants.RIGHT_TALON);
+
+  public static DigitalInput leftLimitSwitch = new DigitalInput(0);
+  public static DigitalInput rightLimitSwitch = new DigitalInput(0);
 
   public ClimberSubsystem() {
 
@@ -79,11 +83,12 @@ public class ClimberSubsystem extends SubsystemBase {
   /**
    * Moves both climbers down until limit switch 
    */
-  public void moveClimberDown(){
+  public void moveClimberDown() {
     
-    if(climberLeftMotor.getSelectedSensorPosition() < ClimberConstants.LOWER_LEFT_LIMIT){
+    if(leftLimitSwitch.get() == true) {
 
       leftClimberStop();
+      climberLeftMotor.setSelectedSensorPosition(0);
 
     } else {
 
@@ -91,9 +96,10 @@ public class ClimberSubsystem extends SubsystemBase {
 
     }
 
-    if(climberRightMotor.getSelectedSensorPosition() < ClimberConstants.LOWER_RIGHT_LIMIT) {
+    if(rightLimitSwitch.get() == true) {
 
       rightClimberStop();
+      climberRightMotor.setSelectedSensorPosition(0);
 
     } else {
 
