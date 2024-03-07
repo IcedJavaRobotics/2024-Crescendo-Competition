@@ -12,21 +12,39 @@
     "data": {
       "commands": [
         {
-          "type": "wait",
+          "type": "named",
           "data": {
-            "waitTime": 1.0
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "1stPath"
+            "name": "ShooterCommand"
           }
         },
         {
           "type": "wait",
           "data": {
             "waitTime": 0.5
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "RollerOutCommand"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 2.0
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "StopShootingCommand"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "1stPath"
           }
         },
         {

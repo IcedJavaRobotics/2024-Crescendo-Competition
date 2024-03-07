@@ -20,7 +20,7 @@ public class Robot extends TimedRobot {
   private RobotContainer m_robotContainer;
 
   /**
-   * This function is run when the robot is first started up and should be used for any
+   * This function is run when the robot is first started  up and should be used for any
    * initialization code.
    */
   @Override
