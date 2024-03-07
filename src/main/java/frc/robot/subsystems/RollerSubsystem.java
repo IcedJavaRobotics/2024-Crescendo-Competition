@@ -104,6 +104,10 @@ public class RollerSubsystem extends SubsystemBase {
     rollerMotor.set(ControlMode.PercentOutput, 0);
   }
 
+  public void setSpeed(double speed) {
+    rollerMotor.set(ControlMode.PercentOutput, speed);
+  }
+
   public void initSpeedDisabler(double initMatchTime) {
     this.timeShot = initMatchTime;
     this.rollerWaitingToCooldown = true;

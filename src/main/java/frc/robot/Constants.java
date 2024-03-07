@@ -13,7 +13,7 @@ public final class Constants {
         public static final int LIMIT_SWITCH_ID = 1;
 
         public static final int UPPER_ENCODER_LIMIT = 0;
-        public static final int LOWER_ENCODER_LIMIT = -118; //-118
+        public static final int LOWER_ENCODER_LIMIT = -100; //-118
         public static final int START_SPINNING_ENCODER_VALUE = -90;
 
         public static final boolean MOTOR_INVERTED = true;

@@ -4,41 +4,40 @@
 
 package frc.robot.commands.auto;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
-
 import edu.wpi.first.wpilibj2.command.Command;
-import frc.robot.subsystems.RollerSubsystem;
+import frc.robot.subsystems.IntakeSubsystem;
 
-public class StartRollerInCommand extends Command {
+public class MoveIntakeInCommand extends Command {
+  /** Creates a new MoveIntakeInCommand. */
 
-  private final RollerSubsystem rollerSubsystem;
+  IntakeSubsystem intakeSubsystem;
 
-  /** Creates a new Flasher. */
-  public StartRollerInCommand(RollerSubsystem r_Subsystem) {
-    rollerSubsystem = r_Subsystem;
-    addRequirements(rollerSubsystem);
+  public MoveIntakeInCommand(IntakeSubsystem i_susbsystem) {
+    // Use addRequirements() here to declare subsystem dependencies.
+    intakeSubsystem = i_susbsystem;
+    addRequirements(intakeSubsystem);
   }
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {
-    rollerSubsystem.rollerMotor.set(ControlMode.PercentOutput, 0.85);
-  }
+  public void initialize() {}
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {}
+  public void execute() {
+    intakeSubsystem.moveIntakeToSetPosition(0);
+  }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    rollerSubsystem.stopRollerMotor();
+    intakeSubsystem.stopIntakeMotor(); 
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if(rollerSubsystem.havePiece()){
+    if(!intakeSubsystem.intakeLimitSwitch.get() ||  intakeSubsystem.getIntakeEncoder() <= 1) {
       return true;
     }
 

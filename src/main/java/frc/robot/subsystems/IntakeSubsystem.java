@@ -70,6 +70,16 @@ public class IntakeSubsystem extends SubsystemBase {
     intakeMotor.set(intakePidController.calculate(intakeMotor.getEncoder().getPosition(), IntakeConstants.LOWER_ENCODER_LIMIT));
   }
 
+  public void moveIntakeToSetPosition(int targetPosition) {      
+
+    if(!intakeLimitSwitch.get() || intakeMotor.getEncoder().getPosition() >= 0) {
+      stopIntakeMotor();
+      return;
+    }
+
+    intakeMotor.set(intakePidController.calculate(intakeMotor.getEncoder().getPosition(), targetPosition));
+  }
+
   public boolean flipperSpot() {
 
     if(Math.abs(intakeMotor.getEncoder().getPosition() - IntakeConstants.FLIPPER_LIMIT) < 1) {
@@ -92,6 +102,10 @@ public class IntakeSubsystem extends SubsystemBase {
     //intakeMotor.set(-IntakeConstants.SPEED);
     intakeMotor.set(intakePidController.calculate(intakeMotor.getEncoder().getPosition(), IntakeConstants.EJECT_LIMIT));
     return false;
+  }
+
+  public double getIntakeEncoder() {
+    return intakeMotor.getEncoder().getPosition();
   }
   
    

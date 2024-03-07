@@ -14,34 +14,17 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.Constants.OIConstants;
-import frc.robot.commands.shooter.NoteShootCommand;
-import frc.robot.commands.shooter.ShooterOutCommand;
 import frc.robot.commands.SwerveJoystickCmd;
-import frc.robot.commands.auto.StartRollerInCommand;
-import frc.robot.commands.auto.StartRollerOutCommand;
-import frc.robot.commands.auto.StartShooterCommand;
-import frc.robot.commands.auto.StopShootingCommand;
-import frc.robot.commands.climber.ClimberDownCommand;
-import frc.robot.commands.climber.ClimberUpCommand;
-import frc.robot.commands.flipper.AmpScoreCommand;
-import frc.robot.commands.flipper.LoadFlipperCommand;
-import frc.robot.commands.intake.IntakeOutCommand;
-import frc.robot.commands.intake.EmergencyEjectCommand;
-import frc.robot.commands.intake.IntakeInCommand;
-import frc.robot.commands.intake.PickupNoteCommand;
-import frc.robot.commands.intake.RollerInCommand;
-import frc.robot.commands.intake.RollerOutCommand;
-import frc.robot.commands.roller.MediumRollerOutCommand;
-import frc.robot.commands.roller.SlowRollerInCommand;
-import frc.robot.subsystems.RollerSubsystem;
-import frc.robot.subsystems.ShooterSubsystem;
+import frc.robot.commands.shooter.*;
+import frc.robot.commands.auto.*;
+import frc.robot.commands.climber.*;
+import frc.robot.commands.flipper.*;
+import frc.robot.commands.intake.*;
+import frc.robot.commands.roller.*;
 
-import frc.robot.subsystems.ClimberSubsystem;
-import frc.robot.subsystems.IntakeSubsystem;
-import frc.robot.subsystems.PneumaticSubsystem;
-import frc.robot.subsystems.SwerveSubsystem;
-import frc.robot.subsystems.LimelightSubsystem;
+import frc.robot.subsystems.*;
 
+import com.fasterxml.jackson.core.sym.Name1;
 import com.pathplanner.lib.auto.AutoBuilder;
 import com.pathplanner.lib.auto.NamedCommands;
 import com.pathplanner.lib.commands.PathPlannerAuto;
@@ -136,8 +119,6 @@ public class RobotContainer {
         new JoystickButton(auxController, XboxController.Button.kA.value)
                 .whileTrue(new NoteShootCommand(shooterSubsystem, rollerSubsystem));
 
-
-
         new JoystickButton(auxController, XboxController.Button.kRightBumper.value)
                 .whileTrue(new ClimberUpCommand(climberSubsystem, pneumaticSubsystem));
 
@@ -164,11 +145,14 @@ public class RobotContainer {
     }
     
     public void registerNamedCommands() {
-        //Roller commandos
-        NamedCommands.registerCommand("RollerInCommand", new StartRollerInCommand(rollerSubsystem));
         NamedCommands.registerCommand("RollerOutCommand", new StartRollerOutCommand(rollerSubsystem));
         NamedCommands.registerCommand("ShooterCommand", new StartShooterCommand(shooterSubsystem));
         NamedCommands.registerCommand("StopShootingCommand", new StopShootingCommand(shooterSubsystem, rollerSubsystem));
+
+        NamedCommands.registerCommand("FullShoot", new FullShootCommand(shooterSubsystem, rollerSubsystem));
+        NamedCommands.registerCommand("IntakeOut", new MoveIntakeOutCommand(intakeSubsystem));
+        NamedCommands.registerCommand("IntakeIn", new MoveIntakeInCommand(intakeSubsystem));
+        NamedCommands.registerCommand("RollerIn", new StartRollerInCommand(rollerSubsystem));
     }
     public Command getAutonomousCommand() {
         return autoChooser.getSelected();

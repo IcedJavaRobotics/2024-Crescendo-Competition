@@ -14,7 +14,7 @@ public class FullShootCommand extends Command {
 
   ShooterSubsystem shooterSubsystem;
   RollerSubsystem rollerSubsystem;
-  double time;
+  double startTime;
 
   public FullShootCommand(ShooterSubsystem s_subsystem, RollerSubsystem r_subsystem) {
     // Use addRequirements() here to declare subsystem dependencies.
@@ -27,20 +27,42 @@ public class FullShootCommand extends Command {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    time = Timer.getMatchTime();
+    startTime = Timer.getMatchTime();
+    //startTime = System.currentTimeMillis();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {}
+  public void execute() {
+    shooterSubsystem.setSpeed(0.85);
+
+    if(Math.abs(startTime - Timer.getMatchTime()) > 0.25) {
+      rollerSubsystem.setSpeed(-.5);
+    }
+
+    // if(Math.abs(startTime - System.currentTimeMillis()) > 250) {
+    //   rollerSubsystem.setSpeed(-.5);
+    // }
+  }
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+    shooterSubsystem.setSpeed(0);
+    rollerSubsystem.setSpeed(0);
+  }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
+    if(Math.abs(startTime - Timer.getMatchTime()) > 1) {
+      return true;
+    }
+
+    // if(Math.abs(startTime - System.currentTimeMillis()) > 1000) {
+    //   return true;
+    // }
+
     return false;
   }
 }
