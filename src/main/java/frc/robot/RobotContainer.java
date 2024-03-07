@@ -171,10 +171,7 @@ public class RobotContainer {
         
     }
     
-    public void registerNamedCommands(){
-        //Limelight commandos
-        NamedCommands.registerCommand("flasheron", new InstantCommand(() -> limelightSubsystem.setFlasher(3.0)));
-        NamedCommands.registerCommand("flasheroff", new InstantCommand(() -> limelightSubsystem.setFlasher(0.0)));
+    public void registerNamedCommands() {
         //Roller commandos
         NamedCommands.registerCommand("RollerInCommand", new StartRollerInCommand(rollerSubsystem));
         NamedCommands.registerCommand("RollerOutCommand", new StartRollerOutCommand(rollerSubsystem));

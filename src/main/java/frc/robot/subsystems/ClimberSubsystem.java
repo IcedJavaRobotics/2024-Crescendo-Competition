@@ -19,8 +19,8 @@ public class ClimberSubsystem extends SubsystemBase {
   private TalonSRX climberLeftMotor = new TalonSRX(ClimberConstants.LEFT_TALON);
   private TalonSRX climberRightMotor = new TalonSRX(ClimberConstants.RIGHT_TALON);
 
-  public static DigitalInput leftLimitSwitch = new DigitalInput(0);
-  public static DigitalInput rightLimitSwitch = new DigitalInput(0);
+  public static DigitalInput leftLimitSwitch = new DigitalInput(2);
+  public static DigitalInput rightLimitSwitch = new DigitalInput(3);
 
   public ClimberSubsystem() {
 
@@ -85,7 +85,7 @@ public class ClimberSubsystem extends SubsystemBase {
    */
   public void moveClimberDown() {
     
-    if(leftLimitSwitch.get() == true) {
+    if(!leftLimitSwitch.get() == true) {
 
       leftClimberStop();
       climberLeftMotor.setSelectedSensorPosition(0);
@@ -96,7 +96,7 @@ public class ClimberSubsystem extends SubsystemBase {
 
     }
 
-    if(rightLimitSwitch.get() == true) {
+    if(!rightLimitSwitch.get() == true) {
 
       rightClimberStop();
       climberRightMotor.setSelectedSensorPosition(0);
@@ -139,5 +139,7 @@ public class ClimberSubsystem extends SubsystemBase {
     // This method will be called once per scheduler run
     SmartDashboard.putNumber("Talon Left Climber Encoder", ( climberLeftMotor.getSelectedSensorPosition()));
     SmartDashboard.putNumber("Talon Right Climber Encoder", ( climberRightMotor.getSelectedSensorPosition()));
+    SmartDashboard.putBoolean("LeftClimbSwitch", !leftLimitSwitch.get());
+    SmartDashboard.putBoolean("RightClimbSwitch", !rightLimitSwitch.get());
   }
 }
