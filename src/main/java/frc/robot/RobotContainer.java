@@ -138,22 +138,14 @@ public class RobotContainer {
 
 
 
-        // new JoystickButton(auxController, XboxController.Button.kRightBumper.value)
-        //         .whileTrue(new ClimberUpCommand(climberSubsystem, pneumaticSubsystem));
+        new JoystickButton(auxController, XboxController.Button.kRightBumper.value)
+                .whileTrue(new ClimberUpCommand(climberSubsystem, pneumaticSubsystem));
 
-        // new JoystickButton(auxController, XboxController.Button.kLeftBumper.value)
-        //         .whileTrue(new ClimberDownCommand(climberSubsystem, pneumaticSubsystem));
+        new JoystickButton(auxController, XboxController.Button.kLeftBumper.value)
+                .whileTrue(new ClimberDownCommand(climberSubsystem, pneumaticSubsystem));
 
-
-
-        // new JoystickButton(auxController, XboxController.Button.kBack.value)
-        //         .whileTrue(new ClimberMiddleCommand(limelightSubsystem));
-                
-        // new JoystickButton(driverController, XboxController.Button.kStart.value)
-        //         .whileTrue(new FlasherCommand(limelightSubsystem));
-
-        // new JoystickButton(auxController, XboxController.Button.kB.value)
-        //         .whileTrue(new AmpScoreCommand(pneumaticSubsystem));
+        new JoystickButton(auxController, XboxController.Button.kB.value)
+                .whileTrue(new AmpScoreCommand(pneumaticSubsystem));
                 
         new JoystickButton(auxController, XboxController.Button.kX.value)
                 .whileTrue(new LoadFlipperCommand(rollerSubsystem, intakeSubsystem));

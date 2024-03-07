@@ -38,7 +38,7 @@ public class ClimberDownCommand extends Command {
   public void end(boolean interrupted) {
     climberSubsystem.climberStop();
 
-    if(ClimberSubsystem.leftLimitSwitch.get() && ClimberSubsystem.rightLimitSwitch.get()) {
+    if(climberSubsystem.leftSwitchPressed() && climberSubsystem.rightSwitchPressed()) {
       pneumaticSubsystem.lockClimber();
     }
   }

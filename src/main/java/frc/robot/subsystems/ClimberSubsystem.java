@@ -19,8 +19,8 @@ public class ClimberSubsystem extends SubsystemBase {
   private TalonSRX climberLeftMotor = new TalonSRX(ClimberConstants.LEFT_TALON);
   private TalonSRX climberRightMotor = new TalonSRX(ClimberConstants.RIGHT_TALON);
 
-  public static DigitalInput leftLimitSwitch = new DigitalInput(2);
-  public static DigitalInput rightLimitSwitch = new DigitalInput(3);
+  public DigitalInput leftLimitSwitch = new DigitalInput(2);
+  public DigitalInput rightLimitSwitch = new DigitalInput(3);
 
   public ClimberSubsystem() {
 
@@ -108,6 +108,14 @@ public class ClimberSubsystem extends SubsystemBase {
     }
     
     
+  }
+
+  public boolean leftSwitchPressed() {
+    return !leftLimitSwitch.get();
+  }
+
+  public boolean rightSwitchPressed() {
+    return !rightLimitSwitch.get();
   }
   
   public void leftClimberStop() {
