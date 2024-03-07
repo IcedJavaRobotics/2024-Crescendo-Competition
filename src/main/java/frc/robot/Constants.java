@@ -65,7 +65,7 @@ public final class Constants {
         public static final int LOWER_LEFT_LIMIT = 100;
         public static final int LOWER_RIGHT_LIMIT = 10;
     
-        public static final double SPEED = 1;
+        public static final double SPEED = 0.3;
     
     }    
 

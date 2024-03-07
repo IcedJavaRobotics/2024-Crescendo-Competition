@@ -40,7 +40,6 @@ public class RollerSubsystem extends SubsystemBase {
    * @return true if note is acquired, false if there is no note
    */
   public void turnRollerIn() {  // return type was boolean
-    //rollerMotor.set(ControlMode.PercentOutput, RollerConstants.SHOOTER_SPEED);
 
     if(havePiece()) {
       stopRollerMotor();

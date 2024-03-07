@@ -4,23 +4,25 @@
 
 package frc.robot.commands.auto;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
+
 import edu.wpi.first.wpilibj2.command.Command;
-import frc.robot.subsystems.LimelightSubsystem;
+import frc.robot.subsystems.RollerSubsystem;
 
-public class startRollersCommand extends Command {
+public class StartRollerOutCommand extends Command {
+  /** Creates a new StartRollerOutCommand. */
 
-  private final LimelightSubsystem limelightSubsystem;
-  /** Creates a new Flasher. */
-  public startRollersCommand(LimelightSubsystem lSubsystem) {
-    this.limelightSubsystem = lSubsystem;
-    addRequirements(limelightSubsystem);
+  RollerSubsystem rollerSubsystem;
+  public StartRollerOutCommand(RollerSubsystem r_subsystem) {
+    // Use addRequirements() here to declare subsystem dependencies.
+    rollerSubsystem = r_subsystem;
+    addRequirements(rollerSubsystem);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    //System.out.println("damn thats crazy");
-    limelightSubsystem.setFlasher(3.0);
+    rollerSubsystem.rollerMotor.set(ControlMode.PercentOutput, -0.2);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -29,16 +31,11 @@ public class startRollersCommand extends Command {
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {
-    limelightSubsystem.setFlasher(0.0);
-  }
+  public void end(boolean interrupted) {}
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if(limelightSubsystem.tagDetected()){
-      return true;
-    }
     return false;
   }
 }
