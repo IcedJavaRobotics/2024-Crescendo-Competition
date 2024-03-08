@@ -25,7 +25,7 @@ public class MoveIntakeInCommand extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    intakeSubsystem.moveIntakeToSetPosition(0);
+    intakeSubsystem.moveIntakeInToSetPosition(0);
   }
 
   // Called once the command ends or is interrupted.
@@ -37,7 +37,7 @@ public class MoveIntakeInCommand extends Command {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if(!intakeSubsystem.intakeLimitSwitch.get() ||  intakeSubsystem.getIntakeEncoder() <= 1) {
+    if(!intakeSubsystem.intakeLimitSwitch.get() ||  intakeSubsystem.getIntakeEncoder() >= -1) {
       return true;
     }
 

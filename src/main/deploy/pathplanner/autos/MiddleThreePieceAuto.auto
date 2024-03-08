@@ -26,7 +26,7 @@
         {
           "type": "named",
           "data": {
-            "name": "flasheron"
+            "name": null
           }
         },
         {
@@ -50,7 +50,7 @@
         {
           "type": "named",
           "data": {
-            "name": "flasheroff"
+            "name": null
           }
         },
         {
@@ -84,7 +84,7 @@
               {
                 "type": "named",
                 "data": {
-                  "name": "testForTag"
+                  "name": null
                 }
               }
             ]

@@ -70,12 +70,17 @@ public class IntakeSubsystem extends SubsystemBase {
     intakeMotor.set(intakePidController.calculate(intakeMotor.getEncoder().getPosition(), IntakeConstants.LOWER_ENCODER_LIMIT));
   }
 
-  public void moveIntakeToSetPosition(int targetPosition) {      
+  public void moveIntakeInToSetPosition(int targetPosition) {      
 
     if(!intakeLimitSwitch.get() || intakeMotor.getEncoder().getPosition() >= 0) {
       stopIntakeMotor();
       return;
     }
+
+    intakeMotor.set(intakePidController.calculate(intakeMotor.getEncoder().getPosition(), targetPosition));
+  }
+
+  public void moveIntakeToSetPosition(int targetPosition) {      
 
     intakeMotor.set(intakePidController.calculate(intakeMotor.getEncoder().getPosition(), targetPosition));
   }
