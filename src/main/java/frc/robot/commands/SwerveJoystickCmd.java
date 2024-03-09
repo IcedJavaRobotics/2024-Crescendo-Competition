@@ -1,6 +1,5 @@
 package frc.robot.commands;
 
-import java.security.cert.TrustAnchor;
 import java.util.function.Supplier;
 import edu.wpi.first.math.filter.SlewRateLimiter;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
@@ -33,9 +32,9 @@ public class SwerveJoystickCmd extends Command {
         this.ySpdFunction = ySpdFunction;
         this.turningSpdFunction = turningSpdFunction;
         this.fieldOrientedFunction = fieldOrientedFunction;
-        this.xLimiter = new SlewRateLimiter(DriveConstants.kTeleDriveMaxAccelerationUnitsPerSecond);
-        this.yLimiter = new SlewRateLimiter(DriveConstants.kTeleDriveMaxAccelerationUnitsPerSecond);
-        this.turningLimiter = new SlewRateLimiter(DriveConstants.kTeleDriveMaxAngularAccelerationUnitsPerSecond);
+        this.xLimiter = new SlewRateLimiter(DriveConstants.TELE_DRIVE_MAX_ACCELERATION_UNITS_PER_SECOND);
+        this.yLimiter = new SlewRateLimiter(DriveConstants.TELE_DRIVE_MAX_ACCELERATION_UNITS_PER_SECOND);
+        this.turningLimiter = new SlewRateLimiter(DriveConstants.TELE_DRIVE_MAX_ANGULAR_ACCELERATION_UNITS_PER_SECOND);
         this.throttle = throttle;
         this.slowTurn = slowTurn;
         addRequirements(swerveSubsystem);
@@ -62,20 +61,19 @@ public class SwerveJoystickCmd extends Command {
 
 
         // 2. Apply deadband
-        xSpeed = Math.abs(xSpeed) > OIConstants.kDeadband ? xSpeed : 0.0;
-        ySpeed = Math.abs(ySpeed) > OIConstants.kDeadband ? ySpeed : 0.0;
-        turningSpeed = Math.abs(turningSpeed) > OIConstants.kDeadband ? turningSpeed : 0.0;
+        xSpeed = Math.abs(xSpeed) > OIConstants.DEADBAND ? xSpeed : 0.0;
+        ySpeed = Math.abs(ySpeed) > OIConstants.DEADBAND ? ySpeed : 0.0;
+        turningSpeed = Math.abs(turningSpeed) > OIConstants.DEADBAND ? turningSpeed : 0.0;
 
         // 3. Make the driving smoother
-        xSpeed = xLimiter.calculate(xSpeed) * DriveConstants.kTeleDriveMaxSpeedMetersPerSecond;
-        ySpeed = yLimiter.calculate(ySpeed) * DriveConstants.kTeleDriveMaxSpeedMetersPerSecond;
+        xSpeed = xLimiter.calculate(xSpeed) * DriveConstants.TELE_DRIVE_MAX_SPEED_METERS_PER_SECOND;
+        ySpeed = yLimiter.calculate(ySpeed) * DriveConstants.TELE_DRIVE_MAX_SPEED_METERS_PER_SECOND;
 
-        System.out.println("xSpeed: " + xSpeed);
-        System.out.println("ySpeed: " + ySpeed);
+        // System.out.println("xSpeed: " + xSpeed);
+        // System.out.println("ySpeed: " + ySpeed);
 
         // Slow turning speed on true of slowTurn button boolean supplier
-        turningSpeed = turningLimiter.calculate(turningSpeed) * DriveConstants.kTeleDriveMaxAngularSpeedRadiansPerSecond;
-
+        turningSpeed = turningLimiter.calculate(turningSpeed) * DriveConstants.TELE_DRIVE_MAX_ANGULAR_SPEED_RADIANS_PER_SECOND;
         if (slowTurn.get()==true){
             turningSpeed=turningSpeed/2;
         }

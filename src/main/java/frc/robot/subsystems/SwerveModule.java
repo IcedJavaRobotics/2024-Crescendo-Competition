@@ -4,7 +4,6 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.sensors.AbsoluteSensorRange;
 import com.ctre.phoenix.sensors.CANCoder;
 import com.revrobotics.CANSparkMax;
-// import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import com.revrobotics.RelativeEncoder;
 import com.revrobotics.CANSparkBase.IdleMode;
@@ -42,7 +41,7 @@ public class SwerveModule {
                 
         this.absoluteEncoderOffsetRad = absoluteEncoderOffset;
         this.absoluteEncoderReversed = absoluteEncoderReversed;
-        absoluteEncoder = new CANCoder(absoluteEncoderId);
+        absoluteEncoder = new CANCoder(absoluteEncoderId, "CANivore");
 
         driveMotor = new CANSparkMax(driveMotorId, MotorType.kBrushless);
         turningMotor = new CANSparkMax(turningMotorId, MotorType.kBrushless);
@@ -69,12 +68,12 @@ public class SwerveModule {
         driveEncoder = driveMotor.getEncoder();
         turningEncoder = turningMotor.getEncoder();
 
-        driveEncoder.setPositionConversionFactor(ModuleConstants.kDriveEncoderRot2Meter);
-        driveEncoder.setVelocityConversionFactor(ModuleConstants.kDriveEncoderRPM2MeterPerSec);
-        turningEncoder.setPositionConversionFactor(ModuleConstants.kTurningEncoderRot2Rad);
-        turningEncoder.setVelocityConversionFactor(ModuleConstants.kTurningEncoderRPM2RadPerSec);
+        driveEncoder.setPositionConversionFactor(ModuleConstants.DRIVE_ENCODER_ROT_2_METER);
+        driveEncoder.setVelocityConversionFactor(ModuleConstants.DRIVE_ENCODER_RPM_2_METER_PER_SEC);
+        turningEncoder.setPositionConversionFactor(ModuleConstants.TURNING_ENCODER_ROT_2_RAD);
+        turningEncoder.setVelocityConversionFactor(ModuleConstants.TURNING_ENCODER_RPM_2_METER_PER_SEC);
 
-        turningPidController = new PIDController(ModuleConstants.kPTurning, 0, 0); //kPTurning COnstant, 1, 0.001
+        turningPidController = new PIDController(ModuleConstants.P_TURNING, 0, 0); //kPTurning COnstant, 1, 0.001
         turningPidController.enableContinuousInput(-Math.PI, Math.PI);
 
         absoluteEncoder.configAbsoluteSensorRange(AbsoluteSensorRange.Signed_PlusMinus180);
@@ -144,11 +143,8 @@ public class SwerveModule {
             return;
         }
         state = SwerveModuleState.optimize(state, getState().angle);
-        driveMotor.set(state.speedMetersPerSecond / DriveConstants.kPhysicalMaxSpeedMetersPerSecond);
-        System.out.println("state speed:" + state.speedMetersPerSecond);
+        driveMotor.set(state.speedMetersPerSecond / DriveConstants.PHYSICAL_MAX_SPEED_METERS_PER_SECOND);
         pidCalculations = turningPidController.calculate(getAbsoluteEncoderRad(), state.angle.getRadians());
-        //System.out.println(pidCalculations);
-
         turningMotor.set(pidCalculations);
         SmartDashboard.putString("Swerve[" + moduleName + "] state", state.toString());
     }
