@@ -37,7 +37,7 @@ public class MoveIntakeInCommand extends Command {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if(!intakeSubsystem.intakeLimitSwitch.get() ||  intakeSubsystem.getIntakeEncoder() >= -1) {
+    if(!intakeSubsystem.intakeLimitSwitch.get() ||  intakeSubsystem.getIntakeEncoder() >= 0) {
       return true;
     }
 

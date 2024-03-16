@@ -5,7 +5,7 @@
       "x": 1.25,
       "y": 5.6
     },
-    "rotation": 0
+    "rotation": 0.0
   },
   "command": {
     "type": "sequential",
@@ -30,7 +30,7 @@
               {
                 "type": "path",
                 "data": {
-                  "pathName": "MiddlePath1"
+                  "pathName": "Mid 2"
                 }
               },
               {
@@ -55,7 +55,7 @@
               {
                 "type": "path",
                 "data": {
-                  "pathName": "MiddlePath2"
+                  "pathName": "Mid 2 Return"
                 }
               }
             ]
@@ -80,7 +80,7 @@
               {
                 "type": "path",
                 "data": {
-                  "pathName": "Amp Note"
+                  "pathName": "Mid 3"
                 }
               },
               {
@@ -99,7 +99,7 @@
               {
                 "type": "path",
                 "data": {
-                  "pathName": "Amp Note Return"
+                  "pathName": "Mid 3 Return"
                 }
               },
               {
@@ -130,7 +130,7 @@
               {
                 "type": "path",
                 "data": {
-                  "pathName": "Stage Note"
+                  "pathName": "Mid 1"
                 }
               },
               {
@@ -155,7 +155,7 @@
               {
                 "type": "path",
                 "data": {
-                  "pathName": "Stage Note Return"
+                  "pathName": "Mid 1 Return"
                 }
               }
             ]

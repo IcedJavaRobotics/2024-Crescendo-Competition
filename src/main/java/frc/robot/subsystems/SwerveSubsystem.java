@@ -1,6 +1,6 @@
 package frc.robot.subsystems;
 
-import com.ctre.phoenix.sensors.Pigeon2;
+
 
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
@@ -15,6 +15,7 @@ import frc.robot.Constants.AutoConstants;
 import frc.robot.Constants.DriveConstants;
 import edu.wpi.first.math.util.Units;
 
+import com.ctre.phoenix6.hardware.Pigeon2;
 import com.pathplanner.lib.auto.AutoBuilder;
 import com.pathplanner.lib.util.HolonomicPathFollowerConfig;
 import com.pathplanner.lib.util.PIDConstants;
@@ -118,7 +119,7 @@ public class SwerveSubsystem extends SubsystemBase {
     }
     public void resetPose(Pose2d pose) {
         //getRotation2D is replaced by new Rotation2D(gyro.getYaw())
-        odometer.resetPosition(new Rotation2d(Math.toRadians(gyro.getYaw())), getPositions(), pose);
+        odometer.resetPosition(new Rotation2d(Math.toRadians(gyro.getYaw().getValue())), getPositions(), pose);
     }
     public ChassisSpeeds getRobotRelativeSpeeds(){
         return DriveConstants.kDriveKinematics.toChassisSpeeds(getModuleStates());
@@ -166,7 +167,7 @@ public class SwerveSubsystem extends SubsystemBase {
     }
 
     public double getYaw() {
-        return gyro.getYaw();
+        return gyro.getYaw().getValue();
     }
 
     public double getHeading() {

@@ -54,11 +54,12 @@ public class ShooterSubsystem extends SubsystemBase {
     this.shooterAtMaxSpeed = false;
   }
 
-  public void cooldownShooter(){
+  public void cooldownShooter() {
     if(shooterWaitingToCooldown) {
       //If it has been COOLDOWN_TIME amount of time since fired set speed to 0
-      if((timeShotShooter-Timer.getMatchTime()) < ShooterConstants.COOLDOWN_TIME) {
-        setSpeed(0);
+      if(Math.abs(timeShotShooter-Timer.getMatchTime()) > ShooterConstants.COOLDOWN_TIME) {
+        leftMotor.set(0);
+        rightMotor.set(0);
         this.shooterWaitingToCooldown = false;
       }
     }
@@ -67,7 +68,6 @@ public class ShooterSubsystem extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    cooldownShooter();
     SmartDashboard.putBoolean("RdyToFire", shooterAtMaxSpeed);
   }
 

@@ -116,7 +116,7 @@ public class RollerSubsystem extends SubsystemBase {
   public void cooldownRoller(){
     if(rollerWaitingToCooldown) {
       //If it has been COOLDOWN_TIME amount of time since fired set speed to 0
-      if((timeShot-Timer.getMatchTime()) > ShooterConstants.COOLDOWN_TIME) {
+      if(Math.abs(timeShot-Timer.getMatchTime()) > ShooterConstants.COOLDOWN_TIME) {
         stopRollerMotor();
         this.rollerWaitingToCooldown = false;
       }
