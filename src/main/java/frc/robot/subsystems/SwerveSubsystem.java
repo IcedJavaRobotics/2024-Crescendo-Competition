@@ -162,7 +162,7 @@ public class SwerveSubsystem extends SubsystemBase {
     }
     
     public void zeroHeading() {
-        gyro.setYaw(0);
+        gyro.setYaw(180);
     }
 
     public double getYaw() {
