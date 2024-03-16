@@ -13,7 +13,7 @@ public final class Constants {
         public static final int LIMIT_SWITCH_ID = 1;
 
         public static final int UPPER_ENCODER_LIMIT = 0;
-        public static final int LOWER_ENCODER_LIMIT = -118; //-118
+        public static final int LOWER_ENCODER_LIMIT = -20; //-118
         public static final int START_SPINNING_ENCODER_VALUE = -90;
 
         public static final boolean MOTOR_INVERTED = true;
@@ -197,8 +197,8 @@ public final class Constants {
     }
 
     public static final class AutoConstants {
-        public static final double MAX_SPEED_METERS_PER_SECOND = DriveConstants.PHYSICAL_MAX_SPEED_METERS_PER_SECOND / 1.8; 
-        public static final double MAX_ANGULAR_SPEED_RADIANS_PER_SECOND = DriveConstants.PHYSICAL_MAX_SPEED_METERS_PER_SECOND / 1.8;
+        public static final double MAX_SPEED_METERS_PER_SECOND = DriveConstants.PHYSICAL_MAX_SPEED_METERS_PER_SECOND / 1; 
+        public static final double MAX_ANGULAR_SPEED_RADIANS_PER_SECOND = DriveConstants.PHYSICAL_MAX_SPEED_METERS_PER_SECOND / 1;
         public static final double MAX_ACCELERATION_METERS_PER_SECOND_SQUARED = 3;
         public static final double MAX_ANGULAR_ACCELERATION_RADIANS_PER_SECOND_SQUARED = Math.PI / 2;
         // The P value of the PID controller used in auto for the X and Y directions
