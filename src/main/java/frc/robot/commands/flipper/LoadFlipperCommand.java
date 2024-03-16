@@ -34,7 +34,7 @@ public class LoadFlipperCommand extends Command {
     //intakeSubsystem.flipperSpot();
     if (intakeSubsystem.flipperSpot()) {
       rollerSubsystem.loadFlipper();
-      
+
     }
 
     

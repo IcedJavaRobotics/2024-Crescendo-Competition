@@ -20,7 +20,7 @@ public final class Constants {
 
         public static final double SPEED = 0.55;
 
-        public static final int FLIPPER_LIMIT = -18;
+        public static final int FLIPPER_LIMIT = -19;
         
         public static final int EJECT_LIMIT = -50;
 
@@ -38,7 +38,7 @@ public final class Constants {
         
         public static final double SHOOTER_SPEED = 1;
 
-        public static final double FLIPPER_SPEED = .35;
+        public static final double FLIPPER_SPEED = .4;
 
         public static final double INTAKE_SPEED = 0.85;
 
@@ -59,7 +59,7 @@ public final class Constants {
         public static final boolean LEFT_MOTOR_INVERTED = false;
         public static final boolean RIGHT_MOTOR_INVERTED = true;
 
-        public static final int UPPER_LEFT_LIMIT = 12750;
+        public static final int UPPER_LEFT_LIMIT = 14800;
         public static final int UPPER_RIGHT_LIMIT = 14800; 
 
         public static final int LOWER_LEFT_LIMIT = 100;
@@ -113,7 +113,7 @@ public final class Constants {
         public static final double DRIVE_ENCODER_RPM_2_METER_PER_SEC = DRIVE_ENCODER_ROT_2_METER / 60;
         public static final double TURNING_ENCODER_RPM_2_METER_PER_SEC = TURNING_ENCODER_ROT_2_RAD / 60;
         //The P value for the turning PID loop
-        public static final double P_TURNING = .2; //0.2
+        public static final double P_TURNING = .4; //0.2
         
     }
 

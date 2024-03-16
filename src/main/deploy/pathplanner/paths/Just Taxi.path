@@ -3,25 +3,25 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 2.5,
-        "y": 5.59
+        "x": 0.423996054839469,
+        "y": 2.48269734770568
       },
       "prevControl": null,
       "nextControl": {
-        "x": 2.5085249599885775,
-        "y": 5.58606903233778
+        "x": 1.4239960548394686,
+        "y": 2.48269734770568
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 1.25,
-        "y": 5.59
+        "x": 3.187753479643905,
+        "y": 2.48269734770568
       },
       "prevControl": {
-        "x": 1.2382891634542188,
-        "y": 5.59
+        "x": 2.187753479643905,
+        "y": 2.48269734770568
       },
       "nextControl": null,
       "isLocked": false,
@@ -43,7 +43,10 @@
     "rotateFast": false
   },
   "reversed": false,
-  "folder": "MiddleThreePieceAuto",
-  "previewStartingState": null,
-  "useDefaultConstraints": false
+  "folder": "Side Paths",
+  "previewStartingState": {
+    "rotation": 0,
+    "velocity": 0
+  },
+  "useDefaultConstraints": true
 }

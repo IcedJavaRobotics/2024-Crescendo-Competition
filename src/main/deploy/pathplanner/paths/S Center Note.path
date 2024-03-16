@@ -3,38 +3,32 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 2.53,
-        "y": 4.12
+        "x": 0.75,
+        "y": 4.55
       },
       "prevControl": null,
       "nextControl": {
-        "x": 1.8175856037874687,
-        "y": 4.42669621430541
+        "x": 1.284461030460524,
+        "y": 3.8283738105937757
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 1.25,
-        "y": 5.59
+        "x": 8.0,
+        "y": 0.77
       },
       "prevControl": {
-        "x": 1.8527173601057307,
-        "y": 5.5626307648307405
+        "x": 7.026236858231021,
+        "y": 0.77
       },
       "nextControl": null,
       "isLocked": false,
       "linkedName": null
     }
   ],
-  "rotationTargets": [
-    {
-      "waypointRelativePos": 0,
-      "rotationDegrees": -89.79654425750121,
-      "rotateFast": false
-    }
-  ],
+  "rotationTargets": [],
   "constraintZones": [],
   "eventMarkers": [],
   "globalConstraints": {
@@ -45,11 +39,14 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": -0.34673409827719853,
+    "rotation": 0,
     "rotateFast": false
   },
   "reversed": false,
-  "folder": "MiddleThreePieceAuto",
-  "previewStartingState": null,
-  "useDefaultConstraints": false
+  "folder": "Side Paths",
+  "previewStartingState": {
+    "rotation": -60.0,
+    "velocity": 0
+  },
+  "useDefaultConstraints": true
 }

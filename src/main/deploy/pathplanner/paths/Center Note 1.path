@@ -4,24 +4,24 @@
     {
       "anchor": {
         "x": 1.25,
-        "y": 5.59
+        "y": 5.6
       },
       "prevControl": null,
       "nextControl": {
-        "x": 1.25,
-        "y": 5.59
+        "x": 2.5079619390008028,
+        "y": 6.21617397080948
       },
       "isLocked": false,
-      "linkedName": null
+      "linkedName": "Middle"
     },
     {
       "anchor": {
-        "x": 2.5,
-        "y": 5.59
+        "x": 8.0,
+        "y": 7.45
       },
       "prevControl": {
-        "x": 2.5,
-        "y": 5.59
+        "x": 3.404050596882901,
+        "y": 7.45
       },
       "nextControl": null,
       "isLocked": false,
@@ -43,7 +43,10 @@
     "rotateFast": false
   },
   "reversed": false,
-  "folder": "MiddleTwoPieceAuto",
-  "previewStartingState": null,
-  "useDefaultConstraints": false
+  "folder": "MiddlePaths",
+  "previewStartingState": {
+    "rotation": 0,
+    "velocity": 0
+  },
+  "useDefaultConstraints": true
 }

@@ -2,10 +2,10 @@
   "version": 1.0,
   "startingPose": {
     "position": {
-      "x": 1.25,
-      "y": 5.6
+      "x": 0.75,
+      "y": 4.55
     },
-    "rotation": 0
+    "rotation": -60.0
   },
   "command": {
     "type": "sequential",
@@ -30,7 +30,7 @@
               {
                 "type": "path",
                 "data": {
-                  "pathName": "MiddlePath1"
+                  "pathName": "S Stage Note"
                 }
               },
               {
@@ -47,15 +47,15 @@
           "data": {
             "commands": [
               {
-                "type": "named",
+                "type": "path",
                 "data": {
-                  "name": "IntakeIn"
+                  "pathName": "S Stage Note Return"
                 }
               },
               {
-                "type": "path",
+                "type": "named",
                 "data": {
-                  "pathName": "MiddlePath2"
+                  "name": "IntakeIn"
                 }
               }
             ]
@@ -70,6 +70,6 @@
       ]
     }
   },
-  "folder": null,
+  "folder": "when we can't have center",
   "choreoAuto": false
 }
