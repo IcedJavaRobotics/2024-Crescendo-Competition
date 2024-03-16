@@ -1,0 +1,25 @@
+{
+  "version": 1.0,
+  "startingPose": {
+    "position": {
+      "x": 0.42,
+      "y": 2.48
+    },
+    "rotation": 0
+  },
+  "command": {
+    "type": "sequential",
+    "data": {
+      "commands": [
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Just Taxi"
+          }
+        }
+      ]
+    }
+  },
+  "folder": "when we can't have center",
+  "choreoAuto": false
+}

@@ -3,10 +3,12 @@
   "robotLength": 0.71,
   "holonomicMode": true,
   "pathFolders": [
-    "MiddleTwoPieceAuto",
-    "MiddleThreePieceAuto"
+    "MiddlePaths",
+    "Side Paths"
   ],
-  "autoFolders": [],
+  "autoFolders": [
+    "when we can't have center"
+  ],
   "defaultMaxVel": 5.0,
   "defaultMaxAccel": 3.0,
   "defaultMaxAngVel": 900.0,

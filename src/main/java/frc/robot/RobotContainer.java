@@ -130,14 +130,15 @@ public class RobotContainer {
                 
         new JoystickButton(auxController, XboxController.Button.kX.value)
                 .whileTrue(new LoadFlipperCommand(rollerSubsystem, intakeSubsystem));
+
+        new JoystickButton(driverStation, 4)
+                .whileTrue(new InstantCommand(() -> pneumaticSubsystem.lockClimber()));
+
                 
         // new JoystickButton(auxController, XboxController.Button.kStart.value)
         //         .whileTrue(new InstantCommand(() -> shooterSubsystem.setSpeed(0)));
         // new JoystickButton(driverStation, 4) //8
         //         .onTrue(new InstantCommand(() -> blinkinSubsystem.autoBlinkin()));
-
-        // new JoystickButton(driverStation, 4)
-        //         .whileTrue(new InstantCommand(() -> pneumaticSubsystem.releaseClimber()));
 
         // new JoystickButton(driverController, XboxController.Button.kLeftStick.value)
         //         .whileTrue(new InstantCommand(() -> driverController.setRumble(RumbleType.kBothRumble, 1)));
@@ -153,6 +154,10 @@ public class RobotContainer {
         NamedCommands.registerCommand("IntakeOut", new MoveIntakeOutCommand(intakeSubsystem));
         NamedCommands.registerCommand("IntakeIn", new MoveIntakeInCommand(intakeSubsystem));
         NamedCommands.registerCommand("RollerIn", new StartRollerInCommand(rollerSubsystem));
+    }
+
+    public void lockClimbers() {
+        pneumaticSubsystem.lockClimber();
     }
     public Command getAutonomousCommand() {
         return autoChooser.getSelected();
