@@ -3,8 +3,9 @@
   "robotLength": 0.71,
   "holonomicMode": true,
   "pathFolders": [
-    "MiddlePaths",
-    "Side Paths"
+    "Amp Paths",
+    "Middle Paths",
+    "Source Paths"
   ],
   "autoFolders": [
     "when we can't have center"

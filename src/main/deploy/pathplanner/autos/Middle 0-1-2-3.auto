@@ -30,7 +30,7 @@
               {
                 "type": "path",
                 "data": {
-                  "pathName": "MiddlePath1"
+                  "pathName": "Mid 2"
                 }
               },
               {
@@ -55,7 +55,7 @@
               {
                 "type": "path",
                 "data": {
-                  "pathName": "MiddlePath2"
+                  "pathName": "Mid 2 Return"
                 }
               }
             ]
@@ -80,7 +80,7 @@
               {
                 "type": "path",
                 "data": {
-                  "pathName": "Amp Note"
+                  "pathName": "Mid 1"
                 }
               },
               {
@@ -99,7 +99,7 @@
               {
                 "type": "path",
                 "data": {
-                  "pathName": "Amp Note Return"
+                  "pathName": "Mid 1 Return"
                 }
               },
               {
@@ -130,7 +130,7 @@
               {
                 "type": "path",
                 "data": {
-                  "pathName": "Stage Note"
+                  "pathName": "Mid 3"
                 }
               },
               {
@@ -155,57 +155,7 @@
               {
                 "type": "path",
                 "data": {
-                  "pathName": "Stage Note Return"
-                }
-              }
-            ]
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "FullShoot"
-          }
-        },
-        {
-          "type": "parallel",
-          "data": {
-            "commands": [
-              {
-                "type": "path",
-                "data": {
-                  "pathName": "Center Note 1"
-                }
-              },
-              {
-                "type": "named",
-                "data": {
-                  "name": "RollerIn"
-                }
-              },
-              {
-                "type": "named",
-                "data": {
-                  "name": "IntakeOut"
-                }
-              }
-            ]
-          }
-        },
-        {
-          "type": "parallel",
-          "data": {
-            "commands": [
-              {
-                "type": "path",
-                "data": {
-                  "pathName": "Center Note 1 Return"
-                }
-              },
-              {
-                "type": "named",
-                "data": {
-                  "name": "IntakeIn"
+                  "pathName": "Mid 3 Return"
                 }
               }
             ]

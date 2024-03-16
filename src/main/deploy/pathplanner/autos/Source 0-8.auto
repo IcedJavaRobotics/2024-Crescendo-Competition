@@ -3,9 +3,9 @@
   "startingPose": {
     "position": {
       "x": 0.75,
-      "y": 6.55
+      "y": 4.55
     },
-    "rotation": 60.0
+    "rotation": -60.0
   },
   "command": {
     "type": "sequential",
@@ -18,15 +18,15 @@
           }
         },
         {
-          "type": "named",
-          "data": {
-            "name": "IntakeOut"
-          }
-        },
-        {
           "type": "parallel",
           "data": {
             "commands": [
+              {
+                "type": "named",
+                "data": {
+                  "name": "IntakeOut"
+                }
+              },
               {
                 "type": "named",
                 "data": {
@@ -36,7 +36,7 @@
               {
                 "type": "path",
                 "data": {
-                  "pathName": "S Amp Note"
+                  "pathName": "Source 8"
                 }
               }
             ]
@@ -47,15 +47,15 @@
           "data": {
             "commands": [
               {
-                "type": "named",
+                "type": "path",
                 "data": {
-                  "name": "IntakeIn"
+                  "pathName": "Source 8 Return"
                 }
               },
               {
-                "type": "path",
+                "type": "named",
                 "data": {
-                  "pathName": "S Amp Note Return"
+                  "name": "IntakeIn"
                 }
               }
             ]
