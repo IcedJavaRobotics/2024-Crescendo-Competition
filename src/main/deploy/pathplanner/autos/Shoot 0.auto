@@ -1,14 +1,20 @@
 {
   "version": 1.0,
-  "startingPose": null,
+  "startingPose": {
+    "position": {
+      "x": 1.42,
+      "y": 5.45
+    },
+    "rotation": 0.0
+  },
   "command": {
     "type": "sequential",
     "data": {
       "commands": [
         {
-          "type": "named",
+          "type": "path",
           "data": {
-            "name": "FullShoot"
+            "pathName": "New Path"
           }
         }
       ]

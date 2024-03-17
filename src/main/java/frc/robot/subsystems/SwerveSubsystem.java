@@ -81,6 +81,7 @@ public class SwerveSubsystem extends SubsystemBase {
             } catch (Exception e) {
             }
         }).start();
+
         // Configure AutoBuilder last
         modules = new SwerveModule[]{
             frontLeft, frontRight, backLeft, backRight
@@ -163,6 +164,10 @@ public class SwerveSubsystem extends SubsystemBase {
     }
     
     public void zeroHeading() {
+        gyro.setYaw(0);
+    }
+
+    public void zeroHeadingAuto() {
         gyro.setYaw(180);
     }
 

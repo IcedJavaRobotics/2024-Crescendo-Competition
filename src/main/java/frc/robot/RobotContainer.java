@@ -57,8 +57,8 @@ public class RobotContainer {
     public RobotContainer() {
         swerveSubsystem.setDefaultCommand(new SwerveJoystickCmd(
                 swerveSubsystem,
-                () -> -driverController.getRawAxis(OIConstants.DRIVER_Y_AXIS),
-                () -> -driverController.getRawAxis(OIConstants.DRIVER_X_AXIS),
+                () -> driverController.getRawAxis(OIConstants.DRIVER_Y_AXIS),
+                () -> driverController.getRawAxis(OIConstants.DRIVER_X_AXIS),
                 () -> driverController.getRawAxis(OIConstants.DRIVER_ROT_AXIS),
                 () -> !driverController.getRawButton(OIConstants.FIELD_ORIENTATED_BUTTON),
                 () -> driverController.getRawAxis(OIConstants.DRIVER_THROTTLE_AXIS),
@@ -146,14 +146,12 @@ public class RobotContainer {
     }
     
     public void registerNamedCommands() {
-        NamedCommands.registerCommand("RollerOutCommand", new StartRollerOutCommand(rollerSubsystem));
-        NamedCommands.registerCommand("ShooterCommand", new StartShooterCommand(shooterSubsystem));
-        NamedCommands.registerCommand("StopShootingCommand", new StopShootingCommand(shooterSubsystem, rollerSubsystem));
 
         NamedCommands.registerCommand("FullShoot", new FullShootCommand(shooterSubsystem, rollerSubsystem));
         NamedCommands.registerCommand("IntakeOut", new MoveIntakeOutCommand(intakeSubsystem));
         NamedCommands.registerCommand("IntakeIn", new MoveIntakeInCommand(intakeSubsystem));
         NamedCommands.registerCommand("RollerIn", new StartRollerInCommand(rollerSubsystem));
+        NamedCommands.registerCommand("ResetGyro", new InstantCommand(() -> swerveSubsystem.zeroHeading(), swerveSubsystem));
     }
 
     public void lockClimbers() {
