@@ -22,7 +22,7 @@ public class StartRollerInCommand extends Command {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    rollerSubsystem.rollerMotor.set(ControlMode.PercentOutput, 0.85);
+    rollerSubsystem.rollerMotor.set(ControlMode.PercentOutput, 0.75);
   }
 
   // Called every time the scheduler runs while the command is scheduled.

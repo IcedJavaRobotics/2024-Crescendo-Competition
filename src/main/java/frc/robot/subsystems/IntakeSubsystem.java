@@ -19,13 +19,13 @@ public class IntakeSubsystem extends SubsystemBase {
 
   public DigitalInput intakeLimitSwitch = new DigitalInput(IntakeConstants.LIMIT_SWITCH_ID);
 
-  public PIDController intakePidController = new PIDController(0.03, 0, 0);
+  public PIDController intakePidController = new PIDController(0.04, 0, 0);
 
   /** Creates a new IntakeSubsystem. */
   public IntakeSubsystem() {
     intakeMotor.setInverted(IntakeConstants.MOTOR_INVERTED);
 
-    intakePidController.setTolerance(1, 0.01);
+    intakePidController.setTolerance(0.5, 0.01);
 
   }
 

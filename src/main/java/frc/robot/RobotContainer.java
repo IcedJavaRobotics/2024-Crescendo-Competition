@@ -57,9 +57,9 @@ public class RobotContainer {
     public RobotContainer() {
         swerveSubsystem.setDefaultCommand(new SwerveJoystickCmd(
                 swerveSubsystem,
-                () -> driverController.getRawAxis(OIConstants.DRIVER_Y_AXIS),
-                () -> driverController.getRawAxis(OIConstants.DRIVER_X_AXIS),
-                () -> driverController.getRawAxis(OIConstants.DRIVER_ROT_AXIS),
+                () -> -driverController.getRawAxis(OIConstants.DRIVER_Y_AXIS),
+                () -> -driverController.getRawAxis(OIConstants.DRIVER_X_AXIS),
+                () -> -driverController.getRawAxis(OIConstants.DRIVER_ROT_AXIS),
                 () -> !driverController.getRawButton(OIConstants.FIELD_ORIENTATED_BUTTON),
                 () -> driverController.getRawAxis(OIConstants.DRIVER_THROTTLE_AXIS),
                 () -> driverController.getRawButton(OIConstants.SLOW_TURN_BUTTON)

@@ -68,12 +68,6 @@
           }
         },
         {
-          "type": "named",
-          "data": {
-            "name": "IntakeOut"
-          }
-        },
-        {
           "type": "parallel",
           "data": {
             "commands": [
@@ -87,6 +81,12 @@
                 "type": "named",
                 "data": {
                   "name": "RollerIn"
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "IntakeOut"
                 }
               }
             ]
@@ -118,12 +118,6 @@
           }
         },
         {
-          "type": "named",
-          "data": {
-            "name": "IntakeOut"
-          }
-        },
-        {
           "type": "parallel",
           "data": {
             "commands": [
@@ -137,6 +131,12 @@
                 "type": "named",
                 "data": {
                   "name": "RollerIn"
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "IntakeOut"
                 }
               }
             ]

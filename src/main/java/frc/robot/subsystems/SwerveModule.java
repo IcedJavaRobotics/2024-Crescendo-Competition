@@ -122,7 +122,7 @@ public class SwerveModule {
 
     public double getAbsoluteEncoderRad() {
         double angle = absoluteEncoder.getAbsolutePosition().getValue();
-        angle =  (angle + .5) * 2 * Math.PI;
+        angle =  (angle) * 2 * Math.PI;
         angle -= absoluteEncoderOffsetRad;
         angle = (angle * (absoluteEncoderReversed ? -1.0 : 1.0)) % (2*Math.PI);
         if(angle > 0) {
@@ -140,7 +140,7 @@ public class SwerveModule {
 
     public double getRawEncoderValue() {
         double angle = absoluteEncoder.getAbsolutePosition().getValue();
-        angle = (angle + .5) * 2 * Math.PI;
+        angle = (angle) * 2 * Math.PI;
         return (angle * (absoluteEncoderReversed ? -1.0 : 1.0));
     }
 
