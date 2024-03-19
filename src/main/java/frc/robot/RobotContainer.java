@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.RunCommand;
+import edu.wpi.first.wpilibj2.command.button.CommandJoystick;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.Constants.OIConstants;
@@ -53,7 +54,7 @@ public class RobotContainer {
 
     private final CommandXboxController driverController = new CommandXboxController(OIConstants.DRIVER_CONTROLLER_PORT);
     private final CommandXboxController auxController = new CommandXboxController(OIConstants.AUX_CONTROLLER_PORT);
-    private final Joystick driverStation = new Joystick(OIConstants.DRIVER_STATION_PORT);
+    private final CommandJoystick driverStation = new CommandJoystick(OIConstants.DRIVER_STATION_PORT);
 
     public RobotContainer() {
         swerveSubsystem.setDefaultCommand(new SwerveJoystickCmd(
@@ -106,28 +107,40 @@ public class RobotContainer {
 
         auxController.y().whileTrue(new EmergencyEjectCommand(rollerSubsystem, intakeSubsystem));
 
-        new JoystickButton(driverStation, 10 ) //9
-                .onTrue(new InstantCommand(() -> intakeSubsystem.zeroIntakeEncoder()));
+        // new JoystickButton(driverStation, 10 ) //9
+        //         .onTrue(new InstantCommand(() -> intakeSubsystem.zeroIntakeEncoder()));
 
-        new JoystickButton (driverStation, 1 ) //1
-                .whileTrue(new IntakeOutCommand(intakeSubsystem));
+        driverStation.button(10).onTrue(new InstantCommand(() -> intakeSubsystem.zeroIntakeEncoder()));
 
-        new JoystickButton (driverStation, 6 ) //4
-                .whileTrue(new IntakeInCommand(intakeSubsystem));  
+        // new JoystickButton (driverStation, 1 ) //1
+        //         .whileTrue(new IntakeOutCommand(intakeSubsystem));
 
-        new JoystickButton (driverStation, 9 ) //2
-                .whileTrue(new RollerInCommand(rollerSubsystem));  
+        driverStation.button(1).whileTrue(new IntakeOutCommand(intakeSubsystem));
 
-        new JoystickButton (driverStation, 8 ) //5
-                .whileTrue(new RollerOutCommand(rollerSubsystem));
+        // new JoystickButton (driverStation, 6 ) //4
+        //         .whileTrue(new IntakeInCommand(intakeSubsystem));  
+
+        driverStation.button(6).whileFalse(new IntakeInCommand(intakeSubsystem));
+
+        // new JoystickButton (driverStation, 9 ) //2
+        //         .whileTrue(new RollerInCommand(rollerSubsystem));  
+
+        driverStation.button(9).whileTrue(new RollerInCommand(rollerSubsystem));
+
+        // new JoystickButton (driverStation, 8 ) //5
+        //         .whileTrue(new RollerOutCommand(rollerSubsystem));
+
+        driverStation.button(8).whileTrue(new RollerOutCommand(rollerSubsystem));
 
         // new JoystickButton(driverController, XboxController.Button.kRightBumper.value)
         //         .whileTrue(new PickupNoteCommand(intakeSubsystem, rollerSubsystem));
 
         driverController.rightBumper().whileTrue(new PickupNoteCommand(intakeSubsystem, rollerSubsystem));
 
-        new JoystickButton(driverStation, 2) //3
-                .whileTrue(new ShooterOutCommand(shooterSubsystem));
+        // new JoystickButton(driverStation, 2) //3
+        //         .whileTrue(new ShooterOutCommand(shooterSubsystem));
+
+        driverStation.button(2).whileTrue(new ShooterOutCommand(shooterSubsystem));
 
         // new JoystickButton(auxController, XboxController.Button.kA.value)
         //         .whileTrue(new NoteShootCommand(shooterSubsystem, rollerSubsystem));
@@ -154,8 +167,10 @@ public class RobotContainer {
 
         auxController.x().whileTrue(new LoadFlipperCommand(rollerSubsystem, intakeSubsystem));
 
-        new JoystickButton(driverStation, 4)
-                .whileTrue(new InstantCommand(() -> pneumaticSubsystem.lockClimber()));
+        // new JoystickButton(driverStation, 4)
+        //         .whileTrue(new InstantCommand(() -> pneumaticSubsystem.lockClimber()));
+
+        driverStation.button(4).whileTrue(new InstantCommand(() -> pneumaticSubsystem.lockClimber()));
 
                 
         // new JoystickButton(auxController, XboxController.Button.kStart.value)
