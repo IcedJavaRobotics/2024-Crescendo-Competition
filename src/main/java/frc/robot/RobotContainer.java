@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.RunCommand;
+import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.Constants.OIConstants;
 import frc.robot.commands.SwerveJoystickCmd;
@@ -50,8 +51,8 @@ public class RobotContainer {
 
     private final SendableChooser<Command> autoChooser; 
 
-    private final XboxController driverController = new XboxController(OIConstants.DRIVER_CONTROLLER_PORT);
-    private final XboxController auxController = new XboxController(OIConstants.AUX_CONTROLLER_PORT);
+    private final CommandXboxController driverController = new CommandXboxController(OIConstants.DRIVER_CONTROLLER_PORT);
+    private final CommandXboxController auxController = new CommandXboxController(OIConstants.AUX_CONTROLLER_PORT);
     private final Joystick driverStation = new Joystick(OIConstants.DRIVER_STATION_PORT);
 
     public RobotContainer() {
@@ -60,9 +61,9 @@ public class RobotContainer {
                 () -> -driverController.getRawAxis(OIConstants.DRIVER_Y_AXIS),
                 () -> -driverController.getRawAxis(OIConstants.DRIVER_X_AXIS),
                 () -> -driverController.getRawAxis(OIConstants.DRIVER_ROT_AXIS),
-                () -> !driverController.getRawButton(OIConstants.FIELD_ORIENTATED_BUTTON),
+                () -> !driverController.button(OIConstants.FIELD_ORIENTATED_BUTTON).getAsBoolean(),
                 () -> driverController.getRawAxis(OIConstants.DRIVER_THROTTLE_AXIS),
-                () -> driverController.getRawButton(OIConstants.SLOW_TURN_BUTTON)
+                () -> driverController.button(OIConstants.SLOW_TURN_BUTTON).getAsBoolean()
                 ));
         
         configureButtonBindings();
@@ -83,17 +84,27 @@ public class RobotContainer {
 
     private void configureButtonBindings() {
 
-        new JoystickButton(driverController, XboxController.Button.kB.value)
-                .onTrue(new InstantCommand(() -> swerveSubsystem.zeroHeading()));
+        driverController.getRawAxis(5);
 
-        new JoystickButton(auxController, XboxController.Button.kStart.value)
-                .onTrue(new MediumRollerOutCommand(rollerSubsystem));
+        // new JoystickButton(driverController, XboxController.Button.kB.value)
+        //         .onTrue(new InstantCommand(() -> swerveSubsystem.zeroHeading()));
 
-        new JoystickButton(auxController, XboxController.Button.kBack.value)
-                .onTrue(new SlowRollerInCommand(rollerSubsystem));
+        driverController.b().whileTrue(new InstantCommand(() -> swerveSubsystem.zeroHeading()));
+
+        // new JoystickButton(auxController, XboxController.Button.kStart.value)
+        //         .onTrue(new MediumRollerOutCommand(rollerSubsystem));
+
+        auxController.start().whileTrue(new MediumRollerOutCommand(rollerSubsystem));
+
+        // new JoystickButton(auxController, XboxController.Button.kBack.value)
+        //         .onTrue(new SlowRollerInCommand(rollerSubsystem));
+
+        auxController.back().whileTrue(new SlowRollerInCommand(rollerSubsystem));
                 
-        new JoystickButton(auxController, XboxController.Button.kY.value)
-                .onTrue(new EmergencyEjectCommand(rollerSubsystem, intakeSubsystem));
+        // new JoystickButton(auxController, XboxController.Button.kY.value)
+        //         .onTrue(new EmergencyEjectCommand(rollerSubsystem, intakeSubsystem));
+
+        auxController.y().whileTrue(new EmergencyEjectCommand(rollerSubsystem, intakeSubsystem));
 
         new JoystickButton(driverStation, 10 ) //9
                 .onTrue(new InstantCommand(() -> intakeSubsystem.zeroIntakeEncoder()));
@@ -110,26 +121,38 @@ public class RobotContainer {
         new JoystickButton (driverStation, 8 ) //5
                 .whileTrue(new RollerOutCommand(rollerSubsystem));
 
-        new JoystickButton(driverController, XboxController.Button.kRightBumper.value)
-                .whileTrue(new PickupNoteCommand(intakeSubsystem, rollerSubsystem));
+        // new JoystickButton(driverController, XboxController.Button.kRightBumper.value)
+        //         .whileTrue(new PickupNoteCommand(intakeSubsystem, rollerSubsystem));
+
+        driverController.rightBumper().whileTrue(new PickupNoteCommand(intakeSubsystem, rollerSubsystem));
 
         new JoystickButton(driverStation, 2) //3
                 .whileTrue(new ShooterOutCommand(shooterSubsystem));
 
-        new JoystickButton(auxController, XboxController.Button.kA.value)
-                .whileTrue(new NoteShootCommand(shooterSubsystem, rollerSubsystem));
+        // new JoystickButton(auxController, XboxController.Button.kA.value)
+        //         .whileTrue(new NoteShootCommand(shooterSubsystem, rollerSubsystem));
 
-        new JoystickButton(auxController, XboxController.Button.kRightBumper.value)
-                .whileTrue(new ClimberUpCommand(climberSubsystem, pneumaticSubsystem));
+        auxController.a().whileTrue(new NoteShootCommand(shooterSubsystem, rollerSubsystem));
 
-        new JoystickButton(auxController, XboxController.Button.kLeftBumper.value)
-                .whileTrue(new ClimberDownCommand(climberSubsystem, pneumaticSubsystem));
+        // new JoystickButton(auxController, XboxController.Button.kRightBumper.value)
+        //         .whileTrue(new ClimberUpCommand(climberSubsystem, pneumaticSubsystem));
 
-        new JoystickButton(auxController, XboxController.Button.kB.value)
-                .whileTrue(new AmpScoreCommand(pneumaticSubsystem));
+        auxController.rightBumper().whileTrue(new ClimberUpCommand(climberSubsystem, pneumaticSubsystem));
+
+        // new JoystickButton(auxController, XboxController.Button.kLeftBumper.value)
+        //         .whileTrue(new ClimberDownCommand(climberSubsystem, pneumaticSubsystem));
+
+        auxController.leftBumper().whileTrue(new ClimberDownCommand(climberSubsystem, pneumaticSubsystem));
+
+        // new JoystickButton(auxController, XboxController.Button.kB.value)
+        //         .whileTrue(new AmpScoreCommand(pneumaticSubsystem));
+
+        auxController.b().whileTrue(new AmpScoreCommand(pneumaticSubsystem));
                 
-        new JoystickButton(auxController, XboxController.Button.kX.value)
-                .whileTrue(new LoadFlipperCommand(rollerSubsystem, intakeSubsystem));
+        // new JoystickButton(auxController, XboxController.Button.kX.value)
+        //         .whileTrue(new LoadFlipperCommand(rollerSubsystem, intakeSubsystem));
+
+        auxController.x().whileTrue(new LoadFlipperCommand(rollerSubsystem, intakeSubsystem));
 
         new JoystickButton(driverStation, 4)
                 .whileTrue(new InstantCommand(() -> pneumaticSubsystem.lockClimber()));
@@ -144,6 +167,8 @@ public class RobotContainer {
         //         .whileTrue(new InstantCommand(() -> driverController.setRumble(RumbleType.kBothRumble, 1)));
         
     }
+    
+
     
     public void registerNamedCommands() {
 
