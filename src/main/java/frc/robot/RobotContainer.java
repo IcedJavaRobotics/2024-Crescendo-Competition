@@ -172,6 +172,9 @@ public class RobotContainer {
 
         driverStation.button(4).whileTrue(new InstantCommand(() -> pneumaticSubsystem.lockClimber()));
 
+
+        driverController.leftBumper().whileTrue(new IntakeOutCommand(intakeSubsystem).andThen(new RollerInCommand(rollerSubsystem)));
+
                 
         // new JoystickButton(auxController, XboxController.Button.kStart.value)
         //         .whileTrue(new InstantCommand(() -> shooterSubsystem.setSpeed(0)));

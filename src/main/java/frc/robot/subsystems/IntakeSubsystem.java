@@ -97,6 +97,18 @@ public class IntakeSubsystem extends SubsystemBase {
     return false;
   }
 
+  public boolean ampSpot() {
+
+    if(Math.abs(intakeMotor.getEncoder().getPosition() - IntakeConstants.AMP_ENCODER_TARGET) < 1) {
+      stopIntakeMotor();
+      return true;
+    }
+    
+    //intakeMotor.set(-IntakeConstants.SPEED);
+    intakeMotor.set(intakePidController.calculate(intakeMotor.getEncoder().getPosition(), IntakeConstants.AMP_ENCODER_TARGET));
+    return false;
+  }
+
   public boolean ejectSpot() {
 
     if((intakeMotor.getEncoder().getPosition() - IntakeConstants.EJECT_LIMIT) <= 0) {

@@ -41,11 +41,11 @@ public class RollerSubsystem extends SubsystemBase {
    */
   public void turnRollerIn() {  // return type was boolean
 
-    if(havePiece()) {
-      stopRollerMotor();
-    } else {
+    // if(havePiece()) {
+    //   stopRollerMotor();
+    // } else {
       rollerMotor.set(ControlMode.PercentOutput, RollerConstants.INTAKE_SPEED);
-    }
+    // }
   }
 
   public void turnRollerInNoLimit() {
