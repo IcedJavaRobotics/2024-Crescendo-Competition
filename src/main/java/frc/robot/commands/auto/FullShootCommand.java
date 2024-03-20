@@ -34,7 +34,7 @@ public class FullShootCommand extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    shooterSubsystem.setSpeed(1);
+    shooterSubsystem.setSpeed(.9);
 
     if(Math.abs(startTime - Timer.getMatchTime()) > 0.25) {
       rollerSubsystem.setSpeed(-1);
