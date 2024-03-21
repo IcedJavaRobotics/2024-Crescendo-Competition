@@ -38,7 +38,7 @@ public final class Constants {
         
         public static final double SHOOTER_SPEED = 1;
 
-        public static final double FLIPPER_SPEED = .45; // 0.8
+        public static final double FLIPPER_SPEED = .6; // 0.8
 
         public static final double INTAKE_SPEED = 1;
 
