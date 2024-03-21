@@ -120,7 +120,7 @@ public class RobotContainer {
         // new JoystickButton (driverStation, 6 ) //4
         //         .whileTrue(new IntakeInCommand(intakeSubsystem));  
 
-        driverStation.button(6).whileFalse(new IntakeInCommand(intakeSubsystem));
+        driverStation.button(6).whileTrue(new IntakeInCommand(intakeSubsystem));
 
         // new JoystickButton (driverStation, 9 ) //2
         //         .whileTrue(new RollerInCommand(rollerSubsystem));  

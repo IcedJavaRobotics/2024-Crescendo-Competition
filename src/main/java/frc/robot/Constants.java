@@ -20,7 +20,7 @@ public final class Constants {
 
         public static final double SPEED = 0.55;
 
-        public static final int FLIPPER_LIMIT = -15;
+        public static final int FLIPPER_LIMIT = -13;
 
         public static final int AMP_ENCODER_TARGET = -30;
         
