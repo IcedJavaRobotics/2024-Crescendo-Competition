@@ -60,7 +60,7 @@ public final class Constants {
         public static final boolean RIGHT_MOTOR_INVERTED = true;
 
         public static final int UPPER_LEFT_LIMIT = 14800;
-        public static final int UPPER_RIGHT_LIMIT = 14800; 
+        public static final int UPPER_RIGHT_LIMIT = 14500; 
 
         public static final int LOWER_LEFT_LIMIT = 100;
         public static final int LOWER_RIGHT_LIMIT = 10;

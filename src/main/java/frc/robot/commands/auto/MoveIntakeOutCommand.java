@@ -37,7 +37,7 @@ public class MoveIntakeOutCommand extends Command {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if(intakeSubsystem.getIntakeEncoder() < -74 && intakeSubsystem.getIntakeEncoder() > -76) {
+    if(intakeSubsystem.getIntakeEncoder() < -74.5) {
       return true;
     }
 
