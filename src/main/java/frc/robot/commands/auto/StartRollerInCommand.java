@@ -22,7 +22,7 @@ public class StartRollerInCommand extends Command {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    rollerSubsystem.rollerMotor.set(ControlMode.PercentOutput, 0.90);
+    rollerSubsystem.rollerMotor.set(ControlMode.PercentOutput, 1.0);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -38,7 +38,7 @@ public class StartRollerInCommand extends Command {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if(rollerSubsystem.havePiece()){
+    if(rollerSubsystem.havePiece()) {
       return true;
     }
 

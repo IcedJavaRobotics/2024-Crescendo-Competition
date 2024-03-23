@@ -49,7 +49,7 @@ public class RollerSubsystem extends SubsystemBase {
   }
 
   public void turnRollerInNoLimit() {
-    rollerMotor.set(ControlMode.PercentOutput, RollerConstants.INTAKE_SPEED);
+    rollerMotor.set(ControlMode.PercentOutput, 0.5);
   }
 
   /**

@@ -20,7 +20,7 @@ public final class Constants {
 
         public static final double SPEED = 0.55;
 
-        public static final int FLIPPER_LIMIT = -13;//15
+        public static final int FLIPPER_LIMIT = -12;//15
         
         public static final int EJECT_LIMIT = -50;
 
@@ -38,7 +38,7 @@ public final class Constants {
         
         public static final double SHOOTER_SPEED = 1;
 
-        public static final double FLIPPER_SPEED = .6; // 0.8
+        public static final double FLIPPER_SPEED = .5; // 0.8
 
         public static final double INTAKE_SPEED = 1;
 
