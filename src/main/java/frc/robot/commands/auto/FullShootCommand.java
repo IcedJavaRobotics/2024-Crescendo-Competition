@@ -27,8 +27,8 @@ public class FullShootCommand extends Command {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    startTime = Timer.getMatchTime();
-    //startTime = System.currentTimeMillis();
+    //startTime = Timer.getMatchTime();
+    startTime = System.currentTimeMillis();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -36,13 +36,13 @@ public class FullShootCommand extends Command {
   public void execute() {
     shooterSubsystem.setSpeed(.9);
 
-    if(Math.abs(startTime - Timer.getMatchTime()) > 0.25) {
-      rollerSubsystem.setSpeed(-1);
-    }
-
-    // if(Math.abs(startTime - System.currentTimeMillis()) > 250) {
-    //   rollerSubsystem.setSpeed(-.5);
+    // if(Math.abs(startTime - Timer.getMatchTime()) > 0.25) {
+    //   rollerSubsystem.setSpeed(-1);
     // }
+
+    if(Math.abs(startTime - System.currentTimeMillis()) > 250) {
+      rollerSubsystem.setSpeed(-.5);
+    }
   }
 
   // Called once the command ends or is interrupted.
@@ -55,13 +55,13 @@ public class FullShootCommand extends Command {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if(Math.abs(startTime - Timer.getMatchTime()) > 1) {
-      return true;
-    }
-
-    // if(Math.abs(startTime - System.currentTimeMillis()) > 1000) {
+    // if(Math.abs(startTime - Timer.getMatchTime()) > 1) {
     //   return true;
     // }
+
+    if(Math.abs(startTime - System.currentTimeMillis()) > 1000) {
+      return true;
+    }
 
     return false;
   }
