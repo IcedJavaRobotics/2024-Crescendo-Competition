@@ -90,16 +90,14 @@ public final class Constants {
     }
 
     public static final class BlinkinConstants {
-    
-        
+        public static final int BLINKIN = 0;
+        public static final double RED = .61; 
+        public static final double BLUE = .87;
+        public static final double RAINBOW = -.89; 
+        public static final double GREEN = .77; 
+        public static final double OCEAN = -.51; 
+        public static final double FOREST = -.71; 
     }
-    public static final int BLINKIN = 0;
-    public static final double RED = .61; 
-    public static final double BLUE = .87;
-    public static final double RAINBOW = -.89; 
-    public static final double GREEN = .77; 
-    public static final double OCEAN = -.51; 
-    public static final double FOREST = -.71; 
 
     public static final class ModuleConstants {
         //The diameter of the wheel on your swerve drive

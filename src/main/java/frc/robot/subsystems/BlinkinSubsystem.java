@@ -11,13 +11,14 @@ import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj.motorcontrol.Spark;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import frc.robot.Constants.BlinkinConstants;
 
 public class BlinkinSubsystem extends SubsystemBase {
   /** Creates a new BlinkinSubsystem. */
   private Spark blinkin; 
   public BlinkinSubsystem() {
 
-    blinkin = new Spark(Constants.BLINKIN);
+    blinkin = new Spark(BlinkinConstants.BLINKIN);
 
   }
   
@@ -27,7 +28,7 @@ public class BlinkinSubsystem extends SubsystemBase {
    **/
   public void turnBlinkinRed(){
 
-    blinkin.set(Constants.RED);
+    blinkin.set(BlinkinConstants.RED);
 
   }
 
@@ -36,7 +37,7 @@ public class BlinkinSubsystem extends SubsystemBase {
    */
   public void turnBlinkinBlue(){
 
-    blinkin.set(Constants.BLUE);
+    blinkin.set(BlinkinConstants.BLUE);
 
   }
 
@@ -45,7 +46,7 @@ public class BlinkinSubsystem extends SubsystemBase {
    */
   public void turnBlinkinGreen(){
 
-    blinkin.set(Constants.GREEN);
+    blinkin.set(BlinkinConstants.GREEN);
 
   }
 
@@ -54,7 +55,7 @@ public class BlinkinSubsystem extends SubsystemBase {
    */
   public void turnBlinkinRainbow(){
 
-  blinkin.set(Constants.RAINBOW);
+  blinkin.set(BlinkinConstants.RAINBOW);
 
   }
 
@@ -63,7 +64,7 @@ public class BlinkinSubsystem extends SubsystemBase {
    */
   public void turnBlinkinOcean(){
 
-    blinkin.set(Constants.OCEAN);
+    blinkin.set(BlinkinConstants.OCEAN);
 
   }
 
@@ -72,8 +73,25 @@ public class BlinkinSubsystem extends SubsystemBase {
    */
   public void turnBlinkinForest(){
 
-  blinkin.set(Constants.FOREST);     
+  blinkin.set(BlinkinConstants.FOREST);     
 
+  }
+
+  public void turnBlinkinAllianceColor(){
+      Optional<Alliance> ally = DriverStation.getAlliance();
+      if(ally.isPresent()) {
+
+          if(ally.get() == Alliance.Red){
+            turnBlinkinRed();
+          }
+          if(ally.get() == Alliance.Blue){
+            turnBlinkinBlue();
+          }
+
+      }
+      else{
+        turnBlinkinOcean();
+      }
   }
 
   /**
@@ -99,6 +117,13 @@ public class BlinkinSubsystem extends SubsystemBase {
     
 
 
+    public void intakeColor(boolean havePiece){
+        if(havePiece){
+          turnBlinkinForest();
+        } else{
+          turnBlinkinAllianceColor();
+        }
+    }
   
 
   @Override
