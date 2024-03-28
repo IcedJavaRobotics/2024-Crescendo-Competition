@@ -23,18 +23,18 @@ public class SlowRollerInCommand extends Command {
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {
-    rollerSubsystem.rollerMotor.set(ControlMode.PercentOutput, RollerConstants.SLOW_SPEED);
-  }
+  public void initialize() {}
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {}
+  public void execute() {
+    rollerSubsystem.setSpeed(RollerConstants.SLOW_SPEED);
+  }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    rollerSubsystem.rollerMotor.set(ControlMode.PercentOutput, 0);
+    rollerSubsystem.setSpeed(0);
   }
 
   // Returns true when the command should end.

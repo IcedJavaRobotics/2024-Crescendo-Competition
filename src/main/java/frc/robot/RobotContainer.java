@@ -89,11 +89,8 @@ public class RobotContainer {
         new JoystickButton(auxController, XboxController.Button.kStart.value)
                 .onTrue(new MediumRollerOutCommand(rollerSubsystem));
 
-        new JoystickButton(auxController, XboxController.Button.kBack.value)
-                .onTrue(new SlowRollerInCommand(rollerSubsystem));
-                
         new JoystickButton(auxController, XboxController.Button.kY.value)
-                .onTrue(new EmergencyEjectCommand(rollerSubsystem, intakeSubsystem));
+                .whileTrue(new SlowRollerInCommand(rollerSubsystem));
 
         new JoystickButton(driverStation, 10 ) //9
                 .onTrue(new InstantCommand(() -> intakeSubsystem.zeroIntakeEncoder()));

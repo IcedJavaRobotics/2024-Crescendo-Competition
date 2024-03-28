@@ -20,7 +20,7 @@ public final class Constants {
 
         public static final double SPEED = 0.55;
 
-        public static final int FLIPPER_LIMIT = -12;//15
+        public static final int FLIPPER_LIMIT = -13;//15
         
         public static final int EJECT_LIMIT = -50;
 
@@ -38,12 +38,12 @@ public final class Constants {
         
         public static final double SHOOTER_SPEED = 1;
 
-        public static final double FLIPPER_SPEED = .5; // 0.8
+        public static final double FLIPPER_SPEED = .35; // 0.8
 
         public static final double INTAKE_SPEED = 1;
 
         public static final double MEDIUM_SPEED = 0.4;
-        public static final double SLOW_SPEED = 0.25;
+        public static final double SLOW_SPEED = 0.6;
 
         public static final double EJECT_SPEED = 0.6;
 
@@ -226,7 +226,7 @@ public final class Constants {
         // Deadband for the controller
         public static final double DEADBAND = 0.2;
         // Button used to enable robot orientation driving
-        public static final int FIELD_ORIENTATED_BUTTON = 4;
+        public static final int FIELD_ORIENTATED_BUTTON = 5;
         // Button used to enable slow turning
         public static final int SLOW_TURN_BUTTON = 1;
 

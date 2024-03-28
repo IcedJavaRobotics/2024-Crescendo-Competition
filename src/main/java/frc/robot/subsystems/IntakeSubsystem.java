@@ -99,7 +99,7 @@ public class IntakeSubsystem extends SubsystemBase {
 
   public boolean ejectSpot() {
 
-    if((intakeMotor.getEncoder().getPosition() - IntakeConstants.EJECT_LIMIT) <= 0) {
+    if(Math.abs(intakeMotor.getEncoder().getPosition() - IntakeConstants.EJECT_LIMIT) <= 1) {
       stopIntakeMotor();
       return true;
     }
