@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.PneumaticsConstants;
+import frc.robot.Constants.ShooterConstants;
 
 public class PneumaticSubsystem extends SubsystemBase {
   /** Creates a new PneumaticSubsystem. */
@@ -67,7 +68,7 @@ public class PneumaticSubsystem extends SubsystemBase {
   public void cooldownFlyswatter(){
     if(ampWaitingToCooldown) {
       //If it has been COOLDOWN_TIME amount of time since fired set speed to 0
-      if((timeScore-Timer.getMatchTime()) < PneumaticsConstants.AMP_HOLD_TIME) {
+      if((timeScore-System.currentTimeMillis()) < ShooterConstants.COOLDOWN_TIME) {
         ampFlyswatter.set(false);
         this.ampWaitingToCooldown = false;
       }

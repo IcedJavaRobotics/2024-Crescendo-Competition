@@ -123,10 +123,7 @@ public class RobotContainer {
                 .whileTrue(new ClimberDownCommand(climberSubsystem, pneumaticSubsystem));
 
         new JoystickButton(auxController, XboxController.Button.kB.value)
-                .whileTrue(new AmpScoreCommand(pneumaticSubsystem));
-                
-        new JoystickButton(auxController, XboxController.Button.kX.value)
-                .whileTrue(new LoadFlipperCommand(rollerSubsystem, intakeSubsystem));
+                .whileTrue(new AmpShootCommand(shooterSubsystem, rollerSubsystem, pneumaticSubsystem));
 
         new JoystickButton(driverStation, 4)
                 .whileTrue(new InstantCommand(() -> pneumaticSubsystem.lockClimber()));

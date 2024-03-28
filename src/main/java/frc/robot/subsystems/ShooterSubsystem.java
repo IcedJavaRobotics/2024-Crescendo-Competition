@@ -9,6 +9,7 @@ import com.revrobotics.CANSparkMax;
 // import com.revrobotics.CANSparkMax.IdleMode;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants.ShooterConstants;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -57,7 +58,7 @@ public class ShooterSubsystem extends SubsystemBase {
   public void cooldownShooter() {
     if(shooterWaitingToCooldown) {
       //If it has been COOLDOWN_TIME amount of time since fired set speed to 0
-      if(Math.abs(timeShotShooter-Timer.getMatchTime()) > ShooterConstants.COOLDOWN_TIME) {
+      if(Math.abs(timeShotShooter-System.currentTimeMillis()) > ShooterConstants.COOLDOWN_TIME) {
         leftMotor.set(0);
         rightMotor.set(0);
         this.shooterWaitingToCooldown = false;
