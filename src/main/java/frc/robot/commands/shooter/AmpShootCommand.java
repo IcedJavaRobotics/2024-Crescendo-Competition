@@ -53,7 +53,7 @@ public class AmpShootCommand extends Command {
       shooterSubsystem.setSpeed(0); //stop the motor in that case
     } else {   //if its more then that, fire anyway
 
-      rollerSubsystem.rollerMotor.set(ControlMode.PercentOutput, -RollerConstants.MEDIUM_SPEED);
+      rollerSubsystem.rollerMotor.set(ControlMode.PercentOutput, -RollerConstants.SHOOTER_SPEED);
       shooterSubsystem.initSpeedDisabler(System.currentTimeMillis()); //waits a second before setting the speed to 0.
       rollerSubsystem.initSpeedDisabler(System.currentTimeMillis());
       pneumaticSubsystem.initSpeedDisabler(System.currentTimeMillis());

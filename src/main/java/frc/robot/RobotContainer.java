@@ -142,6 +142,7 @@ public class RobotContainer {
     public void registerNamedCommands() {
 
         NamedCommands.registerCommand("FullShoot", new FullShootCommand(shooterSubsystem, rollerSubsystem));
+        NamedCommands.registerCommand("SideShoot", new SideShootCommand(shooterSubsystem, rollerSubsystem));
         NamedCommands.registerCommand("IntakeOut", new MoveIntakeOutCommand(intakeSubsystem));
         NamedCommands.registerCommand("IntakeIn", new MoveIntakeInCommand(intakeSubsystem));
         NamedCommands.registerCommand("RollerIn", new StartRollerInCommand(rollerSubsystem));

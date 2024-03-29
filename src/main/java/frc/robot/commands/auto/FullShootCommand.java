@@ -36,12 +36,8 @@ public class FullShootCommand extends Command {
   public void execute() {
     shooterSubsystem.setSpeed(.9);
 
-    // if(Math.abs(startTime - Timer.getMatchTime()) > 0.25) {
-    //   rollerSubsystem.setSpeed(-1);
-    // }
-
     if(Math.abs(startTime - System.currentTimeMillis()) > 250) {
-      rollerSubsystem.setSpeed(-.5);
+      rollerSubsystem.setSpeed(-1);
     }
   }
 
@@ -55,10 +51,6 @@ public class FullShootCommand extends Command {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    // if(Math.abs(startTime - Timer.getMatchTime()) > 1) {
-    //   return true;
-    // }
-
     if(Math.abs(startTime - System.currentTimeMillis()) > 1000) {
       return true;
     }
