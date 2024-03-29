@@ -10,7 +10,6 @@ import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj.motorcontrol.Spark;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.Constants;
 import frc.robot.Constants.BlinkinConstants;
 
 public class BlinkinSubsystem extends SubsystemBase {
@@ -19,6 +18,7 @@ public class BlinkinSubsystem extends SubsystemBase {
   public BlinkinSubsystem() {
 
     blinkin = new Spark(BlinkinConstants.BLINKIN);
+    
 
   }
   
@@ -26,7 +26,7 @@ public class BlinkinSubsystem extends SubsystemBase {
   /**
    * <p> Turns the Blinkin Red
    **/
-  public void turnBlinkinRed(){
+  public void turnBlinkinRed() {
 
     blinkin.set(BlinkinConstants.RED);
 
@@ -35,7 +35,7 @@ public class BlinkinSubsystem extends SubsystemBase {
   /**
    * <p> Turns the Blinkin Blue 
    */
-  public void turnBlinkinBlue(){
+  public void turnBlinkinBlue() {
 
     blinkin.set(BlinkinConstants.BLUE);
 
@@ -44,7 +44,7 @@ public class BlinkinSubsystem extends SubsystemBase {
   /**
    * <p> Turns the Blinkin Green 
    */
-  public void turnBlinkinGreen(){
+  public void turnBlinkinGreen() {
 
     blinkin.set(BlinkinConstants.GREEN);
 
@@ -53,16 +53,16 @@ public class BlinkinSubsystem extends SubsystemBase {
   /**
    * <p> Turns the Blinkin Rainbow 
    */
-  public void turnBlinkinRainbow(){
+  public void turnBlinkinRainbow() {
 
-  blinkin.set(BlinkinConstants.RAINBOW);
+    blinkin.set(BlinkinConstants.RAINBOW);
 
   }
 
   /**
    * <p> Turns the Blinkin Ocean
    */
-  public void turnBlinkinOcean(){
+  public void turnBlinkinOcean() {
 
     blinkin.set(BlinkinConstants.OCEAN);
 
@@ -71,63 +71,63 @@ public class BlinkinSubsystem extends SubsystemBase {
   /**
    * <p> Turns the Blinkin Forest 
    */
-  public void turnBlinkinForest(){
+  public void turnBlinkinForest() {
 
-  blinkin.set(BlinkinConstants.FOREST);     
+    blinkin.set(BlinkinConstants.FOREST);     
 
   }
 
-  public void turnBlinkinAllianceColor(){
-      Optional<Alliance> ally = DriverStation.getAlliance();
-      if(ally.isPresent()) {
+  public void turnBlinkinAllianceColor() {
+    Optional<Alliance> ally = DriverStation.getAlliance();
+    if(ally.isPresent()) {
 
-          if(ally.get() == Alliance.Red){
-            turnBlinkinRed();
-          }
-          if(ally.get() == Alliance.Blue){
-            turnBlinkinBlue();
-          }
+      if(ally.get() == Alliance.Red){
+        turnBlinkinRed();
+      }
+      if(ally.get() == Alliance.Blue){
+        turnBlinkinBlue();
+      }
 
-      }
-      else{
-        turnBlinkinOcean();
-      }
+    }
+    else{
+      turnBlinkinOcean();
+    }
   }
 
   /**
    * <p> Turns Blinkin red if the robot alliance is red and turns Blinkin blue if the robot alliance is blue. If there is no robot alliance color then Blinkin turns forest. 
    */
-  public void autoBlinkin(){
+  public void autoBlinkin() {
     Optional<Alliance> color = DriverStation.getAlliance();
-   if (color.isPresent()){
-      if (color.get() == Alliance.Red){
-          turnBlinkinRed();
+    if (color.isPresent()) {
+      if (color.get() == Alliance.Red) {
+        turnBlinkinRed();
 
       }
 
-      if (color.get() == Alliance.Blue){
-          turnBlinkinBlue();
+      if (color.get() == Alliance.Blue) {
+        turnBlinkinBlue();
       }
-   }
-    else {
-          turnBlinkinForest();
-     }
-
     }
+    else {
+      turnBlinkinForest();
+    }
+
+  }
     
 
 
-    public void intakeColor(boolean havePiece){
-        if(havePiece){
-          turnBlinkinForest();
-        } else{
-          turnBlinkinOff();
-        }
+  public void intakeColor(boolean havePiece) {
+    if(havePiece) {
+      turnBlinkinGreen();
+    } else{
+      turnBlinkinOff();
     }
+  }
   
-    public void turnBlinkinOff() {
-      blinkin.set(BlinkinConstants.BLACK);
-    }
+  public void turnBlinkinOff() {
+    blinkin.set(BlinkinConstants.BLACK);
+  }
 
   @Override
   public void periodic() {

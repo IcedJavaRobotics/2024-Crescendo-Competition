@@ -59,6 +59,7 @@ public class PneumaticSubsystem extends SubsystemBase {
 
   public void initSpeedDisabler(double initMatchTime) {
     this.timeScore = initMatchTime;
+    this.ampWaitingToCooldown = true;
   }
 
   public void ampWaiting() {
@@ -68,7 +69,7 @@ public class PneumaticSubsystem extends SubsystemBase {
   public void cooldownFlyswatter(){
     if(ampWaitingToCooldown) {
       //If it has been COOLDOWN_TIME amount of time since fired set speed to 0
-      if((timeScore-System.currentTimeMillis()) < ShooterConstants.COOLDOWN_TIME) {
+      if((timeScore - System.currentTimeMillis()) < ShooterConstants.COOLDOWN_TIME) {
         ampFlyswatter.set(false);
         this.ampWaitingToCooldown = false;
       }

@@ -58,7 +58,7 @@ public class ShooterSubsystem extends SubsystemBase {
   public void cooldownShooter() {
     if(shooterWaitingToCooldown) {
       //If it has been COOLDOWN_TIME amount of time since fired set speed to 0
-      if(Math.abs(timeShotShooter-System.currentTimeMillis()) > ShooterConstants.COOLDOWN_TIME) {
+      if(Math.abs(timeShotShooter - System.currentTimeMillis()) > ShooterConstants.COOLDOWN_TIME) {
         leftMotor.set(0);
         rightMotor.set(0);
         this.shooterWaitingToCooldown = false;
