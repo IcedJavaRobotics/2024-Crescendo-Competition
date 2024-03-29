@@ -121,7 +121,7 @@ public class BlinkinSubsystem extends SubsystemBase {
     if(havePiece) {
       turnBlinkinGreen();
     } else{
-      turnBlinkinOff();
+      turnBlinkinRed();
     }
   }
   
