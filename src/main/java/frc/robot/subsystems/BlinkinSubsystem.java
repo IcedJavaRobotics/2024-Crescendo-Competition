@@ -125,7 +125,7 @@ public class BlinkinSubsystem extends SubsystemBase {
         }
     }
   
-    public void turnBlinkinOff(){
+    public void turnBlinkinOff() {
       blinkin.set(BlinkinConstants.BLACK);
     }
 
