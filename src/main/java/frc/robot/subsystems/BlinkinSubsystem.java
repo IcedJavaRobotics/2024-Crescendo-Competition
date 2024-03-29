@@ -121,10 +121,13 @@ public class BlinkinSubsystem extends SubsystemBase {
         if(havePiece){
           turnBlinkinForest();
         } else{
-          turnBlinkinAllianceColor();
+          turnBlinkinOff();
         }
     }
   
+    public void turnBlinkinOff(){
+      blinkin.set(BlinkinConstants.BLACK);
+    }
 
   @Override
   public void periodic() {
