@@ -18,7 +18,7 @@ public class PneumaticSubsystem extends SubsystemBase {
   /** Creates a new PneumaticSubsystem. */
 
   // Declaring solenoids and compressor
-  Solenoid ampFlyswatter = new Solenoid(PneumaticsConstants.PNUEMATIC_HUB_ID, PneumaticsModuleType.REVPH, 2);
+  DoubleSolenoid ampFlyswatter = new DoubleSolenoid(PneumaticsConstants.PNUEMATIC_HUB_ID, PneumaticsModuleType.REVPH, 2, 3);
   DoubleSolenoid climberRelease = new DoubleSolenoid(PneumaticsConstants.PNUEMATIC_HUB_ID, PneumaticsModuleType.REVPH, 0, 1);  
   Compressor compressor = new Compressor(PneumaticsConstants.COMPRESSOR_ID, PneumaticsModuleType.REVPH);
 
@@ -28,7 +28,7 @@ public class PneumaticSubsystem extends SubsystemBase {
   public PneumaticSubsystem() {
     
     // Setting default states, will occur when robot is enabled
-    ampFlyswatter.set(false);
+    ampFlyswatter.set(DoubleSolenoid.Value.kReverse);
     climberRelease.set(DoubleSolenoid.Value.kForward);
 
   }
@@ -47,13 +47,13 @@ public class PneumaticSubsystem extends SubsystemBase {
 
   public void ampScore() {
 
-    ampFlyswatter.set(true);
+    ampFlyswatter.set(DoubleSolenoid.Value.kForward);
 
   }
 
   public void ampRetract() {
 
-    ampFlyswatter.set(false);
+    ampFlyswatter.set(DoubleSolenoid.Value.kReverse);
 
   }
 
@@ -70,7 +70,7 @@ public class PneumaticSubsystem extends SubsystemBase {
     if(ampWaitingToCooldown) {
       //If it has been COOLDOWN_TIME amount of time since fired set speed to 0
       if((timeScore - System.currentTimeMillis()) < ShooterConstants.COOLDOWN_TIME) {
-        ampFlyswatter.set(false);
+        ampFlyswatter.set(DoubleSolenoid.Value.kReverse);
         this.ampWaitingToCooldown = false;
       }
     }
