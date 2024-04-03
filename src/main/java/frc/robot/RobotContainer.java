@@ -87,7 +87,7 @@ public class RobotContainer {
                 .onTrue(new InstantCommand(() -> swerveSubsystem.zeroHeading()));
 
         new JoystickButton(auxController, XboxController.Button.kStart.value)
-                .onTrue(new MediumRollerOutCommand(rollerSubsystem));
+                .whileTrue(new MediumRollerOutCommand(rollerSubsystem));
 
         new JoystickButton(auxController, XboxController.Button.kY.value)
                 .whileTrue(new SlowRollerInCommand(rollerSubsystem));
@@ -129,8 +129,9 @@ public class RobotContainer {
                 .whileTrue(new InstantCommand(() -> pneumaticSubsystem.lockClimber()));
 
                 
-        // new JoystickButton(auxController, XboxController.Button.kStart.value)
-        //         .whileTrue(new InstantCommand(() -> shooterSubsystem.setSpeed(0)));
+        new JoystickButton(auxController, XboxController.Button.kX.value)
+                .whileTrue(new InstantCommand(() -> pneumaticSubsystem.ampScore()));
+
         // new JoystickButton(driverStation, 4) //8
         //         .onTrue(new InstantCommand(() -> blinkinSubsystem.autoBlinkin()));
 

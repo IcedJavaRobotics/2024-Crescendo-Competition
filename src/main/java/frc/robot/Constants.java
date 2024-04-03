@@ -34,7 +34,7 @@ public final class Constants {
 
         public static final int DISTANCE_SENSOR_ID = 0;
 
-        public static final boolean MOTOR_INVERTED = true;
+        public static final boolean MOTOR_INVERTED = false;
         
         public static final double SHOOTER_SPEED = 1;
 
@@ -43,7 +43,7 @@ public final class Constants {
         public static final double INTAKE_SPEED = 1;
 
         public static final double MEDIUM_SPEED = 0.4;
-        public static final double SLOW_SPEED = 0.4;
+        public static final double SLOW_SPEED = 0.2;
 
         public static final double EJECT_SPEED = 0.6;
 
@@ -78,7 +78,7 @@ public final class Constants {
         public static final boolean LEFT_MOTOR_INVERTED = true;
         public static final boolean RIGHT_MOTOR_INVERTED = false;
 
-        public static final double SPEAKER_SPEED = .9; //rate it spins
+        public static final double SPEAKER_SPEED = 1; //rate it spins
         public static final double COOLDOWN_TIME = 1.5 * 1000; //cooldown time in seconds
         public static final double AMP_SPEED = 0.4;
 
