@@ -43,7 +43,7 @@ public final class Constants {
         public static final double INTAKE_SPEED = 1;
 
         public static final double MEDIUM_SPEED = 0.4;
-        public static final double SLOW_SPEED = 0.2;
+        public static final double SLOW_SPEED = 0.8;
 
         public static final double EJECT_SPEED = 0.6;
 
