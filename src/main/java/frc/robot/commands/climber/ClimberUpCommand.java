@@ -27,6 +27,7 @@ public class ClimberUpCommand extends Command {
   @Override
   public void initialize() {
     pneumaticSubsystem.releaseClimber();
+    pneumaticSubsystem.ampScore();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
