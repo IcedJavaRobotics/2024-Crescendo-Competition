@@ -77,6 +77,10 @@ public class BlinkinSubsystem extends SubsystemBase {
 
   }
 
+  public void turnBlinkinViolet() {
+    blinkin.set(BlinkinConstants.VIOLET);
+  }
+
   public void turnBlinkinAllianceColor() {
     Optional<Alliance> ally = DriverStation.getAlliance();
     if(ally.isPresent()) {
@@ -127,7 +131,7 @@ public class BlinkinSubsystem extends SubsystemBase {
 
   public void intakeColor(boolean havePiece, boolean intakeIn) {
     if(havePiece && intakeIn) {
-      turnBlinkinRainbow();
+      turnBlinkinViolet();
     } else if (havePiece) {
       turnBlinkinGreen();
     } else {

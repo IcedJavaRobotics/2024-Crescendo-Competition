@@ -97,7 +97,8 @@ public final class Constants {
         public static final double RAINBOW = -.89; 
         public static final double GREEN = .77; 
         public static final double OCEAN = -.51; 
-        public static final double FOREST = -.71; 
+        public static final double FOREST = -.71;
+        public static final double VIOLET = .91;
         public static final double BLACK = 0.99;
         public static final double OFF = 0.99;
     }
