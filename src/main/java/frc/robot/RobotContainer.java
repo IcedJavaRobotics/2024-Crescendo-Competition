@@ -71,7 +71,7 @@ public class RobotContainer {
         shooterSubsystem.setDefaultCommand(new RunCommand(() -> shooterSubsystem.cooldownShooter(), shooterSubsystem));
         rollerSubsystem.setDefaultCommand(new RunCommand(() -> rollerSubsystem.cooldownRoller(), rollerSubsystem));
         pneumaticSubsystem.setDefaultCommand(new RunCommand(() -> pneumaticSubsystem.cooldownFlyswatter(), pneumaticSubsystem));
-        blinkinSubsystem.setDefaultCommand(new RunCommand(() -> blinkinSubsystem.intakeColor(rollerSubsystem.havePiece()), blinkinSubsystem));
+        blinkinSubsystem.setDefaultCommand(new RunCommand(() -> blinkinSubsystem.intakeColor(rollerSubsystem.havePiece(), intakeSubsystem.getIntakePosition()), blinkinSubsystem));
         registerNamedCommands();
 
         autoChooser = AutoBuilder.buildAutoChooser(); // Default auto will be `Commands.none()`

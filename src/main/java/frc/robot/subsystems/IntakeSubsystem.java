@@ -112,6 +112,13 @@ public class IntakeSubsystem extends SubsystemBase {
   public double getIntakeEncoder() {
     return intakeMotor.getEncoder().getPosition();
   }
+
+  /** 
+   * @return True if limit switch pressed and false if not
+   */
+  public boolean getIntakePosition() {
+    return !intakeLimitSwitch.get();
+  }
   
    
   /**

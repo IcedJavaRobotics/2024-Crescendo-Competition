@@ -124,6 +124,16 @@ public class BlinkinSubsystem extends SubsystemBase {
       turnBlinkinRed();
     }
   }
+
+  public void intakeColor(boolean havePiece, boolean intakeIn) {
+    if(havePiece && intakeIn) {
+      turnBlinkinRainbow();
+    } else if (havePiece) {
+      turnBlinkinGreen();
+    } else {
+      turnBlinkinRed();
+    }
+  }
   
   public void turnBlinkinOff() {
     blinkin.set(BlinkinConstants.BLACK);
