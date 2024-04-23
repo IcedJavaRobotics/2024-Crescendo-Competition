@@ -24,7 +24,6 @@ import frc.robot.commands.roller.*;
 
 import frc.robot.subsystems.*;
 
-import com.fasterxml.jackson.core.sym.Name1;
 import com.pathplanner.lib.auto.AutoBuilder;
 import com.pathplanner.lib.auto.NamedCommands;
 import com.pathplanner.lib.commands.PathPlannerAuto;
@@ -43,15 +42,15 @@ public class RobotContainer {
     private final IntakeSubsystem intakeSubsystem = new IntakeSubsystem();
     private final RollerSubsystem rollerSubsystem = new RollerSubsystem();
     private final ShooterSubsystem shooterSubsystem = new ShooterSubsystem();
-    private final ClimberSubsystem climberSubsystem = new ClimberSubsystem();
-    private final PneumaticSubsystem pneumaticSubsystem = new PneumaticSubsystem();
-    private final LimelightSubsystem limelightSubsystem = new LimelightSubsystem();
+    // private final ClimberSubsystem climberSubsystem = new ClimberSubsystem();
+    // private final PneumaticSubsystem pneumaticSubsystem = new PneumaticSubsystem();
+    // private final LimelightSubsystem limelightSubsystem = new LimelightSubsystem();
     private final BlinkinSubsystem blinkinSubsystem = new BlinkinSubsystem();
 
     private final SendableChooser<Command> autoChooser; 
 
     private final XboxController driverController = new XboxController(OIConstants.DRIVER_CONTROLLER_PORT);
-    private final XboxController auxController = new XboxController(OIConstants.AUX_CONTROLLER_PORT);
+    // private final XboxController auxController = new XboxController(OIConstants.AUX_CONTROLLER_PORT);
     private final Joystick driverStation = new Joystick(OIConstants.DRIVER_STATION_PORT);
 
     public RobotContainer() {
@@ -70,7 +69,7 @@ public class RobotContainer {
         intakeSubsystem.setDefaultCommand(new RunCommand(() -> intakeSubsystem.stopIntakeLimitSwitch(), intakeSubsystem));
         shooterSubsystem.setDefaultCommand(new RunCommand(() -> shooterSubsystem.cooldownShooter(), shooterSubsystem));
         rollerSubsystem.setDefaultCommand(new RunCommand(() -> rollerSubsystem.cooldownRoller(), rollerSubsystem));
-        pneumaticSubsystem.setDefaultCommand(new RunCommand(() -> pneumaticSubsystem.cooldownFlyswatter(), pneumaticSubsystem));
+        // pneumaticSubsystem.setDefaultCommand(new RunCommand(() -> pneumaticSubsystem.cooldownFlyswatter(), pneumaticSubsystem));
         blinkinSubsystem.setDefaultCommand(new RunCommand(() -> blinkinSubsystem.intakeColor(rollerSubsystem.havePiece(), intakeSubsystem.getIntakePosition()), blinkinSubsystem));
         registerNamedCommands();
 
@@ -86,11 +85,11 @@ public class RobotContainer {
         new JoystickButton(driverController, XboxController.Button.kB.value)
                 .onTrue(new InstantCommand(() -> swerveSubsystem.zeroHeading()));
 
-        new JoystickButton(auxController, XboxController.Button.kStart.value)
-                .whileTrue(new MediumRollerOutCommand(rollerSubsystem));
+        // new JoystickButton(auxController, XboxController.Button.kStart.value)
+        //         .whileTrue(new MediumRollerOutCommand(rollerSubsystem));
 
-        new JoystickButton(auxController, XboxController.Button.kY.value)
-                .whileTrue(new SlowRollerInCommand(rollerSubsystem));
+        // new JoystickButton(auxController, XboxController.Button.kY.value)
+        //         .whileTrue(new SlowRollerInCommand(rollerSubsystem));
 
         new JoystickButton(driverStation, 10 ) //9
                 .onTrue(new InstantCommand(() -> intakeSubsystem.zeroIntakeEncoder()));
@@ -110,27 +109,30 @@ public class RobotContainer {
         new JoystickButton(driverController, XboxController.Button.kRightBumper.value)
                 .whileTrue(new PickupNoteCommand(intakeSubsystem, rollerSubsystem));
 
+        new JoystickButton(driverController, XboxController.Button.kA.value)
+                .whileTrue(new NoteShootCommand(shooterSubsystem, rollerSubsystem));
+
         new JoystickButton(driverStation, 2) //3
                 .whileTrue(new ShooterOutCommand(shooterSubsystem));
 
-        new JoystickButton(auxController, XboxController.Button.kA.value)
-                .whileTrue(new NoteShootCommand(shooterSubsystem, rollerSubsystem));
+        // new JoystickButton(auxController, XboxController.Button.kA.value)
+        //         .whileTrue(new NoteShootCommand(shooterSubsystem, rollerSubsystem));
 
-        new JoystickButton(auxController, XboxController.Button.kRightBumper.value)
-                .whileTrue(new ClimberUpCommand(climberSubsystem, pneumaticSubsystem));
+        // new JoystickButton(auxController, XboxController.Button.kRightBumper.value)
+        //         .whileTrue(new ClimberUpCommand(climberSubsystem, pneumaticSubsystem));
 
-        new JoystickButton(auxController, XboxController.Button.kLeftBumper.value)
-                .whileTrue(new ClimberDownCommand(climberSubsystem, pneumaticSubsystem));
+        // new JoystickButton(auxController, XboxController.Button.kLeftBumper.value)
+        //         .whileTrue(new ClimberDownCommand(climberSubsystem, pneumaticSubsystem));
 
-        new JoystickButton(auxController, XboxController.Button.kB.value)
-                .whileTrue(new AmpShootCommand(shooterSubsystem, rollerSubsystem, pneumaticSubsystem));
+        // new JoystickButton(auxController, XboxController.Button.kB.value)
+        //         .whileTrue(new AmpShootCommand(shooterSubsystem, rollerSubsystem, pneumaticSubsystem));
 
-        new JoystickButton(driverStation, 4)
-                .whileTrue(new InstantCommand(() -> pneumaticSubsystem.lockClimber()));
+        // new JoystickButton(driverStation, 4)
+        //         .whileTrue(new InstantCommand(() -> pneumaticSubsystem.lockClimber()));
 
                 
-        new JoystickButton(auxController, XboxController.Button.kX.value)
-                .whileTrue(new InstantCommand(() -> pneumaticSubsystem.ampScore()));
+        // new JoystickButton(auxController, XboxController.Button.kX.value)
+        //         .whileTrue(new InstantCommand(() -> pneumaticSubsystem.ampScore()));
 
         // new JoystickButton(driverStation, 4) //8
         //         .onTrue(new InstantCommand(() -> blinkinSubsystem.autoBlinkin()));
@@ -150,9 +152,10 @@ public class RobotContainer {
         NamedCommands.registerCommand("ResetGyro", new InstantCommand(() -> swerveSubsystem.zeroHeading(), swerveSubsystem));
     }
 
-    public void lockClimbers() {
-        pneumaticSubsystem.lockClimber();
-    }
+//     public void lockClimbers() {
+//         pneumaticSubsystem.lockClimber();
+//     }
+
     public Command getAutonomousCommand() {
         return autoChooser.getSelected();
     }
