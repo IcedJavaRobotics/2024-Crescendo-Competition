@@ -80,7 +80,7 @@ public final class Constants {
 
         public static final double SPEAKER_SPEED = 1; //rate it spins
         public static final double COOLDOWN_TIME = 1.5 * 1000; //cooldown time in seconds
-        public static final double AMP_SPEED = 0.4;
+        public static final double AMP_SPEED = 0.33; //.4
 
     }
 
