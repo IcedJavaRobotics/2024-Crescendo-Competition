@@ -79,7 +79,7 @@ public final class Constants {
         public static final boolean RIGHT_MOTOR_INVERTED = false;
 
         public static final double SPEAKER_SPEED = 1; //rate it spins
-        public static final double COOLDOWN_TIME = 1.5 * 1000; //cooldown time in seconds
+        public static final double COOLDOWN_TIME = 0.75 * 1000; //cooldown time in seconds
         public static final double AMP_SPEED = 0.33; //.4
 
     }
@@ -188,7 +188,7 @@ public final class Constants {
         // TODO
 
         // in m/s, based on MK4 L2 speed of 14.5 ft/s
-        public static final double PHYSICAL_MAX_SPEED_METERS_PER_SECOND = Units.feetToMeters(14.5);  //14.5
+        public static final double PHYSICAL_MAX_SPEED_METERS_PER_SECOND = Units.feetToMeters(10);  //14.5
         // Robot turning speed
         public static final double PHYSICAL_MAX_ANGULAR_SPEED_RADIANS_PER_SECOND = 5 * Math.PI;
 
